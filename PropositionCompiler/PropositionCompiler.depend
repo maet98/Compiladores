@@ -1,0 +1,138 @@
+# depslib dependency file v1.0
+1582840792 source:c:\users\marid\onedrive\escritorio\propositioncompiler\propositioncompiler\binarytree.cpp
+	"node.h"
+	"BinaryTree.h"
+
+1582840817 c:\users\marid\onedrive\escritorio\propositioncompiler\propositioncompiler\node.h
+	<cstddef>
+
+1582840775 c:\users\marid\onedrive\escritorio\propositioncompiler\propositioncompiler\binarytree.h
+	"node.h"
+	<bits/stdc++.h>
+
+1582840818 source:c:\users\marid\onedrive\escritorio\propositioncompiler\propositioncompiler\node.cpp
+	"node.h"
+
+1582843957 source:c:\users\marid\onedrive\escritorio\propositioncompiler\propositioncompiler\lexer.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<string>
+	<strings.h>
+	<iostream>
+	<bits/stdc++.h>
+	<map>
+	<regex>
+	<list>
+	"lexer.h"
+
+1582842063 c:\users\marid\onedrive\escritorio\propositioncompiler\propositioncompiler\lexer.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<string>
+	<strings.h>
+	<iostream>
+	<bits/stdc++.h>
+	<map>
+	<list>
+
+1582844296 source:c:\users\marid\onedrive\escritorio\propositioncompiler\propositioncompiler\parser.cpp
+	<bits/stdc++.h>
+	"parser.h"
+	"lexer.h"
+
+1582840412 c:\users\marid\onedrive\escritorio\propositioncompiler\propositioncompiler\parser.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<string>
+	<strings.h>
+	<iostream>
+	<bits/stdc++.h>
+	"lexer.h"
+	"node.h"
+	"BinaryTree.h"
+
+1582843849 source:c:\users\marid\onedrive\escritorio\propositioncompiler\propositioncompiler\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<string>
+	<iostream>
+	<bits/stdc++.h>
+	<list>
+	"lexer.h"
+	"node.h"
+	"BinaryTree.h"
+	"parser.h"
+
+1582856788 source:c:\users\marid\onedrive\escritorio\p3-compilers-subject\propositioncompiler\binarytree.cpp
+	"node.h"
+	"BinaryTree.h"
+
+1582840817 c:\users\marid\onedrive\escritorio\p3-compilers-subject\propositioncompiler\node.h
+	<cstddef>
+
+1582855095 c:\users\marid\onedrive\escritorio\p3-compilers-subject\propositioncompiler\binarytree.h
+	"node.h"
+	<bits/stdc++.h>
+	<vector>
+
+1582843957 source:c:\users\marid\onedrive\escritorio\p3-compilers-subject\propositioncompiler\lexer.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<string>
+	<strings.h>
+	<iostream>
+	<bits/stdc++.h>
+	<map>
+	<regex>
+	<list>
+	"lexer.h"
+
+1582842063 c:\users\marid\onedrive\escritorio\p3-compilers-subject\propositioncompiler\lexer.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<string>
+	<strings.h>
+	<iostream>
+	<bits/stdc++.h>
+	<map>
+	<list>
+
+1582856656 source:c:\users\marid\onedrive\escritorio\p3-compilers-subject\propositioncompiler\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<string>
+	<iostream>
+	<bits/stdc++.h>
+	<list>
+	"lexer.h"
+	"node.h"
+	"BinaryTree.h"
+	"parser.h"
+
+1582840412 c:\users\marid\onedrive\escritorio\p3-compilers-subject\propositioncompiler\parser.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<string>
+	<strings.h>
+	<iostream>
+	<bits/stdc++.h>
+	"lexer.h"
+	"node.h"
+	"BinaryTree.h"
+
+1582840818 source:c:\users\marid\onedrive\escritorio\p3-compilers-subject\propositioncompiler\node.cpp
+	"node.h"
+
+1582857730 source:c:\users\marid\onedrive\escritorio\p3-compilers-subject\propositioncompiler\parser.cpp
+	<bits/stdc++.h>
+	"parser.h"
+	"lexer.h"
+

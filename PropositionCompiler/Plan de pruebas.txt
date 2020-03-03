@@ -1,0 +1,114 @@
+
+Input:
+\n
+Output:
+"Ocurrio un Error lexico"
+
+Input:
+A
+Output:
+"Ocurrio un Error lexico"
+
+Input:
+.-
+Output:
+"Ocurrio un Error lexico"
+
+Input:
+m sk pwi jv
+Output:
+"Ocurrio un Error Sintáctico"
+
+Input:
+a
+Valores:
+a : 1
+Output:
+1
+
+Input:
+~a
+Valores:
+a : 1
+Output:
+0
+
+Input:
+a~
+Output:
+"Ocurrio un Error Sintáctico"
+
+Input:
+a V b
+Valores:
+a : 0
+b : 1
+Output:
+1
+
+Input:
+a ^ b
+Valores:
+a : 1
+b : 1
+Output:
+1
+
+Input:
+a > b
+Valores:
+a : 1
+b : 0
+Output:
+0
+
+Input:
+a > ~b
+Valores:
+a : 1
+b : 1
+Output:
+0
+
+Input:
+a > ~b V c
+Valores:
+a : 1
+b : 1
+c : 1
+Output:
+1
+
+Input:
+a > ~b ^ c
+Valores:
+a : 1
+b : 1
+c : 1
+Output:
+0
+
+Input:
+a > ~b ^ c V ~d V ~f ^ g
+Valores:
+a : 1
+b : 0
+c : 1
+d : 1
+f : 0
+g : 1
+Output:
+1
+
+Input:
+a > ~b ^ c V ~d V ~f ^ g
+Valores:
+a : 1
+b : 1
+c : 0
+d : 1
+f : 1
+g : 1
+Output:
+0
+
