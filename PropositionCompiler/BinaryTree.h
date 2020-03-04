@@ -16,7 +16,7 @@ public:
 	node* search(int key);
 	void destroy_tree();
     bool value(node* actual, std::vector<bool> valuesForVariables);
-    void all(node* actual,std::vector<char>&letras);
+    void all(node* actual,std::set<char>&letras);
 	node *root;
     std::bitset<27>alf;
 
