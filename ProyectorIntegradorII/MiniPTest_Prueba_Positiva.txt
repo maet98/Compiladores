@@ -1,0 +1,101 @@
+Program Test_2;
+
+Variables
+	GlobalReal : Real;
+	GlobalInt  : Integer;
+	GlobalString : String;
+	GlobalIntVector : Integer[250];
+	GlobalIntMatrix : Integer[256, 256];	
+EndVars
+
+Procedures
+
+	Procedure FooDummyProc();
+	
+	NoVariables
+	EndVars
+	
+	NoProcedures
+	EndProcs
+	
+	Begin
+	;
+	End;
+
+	Procedure FooProcess_1(fooPar1 : Integer);
+	
+	Variables 
+		LoopIndex : Integer;
+		ProcMsg   : String; 
+	EndVars
+	
+	NoProcedures
+	EndProcs
+	
+	Begin 
+		For LoopIndex := 1 to fooPar Do		
+			Write("Im executing the ith Iteration");
+		
+		Write("I'm Done!!!!")
+	
+	End;
+	
+	
+	Procedure FooAssign(fooPar2 : Real);
+	
+	Variables
+		FooValue : Real;
+	EndVars
+	
+	NoProcedures
+	EndProcs
+	
+	Begin 
+		FooValue := fooPar2;
+		GlobalIntVector[FooValue] := 4;
+		A := A/(FooValue + fooPar2) * 2;
+		B := GlobalIntMatrix[FooValue, FooValue]		
+	End;
+	
+	Procedure FooConditional(fooPar3 : String);
+	
+	Variables
+		FooValue : Integer;
+	EndVars
+	
+	NoProcedures
+	EndProcs
+	
+	Begin
+		If A = FooValue Then 
+			Write("The condition is true")
+		Else 
+			Read (FooValue);
+			
+		If B = 2 Then
+			Write ("This branch is also true")
+		Else
+			If B > 2 Then 
+				Read(B)
+			Else
+				Read(C);
+		
+		If B <> 3 Then 
+			Write("This is the last comparison")
+		Else 
+			Write(C);
+		
+		If C = 4 Then 
+			C := 3.456
+		Else		
+			D := 3.8787;
+		
+		C := 2*Foo(34,15)
+		
+	
+	End 
+	
+
+EndProcs;
+
+{ No main Begin-End block }
