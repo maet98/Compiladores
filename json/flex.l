@@ -1,29 +1,27 @@
 %option noyywrap
-ws [ \r\t\n]*
-dig     [0-9]
+dig [0-9]
 number '-'?(0|[1-9]d*)('.'dig+)?([eE][-+]?dig+)?
+string  ["]([^\"]|[\]["/\bfnrtu])?["]
 hex u(dig|[A])
-string  ["]([^\"]|[\]["/\bfnrtu])?["] | 
+true "true"
+false "false"
+null "null"
+ws [ \r\t\n]*
 
 %{
 #include "Tokens.h"
-
-int tokenCount;
 %}
 
-%%																		{tokenCount++;	return (RPAREN);}
-"8"("0"|"2"|"4")"9""-"{D}{D}{D}"-"{D}{D}{D}{D}										{tokenCount++;	return(TELE);}
-(("1""9"(("6"[2-9])|([7-9]{D})))|("2""0"("0"|"1"){D}))"-"{D}{D}{D}{D}  				{tokenCount++;	return(MATRICULA);}
-({ALFA})+"@"{ALFA}+("."{ALFA}+)+													{tokenCount++;	return(CORREO);}
-"C"(("S""T""I")|("S""D"))"-"{D}{D}{D}{D}"-"{D}{D}{D}{D}"-"{carreras}"-"{D}{D}{D}	{tokenCount++;	return(ASGPVA);}
-{SCHEME}":""/""/"{AUTHORITY}?{PATH}{QUERY}?{FRAG}?								{tokenCount++;	return(URL);}
-
-.
-
+%%	
+{number} 		{return (_NUMBER);}
+{string}		{return (_STRING);}
+{null}			{return (_NULL);}
+{true}			{return (_FALSE);}
+{false}			{return (_TRUE);}
+{ws}			{return (_WHITESPACE);}
 %%
 
-void yyerror(int tokenCount)
-{
-	printf("Hubo un error al analizar el lexema %s en la columna %d", yytext, tokenCount);
-	exit(1);
+int yyerror(char * s){
+	fprintf(stderr, "%s\n",s);
+	return 0;
 }
