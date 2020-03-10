@@ -1,0 +1,52 @@
+Program Test;
+
+Variables
+	GlobalInt  : Integer;
+	GlobalStr  : String; 
+	GlobalReal : Real;
+EndVars
+
+Procedures 
+
+	Procedure FooBarProc(fooPar1 : Integer);
+	
+	Variables 
+		LocalInt  : Integer;
+		LocalStr  : String;
+		LocalReal : Real;
+	EndVars
+	
+	{No nested procedures for this test}
+	Procedures
+		Procedure FooBarChild(childPar1 : Real);
+		
+		Variables 
+			ChildStr  : String;
+			ChildReal : Real;
+			ChildInt  : Integer;
+		EndVars
+		
+		NoProcedures
+		EndProcs; {ERROR : a semi-colon should only follow an EndProcs keyword when a Begin-End
+		                   Block does not follow}
+		
+		Begin
+			For LoopCounter := 1 to 100 Do
+				Write("I'm a nested child process!!!")
+		End
+		
+	EndProcs
+	
+	Begin 
+		write("Hello Weird World of YAL");
+		write("This is a test write statement");
+		write("YAL is a Freggin Weird Language")
+	End
+	
+EndProcs
+
+Begin
+
+	;
+
+End
