@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1583853486 source:c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyecto integrador ii\proyectointegradorii\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1583853439 source:c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyecto integrador ii\proyectointegradorii\lex.yy.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<io.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdlib.h>
+	"parser.tab.h"
+	<stdlib.h>
+
+1583850802 c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyecto integrador ii\proyectointegradorii\parser.tab.h
+
+1583850802 source:c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyecto integrador ii\proyectointegradorii\parser.tab.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<stddef.h>
+	<libintl.h>
+	<alloca.h>
+	<malloc.h>
+	<stdlib.h>
+	<stdlib.h>
+	<stdio.h>
+
