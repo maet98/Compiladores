@@ -34,8 +34,8 @@
 /* Undocumented macros, especially those whose name start with YY_,
    are private implementation details.  Do not rely on them.  */
 
-#ifndef YY_YY_PARSER_TAB_H_INCLUDED
-# define YY_YY_PARSER_TAB_H_INCLUDED
+#ifndef YY_YY_Y_TAB_H_INCLUDED
+# define YY_YY_Y_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -101,6 +101,57 @@ extern int yydebug;
     _EOF = 307
   };
 #endif
+/* Tokens.  */
+#define _PROGRAM 258
+#define _ENDVARS 259
+#define _ENDPROCS 260
+#define _VARS 261
+#define _NOVARS 262
+#define _INTEGER 263
+#define _REAL 264
+#define _STRING 265
+#define _PROCS 266
+#define _NOPROCS 267
+#define _PROC 268
+#define _BEGIN 269
+#define _END 270
+#define _FOR 271
+#define _TO 272
+#define _DO 273
+#define _IF 274
+#define _THEN 275
+#define _ELSE 276
+#define _READ 277
+#define _WRITE 278
+#define _LBRACK 279
+#define _RBRACK 280
+#define _LPAREN 281
+#define _RPAREN 282
+#define _SEMI 283
+#define _COLON 284
+#define _COMMA 285
+#define _ASSIGN 286
+#define _PLUS 287
+#define _MINUS 288
+#define _MULT 289
+#define _DIVIDE 290
+#define _EQL 291
+#define _LESS 292
+#define _GTR 293
+#define _LEQ 294
+#define _GEQ 295
+#define _NEQ 296
+#define _ID 297
+#define _ICONST 298
+#define _RCONST 299
+#define _ECONST 300
+#define _LITERAL 301
+#define _COMENTARIO 302
+#define _ERRORLITERAL 303
+#define _ERRORCOMENTARIO 304
+#define _ERROR 305
+#define _NEWLINE 306
+#define _EOF 307
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -114,4 +165,4 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_PARSER_TAB_H_INCLUDED  */
+#endif /* !YY_YY_Y_TAB_H_INCLUDED  */

@@ -5,8 +5,7 @@ extern int yyparse (void);
 
 int main()
 {
-    printf("%d\n", yylex());
-    // printf("%d", yyparse());
+    printf("%d\n",yyparse());
     printf("\n\n ******************** \n");
     return 0;
 }

@@ -28,3 +28,35 @@
 	<stdlib.h>
 	<stdio.h>
 
+1583877997 source:/home/miguel/Repository/Compiladores/ProyectoIntegradorII_1/lex.yy.c
+	<stdio.h>
+	<string.h>
+	<errno.h>
+	<stdlib.h>
+	<inttypes.h>
+	<stdio.h>
+	<stdlib.h>
+	"parser.tab.h"
+	<unistd.h>
+
+1583857939 /home/miguel/Repository/Compiladores/ProyectoIntegradorII_1/parser.tab.h
+
+1583880041 source:/home/miguel/Repository/Compiladores/ProyectoIntegradorII_1/main.c
+	<stdio.h>
+	<stdlib.h>
+
+1583882770 source:/home/miguel/Repository/Compiladores/ProyectoIntegradorII_1/parser.tab.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<limits.h>
+	<stdint.h>
+	<stddef.h>
+	<stddef.h>
+	<libintl.h>
+	<alloca.h>
+	<malloc.h>
+	<stdlib.h>
+	<stdlib.h>
+	<stdio.h>
+

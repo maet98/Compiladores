@@ -1,0 +1,17 @@
+Program TestProg ;
+
+Variables
+	_IntVar  : Integer;
+	_RealVar : Real;
+	_StrVar  : String;
+	_LooIndex : Integer;
+EndVars
+
+Procedures
+	Procedure Start ();
+	
+	NOVARIABLES
+	EndVars
+
+	noprocedures ENDPROCS ;
+EndProcs;

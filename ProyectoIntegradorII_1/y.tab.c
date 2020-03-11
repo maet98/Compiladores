@@ -72,7 +72,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#line 76 "parser.tab.c"
+#line 76 "y.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -105,8 +105,8 @@
 
 /* Use api.header.include to #include this header
    instead of duplicating it here.  */
-#ifndef YY_YY_PARSER_TAB_H_INCLUDED
-# define YY_YY_PARSER_TAB_H_INCLUDED
+#ifndef YY_YY_Y_TAB_H_INCLUDED
+# define YY_YY_Y_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -172,6 +172,57 @@ extern int yydebug;
     _EOF = 307
   };
 #endif
+/* Tokens.  */
+#define _PROGRAM 258
+#define _ENDVARS 259
+#define _ENDPROCS 260
+#define _VARS 261
+#define _NOVARS 262
+#define _INTEGER 263
+#define _REAL 264
+#define _STRING 265
+#define _PROCS 266
+#define _NOPROCS 267
+#define _PROC 268
+#define _BEGIN 269
+#define _END 270
+#define _FOR 271
+#define _TO 272
+#define _DO 273
+#define _IF 274
+#define _THEN 275
+#define _ELSE 276
+#define _READ 277
+#define _WRITE 278
+#define _LBRACK 279
+#define _RBRACK 280
+#define _LPAREN 281
+#define _RPAREN 282
+#define _SEMI 283
+#define _COLON 284
+#define _COMMA 285
+#define _ASSIGN 286
+#define _PLUS 287
+#define _MINUS 288
+#define _MULT 289
+#define _DIVIDE 290
+#define _EQL 291
+#define _LESS 292
+#define _GTR 293
+#define _LEQ 294
+#define _GEQ 295
+#define _NEQ 296
+#define _ID 297
+#define _ICONST 298
+#define _RCONST 299
+#define _ECONST 300
+#define _LITERAL 301
+#define _COMENTARIO 302
+#define _ERRORLITERAL 303
+#define _ERRORCOMENTARIO 304
+#define _ERROR 305
+#define _NEWLINE 306
+#define _EOF 307
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -185,7 +236,7 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_PARSER_TAB_H_INCLUDED  */
+#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
 
 
 
@@ -552,13 +603,13 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    62,    62,    65,    68,    71,    72,    75,    76,    79,
-      80,    81,    82,    85,    88,    89,    92,    93,    96,    97,
-     100,   103,   104,   107,   108,   111,   112,   115,   116,   117,
-     118,   119,   120,   123,   126,   127,   128,   131,   132,   133,
-     136,   137,   140,   141,   142,   143,   146,   147,   150,   151,
-     153,   154,   157,   160,   161,   162,   163,   164,   165,   168,
-     171,   174,   175
+       0,    62,    62,    66,    70,    74,    76,    80,    82,    86,
+      88,    90,    92,    96,   100,   102,   106,   108,   112,   114,
+     118,   122,   124,   128,   130,   134,   136,   140,   142,   144,
+     146,   148,   150,   154,   158,   160,   162,   166,   168,   170,
+     174,   176,   180,   182,   184,   186,   190,   192,   196,   198,
+     201,   203,   207,   211,   213,   215,   217,   219,   221,   225,
+     229,   233,   235
 };
 #endif
 
@@ -1433,8 +1484,374 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
+  case 2:
+#line 63 "parser.y"
+                {printf("program --> title _SEMI block _EOF");}
+#line 1491 "y.tab.c"
+    break;
 
-#line 1438 "parser.tab.c"
+  case 3:
+#line 67 "parser.y"
+                {printf("title --> _PROGRAM _ID");}
+#line 1497 "y.tab.c"
+    break;
+
+  case 4:
+#line 71 "parser.y"
+                {printf("block --> vars _ENDVARS procs _ENDPROCS code");}
+#line 1503 "y.tab.c"
+    break;
+
+  case 5:
+#line 75 "parser.y"
+                {printf("vars --> _VARS varlist _SEMI");}
+#line 1509 "y.tab.c"
+    break;
+
+  case 6:
+#line 77 "parser.y"
+                {printf("vars --> _NOVARS");}
+#line 1515 "y.tab.c"
+    break;
+
+  case 7:
+#line 81 "parser.y"
+                {printf("varlist --> varlist _SEMI vardef");}
+#line 1521 "y.tab.c"
+    break;
+
+  case 8:
+#line 83 "parser.y"
+                {printf("varlist --> vardef");}
+#line 1527 "y.tab.c"
+    break;
+
+  case 9:
+#line 87 "parser.y"
+                {printf("vardef --> _ID _COLON _INTEGER");}
+#line 1533 "y.tab.c"
+    break;
+
+  case 10:
+#line 89 "parser.y"
+                {printf("vardef --> _ID _COLON _REAL");}
+#line 1539 "y.tab.c"
+    break;
+
+  case 11:
+#line 91 "parser.y"
+                {printf("vardef --> _ID _COLON _INTEGER bn1");}
+#line 1545 "y.tab.c"
+    break;
+
+  case 12:
+#line 93 "parser.y"
+                {printf("vardef --> _ID _COLON _STRING");}
+#line 1551 "y.tab.c"
+    break;
+
+  case 13:
+#line 97 "parser.y"
+                {printf("bn1 --> _LBRACK nlist _RBRACK");}
+#line 1557 "y.tab.c"
+    break;
+
+  case 14:
+#line 101 "parser.y"
+                {printf("nlist --> nlist _COMMA _ICONST");}
+#line 1563 "y.tab.c"
+    break;
+
+  case 15:
+#line 103 "parser.y"
+                {printf("nlist --> _ICONST");}
+#line 1569 "y.tab.c"
+    break;
+
+  case 16:
+#line 107 "parser.y"
+                {printf("procs --> _PROCS proclist");}
+#line 1575 "y.tab.c"
+    break;
+
+  case 17:
+#line 109 "parser.y"
+                {printf("procs --> _NOPROCS");}
+#line 1581 "y.tab.c"
+    break;
+
+  case 18:
+#line 113 "parser.y"
+                {printf("proclist --> proclist _SEMI procdef");}
+#line 1587 "y.tab.c"
+    break;
+
+  case 19:
+#line 115 "parser.y"
+                {printf("proclist --> procdef");}
+#line 1593 "y.tab.c"
+    break;
+
+  case 20:
+#line 119 "parser.y"
+                {printf("procdef --> ptitle _SEMI block");}
+#line 1599 "y.tab.c"
+    break;
+
+  case 21:
+#line 123 "parser.y"
+                {printf("ptitle --> _PROC _ID _LPAREN varlist _RPAREN");}
+#line 1605 "y.tab.c"
+    break;
+
+  case 22:
+#line 125 "parser.y"
+                {printf("ptitle --> _PROC _ID _LPAREN _RPAREN");}
+#line 1611 "y.tab.c"
+    break;
+
+  case 23:
+#line 129 "parser.y"
+                {printf("code --> _BEGIN para _END");}
+#line 1617 "y.tab.c"
+    break;
+
+  case 24:
+#line 131 "parser.y"
+                {printf("code --> _SEMI");}
+#line 1623 "y.tab.c"
+    break;
+
+  case 25:
+#line 135 "parser.y"
+                {printf("para --> para _SEMI stmt");}
+#line 1629 "y.tab.c"
+    break;
+
+  case 26:
+#line 137 "parser.y"
+                {printf("para --> stmt");}
+#line 1635 "y.tab.c"
+    break;
+
+  case 27:
+#line 141 "parser.y"
+                {printf("stmt --> assign");}
+#line 1641 "y.tab.c"
+    break;
+
+  case 28:
+#line 143 "parser.y"
+                {printf("stmt --> cond");}
+#line 1647 "y.tab.c"
+    break;
+
+  case 29:
+#line 145 "parser.y"
+                {printf("stmt --> loop");}
+#line 1653 "y.tab.c"
+    break;
+
+  case 30:
+#line 147 "parser.y"
+                {printf("stmt --> input");}
+#line 1659 "y.tab.c"
+    break;
+
+  case 31:
+#line 149 "parser.y"
+                {printf("stmt --> output");}
+#line 1665 "y.tab.c"
+    break;
+
+  case 32:
+#line 151 "parser.y"
+                {printf("stmt --> code");}
+#line 1671 "y.tab.c"
+    break;
+
+  case 33:
+#line 155 "parser.y"
+                {printf("assign --> ids _ASSIGN expr");}
+#line 1677 "y.tab.c"
+    break;
+
+  case 34:
+#line 159 "parser.y"
+                {printf("expr --> expr _PLUS term");}
+#line 1683 "y.tab.c"
+    break;
+
+  case 35:
+#line 161 "parser.y"
+                {printf("expr --> expr _MINUS term");}
+#line 1689 "y.tab.c"
+    break;
+
+  case 36:
+#line 163 "parser.y"
+                {printf("expr --> term");}
+#line 1695 "y.tab.c"
+    break;
+
+  case 37:
+#line 167 "parser.y"
+                {printf("term --> term _MULT fac");}
+#line 1701 "y.tab.c"
+    break;
+
+  case 38:
+#line 169 "parser.y"
+                {printf("term --> term _DIVIDE fac");}
+#line 1707 "y.tab.c"
+    break;
+
+  case 39:
+#line 171 "parser.y"
+                {printf("term --> fac");}
+#line 1713 "y.tab.c"
+    break;
+
+  case 40:
+#line 175 "parser.y"
+                {printf("fac --> val");}
+#line 1719 "y.tab.c"
+    break;
+
+  case 41:
+#line 177 "parser.y"
+                {printf("fac --> _LPAREN expr _RPAREN");}
+#line 1725 "y.tab.c"
+    break;
+
+  case 42:
+#line 181 "parser.y"
+                {printf("val --> ids");}
+#line 1731 "y.tab.c"
+    break;
+
+  case 43:
+#line 183 "parser.y"
+                {printf("val --> _ID _LPAREN vallist _RPAREN");}
+#line 1737 "y.tab.c"
+    break;
+
+  case 44:
+#line 185 "parser.y"
+                {printf("val --> _ID _LPAREN vallist _RPAREN");}
+#line 1743 "y.tab.c"
+    break;
+
+  case 45:
+#line 187 "parser.y"
+                {printf("val --> _ID _LPAREN vallist _RPAREN");}
+#line 1749 "y.tab.c"
+    break;
+
+  case 46:
+#line 191 "parser.y"
+                {printf("ids --> _ID");}
+#line 1755 "y.tab.c"
+    break;
+
+  case 47:
+#line 193 "parser.y"
+                {printf("ids --> _ID _LBRACK vallist _RBRACK");}
+#line 1761 "y.tab.c"
+    break;
+
+  case 48:
+#line 197 "parser.y"
+                {printf("vallist --> vallist _COMMA it");}
+#line 1767 "y.tab.c"
+    break;
+
+  case 49:
+#line 199 "parser.y"
+                {printf("vallist --> it");}
+#line 1773 "y.tab.c"
+    break;
+
+  case 50:
+#line 202 "parser.y"
+                {printf("it --> _ID");}
+#line 1779 "y.tab.c"
+    break;
+
+  case 51:
+#line 204 "parser.y"
+                {printf("it --> _ICONST");}
+#line 1785 "y.tab.c"
+    break;
+
+  case 52:
+#line 208 "parser.y"
+                {printf("cond --> _IF expr bop expr _THEN stmt _ELSE stmt");}
+#line 1791 "y.tab.c"
+    break;
+
+  case 53:
+#line 212 "parser.y"
+                {printf("bop --> _EQL");}
+#line 1797 "y.tab.c"
+    break;
+
+  case 54:
+#line 214 "parser.y"
+                {printf("bop --> _LESS");}
+#line 1803 "y.tab.c"
+    break;
+
+  case 55:
+#line 216 "parser.y"
+                {printf("bop --> _GTR");}
+#line 1809 "y.tab.c"
+    break;
+
+  case 56:
+#line 218 "parser.y"
+                {printf("bop --> _LEQ");}
+#line 1815 "y.tab.c"
+    break;
+
+  case 57:
+#line 220 "parser.y"
+                {printf("bop --> _GEQ");}
+#line 1821 "y.tab.c"
+    break;
+
+  case 58:
+#line 222 "parser.y"
+                {printf("bop --> _NEQ");}
+#line 1827 "y.tab.c"
+    break;
+
+  case 59:
+#line 226 "parser.y"
+                {printf("loop --> _FOR assign _TO expr _DO stmt");}
+#line 1833 "y.tab.c"
+    break;
+
+  case 60:
+#line 230 "parser.y"
+                {printf("input --> _READ _LPAREN _ID _RPAREN");}
+#line 1839 "y.tab.c"
+    break;
+
+  case 61:
+#line 234 "parser.y"
+                {printf("output --> _WRITE _LPAREN _ID _RPAREN");}
+#line 1845 "y.tab.c"
+    break;
+
+  case 62:
+#line 236 "parser.y"
+                {printf("output --> _WRITE _LPAREN _LITERAL _RPAREN");}
+#line 1851 "y.tab.c"
+    break;
+
+
+#line 1855 "y.tab.c"
 
       default: break;
     }
@@ -1666,7 +2083,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 178 "parser.y"
+#line 239 "parser.y"
 
 void yyerror(char * message){
 	printf("error ocurred: %s\n", message);

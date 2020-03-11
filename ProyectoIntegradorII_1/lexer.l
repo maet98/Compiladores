@@ -49,7 +49,6 @@ COMENTARIO [{]([^}\n])*[}]
 ERRORLITERAL ["][^"\n]*
 ERRORCOMENTARIO "{"([^}\n])*
 newline [\n]+
-another [^newline]+
 
 %{
 #include <stdio.h>
@@ -107,8 +106,7 @@ int tokenCount;
 {LITERAL}	{tokenCount++; return (_LITERAL);}
 {ERRORLITERAL}  {tokenCount++; return (_ERRORLITERAL);}
 {ERRORCOMENTARIO} {tokenCount++; return (_ERRORCOMENTARIO);}
-{newline}		{/* continue */}
-{another}		  	{printf("error\n"); return (_ERROR);}
+<<eof>>			{tokenCount++; return(_EOF);}
 %%
 /*
 void yyerror(int tokenCount)
