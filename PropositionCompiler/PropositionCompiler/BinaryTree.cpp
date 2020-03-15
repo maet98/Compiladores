@@ -56,9 +56,9 @@ void btree::destroy_tree(){
 	destroy_tree(root);
 }
 
-void btree::all(node* actual, std::set<char>&letras){
+void btree::all(node* actual, std::vector<char>&letras){
     if(actual->value >= 'a' && actual->value <='z'){
-        letras.insert(actual->value);
+        letras.emplace_back(actual->value);
     }
     else{
         if(actual->left!= NULL){
@@ -71,7 +71,7 @@ void btree::all(node* actual, std::set<char>&letras){
 }
 
 bool btree::value(node* actual, std::vector<bool> valuesForVariables){
-    std::set<char> letras;
+    std::vector<char> letras;
     auto copy = actual;
 
     all(actual,letras);

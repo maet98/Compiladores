@@ -16,15 +16,15 @@ void allPossibleTruthValues(btree*);
 void inputTruthValue(btree*);
 
 void inputTruthValue(btree* syntaxTree){
-    set<char> characters;
+    vector<char> characters;
     syntaxTree->all(syntaxTree->root, characters);
     cout << "Ingrese los valores de verdad para las variables: " << endl;
     vector<bool> truthValues(28);
-    for(char i: characters){
-        cout << i << " : ";
+    for(int i = 0; i < characters.size(); i++){
+        cout << characters[i] << " : ";
         bool truthValue;
         cin >> truthValue;
-        truthValues[i - 'a'] = truthValue;
+        truthValues[characters[i] - 'a'] = truthValue;
     }
     cout << "El resultado de evaluar la expresion es: ";
     cout << syntaxTree->value(syntaxTree->root, truthValues) << endl << endl;
@@ -33,16 +33,14 @@ void inputTruthValue(btree* syntaxTree){
 void allPossibleTruthValues(btree* syntaxTree){
     cout << "------------------------------------------------------------------------" << endl;
     cout << "Resultados para todos los posibles valores de verdad de las variables: " << endl;
-    set<char> characters;
+    vector<char> characters;
     syntaxTree->all(syntaxTree->root,characters);
     for(int x = 0; x < pow(2, characters.size()); x++){
        cout << endl;
        vector<bool> truthValues(28, 0);
-       int c = 0;
-       for(char i: characters){
-           truthValues[i - 'a'] = (x & (1<<c));
-           cout << i << " : " << truthValues[i - 'a'] << endl;
-           c++;
+       for(int i = 0; i < characters.size(); i++){
+           truthValues[characters[i] - 'a'] = (x & (1<<i));
+           cout << characters[i] << " : " << truthValues[characters[i] - 'a'] << endl;
        }
        cout << "El resultado de evaluar la expresion es: ";
        cout << syntaxTree->value(syntaxTree->root, truthValues) << endl;
@@ -65,7 +63,7 @@ int main()
     }
     catch(const std::exception&)
     {
-        cout << "Ocurrio un Error SintÃ¡ctico" << endl;
+        cout << "Ocurrio un Error Sintáctico" << endl;
         return EXIT_FAILURE;
     }
     inputTruthValue(syntaxTree);
