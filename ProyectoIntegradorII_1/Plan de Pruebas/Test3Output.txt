@@ -1,0 +1,274 @@
+Test3: output:
+
+title --> _PROGRAM _ID
+
+vardef --> _ID _COLON _INTEGER
+varlist --> vardef
+
+vardef --> _ID _COLON _REAL
+varlist --> varlist _SEMI vardef
+
+vardef --> _ID _COLON _STRING
+varlist --> varlist _SEMI vardef
+
+vardef --> _ID _COLON _INTEGER
+varlist --> varlist _SEMI vardef
+
+vars --> _VARS varlist _SEMI
+
+vardef --> _ID _COLON _INTEGER
+varlist --> vardef
+vardef --> _ID _COLON _REAL
+varlist --> varlist _SEMI vardef
+vardef --> _ID _COLON _STRING
+varlist --> varlist _SEMI vardef
+ptitle --> _PROC _ID _LPAREN varlist _RPAREN
+
+
+
+vardef --> _ID _COLON _INTEGER
+varlist --> vardef
+
+vardef --> _ID _COLON _REAL
+varlist --> varlist _SEMI vardef
+
+vardef --> _ID _COLON _STRING
+varlist --> varlist _SEMI vardef
+
+vardef --> _ID _COLON _INTEGER
+varlist --> varlist _SEMI vardef
+
+vardef --> _ID _COLON _REAL
+varlist --> varlist _SEMI vardef
+
+vardef --> _ID _COLON _STRING
+varlist --> varlist _SEMI vardef
+
+vars --> _VARS varlist _SEMI
+
+
+procs --> _NOPROCS
+
+
+
+
+ids --> _ID
+ids --> _ID
+val --> ids
+fac --> val
+term --> fac
+expr --> term
+assign --> ids _ASSIGN expr
+stmt --> assign
+para --> stmt
+
+ids --> _ID
+ids --> _ID
+val --> ids
+fac --> val
+term --> fac
+expr --> term
+assign --> ids _ASSIGN expr
+stmt --> assign
+para --> para _SEMI stmt
+
+ids --> _ID
+val --> _ID _LPAREN vallist _RPAREN
+fac --> val
+term --> fac
+expr --> term
+assign --> ids _ASSIGN expr
+stmt --> assign
+para --> para _SEMI stmt
+
+ids --> _ID
+val --> _ID _LPAREN vallist _RPAREN
+fac --> val
+term --> fac
+expr --> term
+ids --> _ID
+val --> ids
+fac --> val
+term --> fac
+expr --> expr _PLUS term
+assign --> ids _ASSIGN expr
+stmt --> assign
+para --> para _SEMI stmt
+
+ids --> _ID
+ids --> _ID
+val --> ids
+fac --> val
+term --> fac
+val --> _ID _LPAREN vallist _RPAREN
+fac --> val
+term --> term _DIVIDE fac
+expr --> term
+assign --> ids _ASSIGN expr
+stmt --> assign
+para --> para _SEMI stmt
+
+ids --> _ID
+val --> _ID _LPAREN vallist _RPAREN
+fac --> val
+term --> fac
+val --> _ID _LPAREN vallist _RPAREN
+fac --> val
+term --> term _MULT fac
+expr --> term
+assign --> ids _ASSIGN expr
+stmt --> assign
+para --> para _SEMI stmt
+
+output --> _WRITE _LPAREN _LITERAL _RPAREN
+stmt --> output
+para --> para _SEMI stmt
+
+
+code --> _BEGIN para _END
+block --> vars _ENDVARS procs _ENDPROCS code
+procdef --> ptitle _SEMI block
+proclist --> procdef
+
+
+ptitle --> _PROC _ID _LPAREN _RPAREN
+
+
+vars --> _NOVARS
+
+
+
+procs --> _NOPROCS
+
+
+
+
+output --> _WRITE _LPAREN _ID _RPAREN
+stmt --> output
+para --> stmt
+
+output --> _WRITE _LPAREN _ID _RPAREN
+stmt --> output
+para --> para _SEMI stmt
+
+output --> _WRITE _LPAREN _ID _RPAREN
+stmt --> output
+para --> para _SEMI stmt
+
+
+ids --> _ID
+ids --> _ID
+val --> ids
+fac --> val
+term --> fac
+expr --> term
+assign --> ids _ASSIGN expr
+ids --> _ID
+val --> ids
+fac --> val
+term --> fac
+expr --> term
+
+
+ids --> _ID
+val --> ids
+fac --> val
+term --> fac
+expr --> term
+bop --> _GTR
+val --> _ID _LPAREN vallist _RPAREN
+fac --> val
+term --> fac
+expr --> term
+
+output --> _WRITE _LPAREN _LITERAL _RPAREN
+stmt --> output
+para --> stmt
+
+code --> _BEGIN para _END
+stmt --> code
+
+
+output --> _WRITE _LPAREN _LITERAL _RPAREN
+stmt --> output
+para --> stmt
+
+code --> _BEGIN para _END
+stmt --> code
+cond --> _IF expr bop expr _THEN stmt _ELSE stmt
+stmt --> cond
+para --> stmt
+
+ids --> _ID
+ids --> _ID
+val --> ids
+fac --> val
+term --> fac
+expr --> term
+val --> _ID _LPAREN vallist _RPAREN
+fac --> val
+term --> fac
+
+expr --> expr _PLUS term
+assign --> ids _ASSIGN expr
+stmt --> assign
+para --> para _SEMI stmt
+code --> _BEGIN para _END
+stmt --> code
+loop --> _FOR assign _TO expr _DO stmt
+stmt --> loop
+para --> para _SEMI stmt
+
+code --> _BEGIN para _END
+block --> vars _ENDVARS procs _ENDPROCS code
+procdef --> ptitle _SEMI block
+proclist --> proclist _SEMI procdef
+
+
+procs --> _PROCS proclist
+code --> _SEMI
+block --> vars _ENDVARS procs _ENDPROCS code
+program --> title _SEMI block _EOF
+
+ Percentage of reductions for each used rule:
+program --> title _SEMI block _EOF  : 0.58
+title --> _PROGRAM _ID  : 0.58
+block --> vars _ENDVARS procs _ENDPROCS code  : 1.73
+vars --> _VARS varlist _SEMI  : 1.16
+vars --> _NOVARS  : 6.36
+varlist --> varlist _SEMI vardef  : 4.62
+varlist --> vardef  : 2.31
+vardef --> _ID _COLON _REAL  : 2.31
+nlist --> nlist _COMMA _ICONST  : 0.58
+nlist --> _ICONST  : 1.16
+procs --> _PROCS proclist  : 0.58
+procs --> _NOPROCS  : 0.58
+proclist --> proclist _SEMI procdef  : 1.16
+procdef --> ptitle _SEMI block  : 3.47
+ptitle --> _PROC _ID _LPAREN varlist _RPAREN  : 1.16
+ptitle --> _PROC _ID _LPAREN _RPAREN  : 5.78
+code --> _BEGIN para _END  : 2.89
+code --> _SEMI  : 4.05
+para --> para _SEMI stmt  : 0.58
+para --> stmt  : 0.58
+stmt --> cond  : 3.47
+stmt --> loop  : 1.73
+stmt --> input  : 4.62
+stmt --> output  : 1.16
+assign --> ids _ASSIGN expr  : 6.36
+expr --> expr _PLUS term  : 0.58
+expr --> expr _MINUS term  : 0.58
+expr --> term  : 7.51
+term --> term _MULT fac  : 8.67
+term --> fac  : 4.62
+fac --> _LPAREN expr _RPAREN  : 3.47
+val --> ids  : 0.58
+val --> _ID _LPAREN vallist _RPAREN  : 9.25
+vallist --> it  : 0.58
+cond --> _IF expr bop expr _THEN stmt _ELSE stmt  : 0.58
+bop --> _LEQ  : 0.58
+bop --> _NEQ  : 1.73
+loop --> _FOR assign _TO expr _DO stmt  : 1.73
+Percentage of grammar rules used: 38 / 58 = 65
+
+****************************************

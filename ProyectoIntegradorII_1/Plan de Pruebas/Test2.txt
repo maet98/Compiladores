@@ -1,0 +1,27 @@
+Program Test;
+
+Variables 
+sleep : integer;
+localInt  : integer[6];
+localReal : real; 
+localString  : string;
+localArray  : Integer [3,4,11,8,4];
+c : real;
+b : string;
+EndVars
+	Procedures Procedure a(sleep : integer) ; NOVARiableS ENDVaRS NoProcedures ENDPROCS ;
+		   ;
+		   Procedure a() ; NOVARiableS ENDVaRS NoProcedures ENDPROCS ;
+ENDPROCS
+BEGIN a := b [c, 3] / (3) * 2 - 6 + 0
+; if 3.4 = 3.4 THEN ; ELSE ;
+; if 2 < 22.2 THEN ; ELSE ;
+; if 2 > 22.2 THEN ; ELSE ;
+; if 2 <= 22.2 THEN ; ELSE ;
+; if  2 >= 22.2 THEN ; ELSE ;
+; if 2 <> 22.2 THEN ; ELSE ;
+; FOR i := 2 TO 9 DO ;
+; READ (c)
+; WRITE (d)
+; WRITE ("sleeping")
+END 

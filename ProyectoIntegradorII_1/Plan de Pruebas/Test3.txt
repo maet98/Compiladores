@@ -1,0 +1,63 @@
+Program Test;
+
+Variables 
+
+	a : integer;
+	b : real; 
+	c : string;
+	e : integer;
+EndVars
+
+Procedures
+
+	Procedure Foo (fooInt : Integer; fooReal : Real; fooStr : String); 
+	
+		Variables 
+			localInt  : integer;
+			localReal : real; 
+			localString  : string;
+			localArray  : Integer;
+			c : real;
+			b : string;
+		EndVars
+		
+		NoProcedures
+		EndProcs
+		
+		Begin
+			fooInt   := localInt;
+			fooReal  := localReal;
+			LOCALSTRING := 4;
+			a := 2 + c;
+			localreal := c/5;
+			c := 34.67809 * 12;
+			Write("Hello Word")
+			
+		End;
+		
+	Procedure FooFwd();
+		
+	Novariables
+	EndVars
+		
+	NoProcedures
+	EndProcs
+		
+	Begin
+		Write(a);
+		Write(b);
+		Write(c);
+		
+		For e := b To a Do
+		begin
+			If a > 2 Then begin 
+				Write("It's Greater")
+			end
+			Else begin
+				Write("It's Less")		
+			end;
+			b := e + 3
+		end			
+	End
+		
+EndProcs;

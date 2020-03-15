@@ -1,0 +1,18 @@
+Instrucciones para probar el programa:
+1. Crear un archivo NombreDePrueba.txt que contenga el codigo del programa de prueba
+2. Colocar el archivo NombreDePrueba.txt en la carpeta relativa al proyecto: ProyectoIntegradorII_1\bin\Debug
+3. Correr el siguiente comando en la consola: ProyectoIntegradorII.exe < NombreDePrueba.txt
+
+Se imprimiran en pantalla las reglas utilizadas y un analisis de porcentajes de uso. 
+Si ocurrio un error se presentara el mensaje "Error occurred: syntax error"
+
+Resumen de resultados para casos de pruebas:
+
+Test1:
+Percentage of grammar rules used: 32 / 58 = 55
+
+Test2:
+Percentage of grammar rules used: 56 / 58 = 96
+
+Test3:
+Percentage of grammar rules used: 38 / 58 = 65
