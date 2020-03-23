@@ -1,0 +1,69 @@
+# depslib dependency file v1.0
+1551844810 source:c:\users\metri\desktop\new folder\flex\proj3\lex.yy.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<io.h>
+	<stdlib.h>
+	"Tokens.h"
+	<stdlib.h>
+
+1553737392 c:\users\metri\desktop\new folder\flex\proj3\tokens.h
+	<stdio.h>
+
+1551843505 source:c:\users\metri\desktop\new folder\flex\proj3\y.tab.c
+	<stdio.h>
+	<stddef.h>
+	<libintl.h>
+	<alloca.h>
+	<malloc.h>
+	<stdlib.h>
+	<stdlib.h>
+	<stdio.h>
+
+1553741909 source:c:\users\metri\desktop\new folder\flex\proj3\lex.yy.cpp
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<io.h>
+	<stdlib.h>
+	"Tokens.h"
+	<stdlib.h>
+
+1554218062 source:c:\users\metri\desktop\new folder\flex\proj3\main.cpp
+	<bits/stdc++.h>
+
+1554086920 source:c:\users\metri\desktop\new folder\flex\proj3\y.tab.cpp
+	"parserHeader.h"
+	<stddef.h>
+	<libintl.h>
+	<alloca.h>
+	<malloc.h>
+	<stdlib.h>
+	<stdlib.h>
+	<stdio.h>
+
+1554181204 c:\users\metri\desktop\new folder\flex\proj3\parserheader.h
+	"IRcode.hpp"
+
+1553871972 c:\users\metri\desktop\new folder\flex\proj3\ircode.h
+	<map>
+	<stdio.h>
+	<string>
+	<vector>
+	<string.h>
+	<iostream>
+	<algorithm>
+
+1553872032 source:c:\users\metri\desktop\new folder\flex\proj3\ircode.cpp
+	"IRcode.h"
+
+1554217542 c:\users\metri\desktop\new folder\flex\proj3\ircode.hpp
+	<map>
+	<stdio.h>
+	<string>
+	<vector>
+	<string.h>
+	<iostream>
+	<algorithm>
+

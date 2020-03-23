@@ -1,0 +1,86 @@
+%option noyywrap
+
+alf [a-zA-Z]
+dig [0-9]
+alfnum {alf}|{dig}
+%{
+	#include "Tokens.h"
+	int tokenCount = 0;
+	int lineCounter = 1;
+	void commentError();
+	void literalError();
+	static void yyerror(int tokenCount);
+%}
+
+%%
+
+(P|p)(R|r)(O|o)(G|g)(R|r)(A|a)(M|m)	{tokenCount++;return _PROGRAM;}
+(E|e)(N|n)(D|d)(V|v)(A|a)(R|r)(S|s)	{tokenCount++;return _ENDVARS;}
+(E|e)(N|n)(D|d)(P|p)(R|r)(O|o)(C|c)(S|s)	{tokenCount++;return _ENDPROCS;}
+(N|n)(O|o)(V|v)(A|a)(R|r)(I|i)(A|a)(B|b)(L|l)(E|e)(S|s)	{tokenCount++;return _NOVARS;}
+(V|v)(A|a)(R|r)(I|i)(A|a)(B|b)(L|l)(E|e)(S|s)	{tokenCount++;return _VARS;}
+(I|i)(N|n)(T|t)(E|e)(G|g)(E|e)(R|r)	{tokenCount++;return _INTEGER;}
+(R|r)(E|e)(A|a)(L|l)	{tokenCount++;return _REAL;}
+(S|s)(T|t)(R|r)(I|i)(N|n)(G|g)	{tokenCount++;return _STRING;}
+(N|n)(O|o)(P|p)(R|r)(O|o)(C|c)(E|e)(D|d)(U|u)(R|r)(E|e)(S|s)	{tokenCount++;return _NOPROCS;}
+(P|p)(R|r)(O|o)(C|c)(E|e)(D|d)(U|u)(R|r)(E|e)(S|s)	{tokenCount++;return _PROCS;}
+(P|p)(R|r)(O|o)(C|c)(E|e)(D|d)(U|u)(R|r)(E|e)	{tokenCount++;return _PROC;}
+(B|b)(E|e)(G|g)(I|i)(N|n)	{tokenCount++;return _BEGIN;}
+(E|e)(N|n)(D|d)	{tokenCount++;return _END;}
+(F|f)(O|o)(R|r)	{tokenCount++;return _FOR;}
+(T|t)(O|o)	{tokenCount++;return _TO;}
+(D|d)(O|o)	{tokenCount++;return _DO;}
+(I|i)(F|f)	{tokenCount++;return _IF;}
+(T|t)(H|h)(E|e)(N|n)	{tokenCount++;return _THEN;}
+(E|e)(L|l)(S|s)(E|e)	{tokenCount++;return _ELSE;}
+(R|r)(E|e)(A|a)(D|d)	{tokenCount++;return _READ;}
+(W|w)(R|r)(I|i)(T|t)(E|e)	{tokenCount++;return _WRITE;}
+(W|w)(H|h)(I|i)(L|l)(E|e)	{tokenCount++; return _WHILE;}
+(U|u)(N|n)(T|t)(I|i)(L|l)	{tokenCount++; return _UNTIL;}
+"["	{tokenCount++;return _LBRACK;}
+"]"	{tokenCount++;return _RBRACK;}
+"("	{tokenCount++;return _LPAREN;}
+")"	{tokenCount++;return _RPAREN;}
+";"	{tokenCount++;return _SEMI;}
+","	{tokenCount++;return _COMMA;}
+":="	{tokenCount++;return _ASSIGN;}
+"+"	{tokenCount++;return _PLUS;}
+":"	{tokenCount++;return _COLON;}
+"-"	{tokenCount++;return _MINUS;}
+"*"	{tokenCount++;return _MULT;}
+"/"	{tokenCount++;return _DIVIDE;}
+"<>"	{tokenCount++;return _NEQ;}
+"<="	{tokenCount++;return _LEQ;}
+"<"	{tokenCount++;return _LESS;}
+">="	{tokenCount++;return _GEQ;}
+">"	{tokenCount++;return _GTR;}
+"="	{tokenCount++;return _EQL;}
+"{"([^}])*"}"	{}
+({alf}|"_")({alfnum}|"_")*	{tokenCount++;return _ID;}
+{dig}+"."{dig}+	{tokenCount++;return _RCONST;}
+{dig}+"."{dig}+("e"|"E")("+"|"-")?({dig})+	{tokenCount++;return _ECONST;}
+{dig}+	{tokenCount++;return _ICONST;}
+["][^"]*["]	{tokenCount++;return _LITERAL;}
+(["][^"]*)	{literalError();}
+("{"[^}]*)	{commentError();}
+<<EOF>>	{return 0;}
+" "|"\t" {}
+"\n"	{lineCounter++;}
+.	{yyerror(tokenCount);}
+%%
+void commentError()
+{
+	printf("%s Comentario ilimitado", yytext);
+	exit(1);
+}
+
+void literalError() 
+{
+	printf("%s Literal ilimitada", yytext);
+	exit(1);
+}
+static void yyerror(int tokenCount)
+{
+	printf("Hubo un error al analizar el lexema %s en la columna %d", yytext, tokenCount);
+	exit(1);
+}

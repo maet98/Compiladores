@@ -1,0 +1,242 @@
+%{
+	#include "parserHeader.h"
+	#define YYSTYPE id
+	tableVal ok;
+
+%}
+/*Start of Terminals*/
+/*Start of operators section */
+%right _ASSIGN 17
+%left _LESS 41
+%left _GTR 42
+%left _LEQ 43
+%left _GEQ 44
+%left _EQL 40
+%left _NEQ 45
+%left _PLUS 20
+%left _MINUS 21
+%left _MULT 22
+%left _DIVIDE 23
+/* End of operators section */
+
+%token _ID 1
+%token _ICONST 2
+%token _RCONST 3
+%token _ECONST 4
+%token _LITERAL 5
+%token _LBRACK 10
+%token _RBRACK 11
+%token _LPAREN 12
+%token _RPAREN 13
+%token _SEMI 14
+%token _COLON 15
+%token _COMMA 16
+%token _PROGRAM 51
+%token _ENDVARS 52
+%token _ENDPROCS 53
+%token _VARS 54
+%token _NOVARS 55
+%token _INTEGER 56
+%token _REAL 57
+%token _STRING 58
+%token _PROCS 59
+%token _NOPROCS 60
+%token _PROC 61
+%token _BEGIN 62
+%token _END 63
+%token _FOR 64
+%token _TO 65
+%token _DO 66
+%token _IF 67
+%token _THEN 68
+%token _ELSE 69
+%token _READ 70
+%token _WRITE 71
+%token _COMMENT 72
+%token _WHILE 73
+%token _UNTIL 74
+%token UNKW
+/* End of Terminals */
+/* rules */
+%%
+
+    program:
+    	title _SEMI block	{}
+    	;
+
+    title:
+    	_PROGRAM id {scopeLoader();}
+    	;
+
+    block:
+    	vars _ENDVARS procs _ENDPROCS code {currentScope--;removeScope();}
+    	;
+
+    vars:
+    	_VARS varlist _SEMI {}
+    	| _NOVARS	{}
+    	;
+
+    varlist:
+    	varlist _SEMI vardef {}
+    	| vardef {}
+    	;
+
+    vardef:
+    	id _COLON _INTEGER 	{insertTable($1.name, currentScope, type::integer);}
+    	| id _COLON _REAL 		{insertTable($1.name, currentScope, type::real);}
+    	| id _COLON _INTEGER bnl	{insertTable($1.name, currentScope, type::integer);}
+		| id _COLON _STRING	{insertTable($1.name, currentScope, type::stringType);}
+		;
+	id: _ID {lex.assign(yytext); $$.name = lex;}
+
+	bnl:
+		_LBRACK nlist _RBRACK	{}
+		;
+
+	nlist:
+		nlist _COMMA _ICONST {}
+		| _ICONST {}
+		;
+
+	procs:
+		_PROCS proclist {}
+		| _NOPROCS	{}
+		;
+
+	proclist:
+		proclist _SEMI procdef 	{}
+		| procdef	{}
+		;
+
+	procdef:
+		ptitle _SEMI block {}
+		;
+
+	ptitle:
+		procentry _LPAREN varlist _RPAREN 	{}
+		| procentry _LPAREN _RPAREN		{}
+		;
+
+	procentry:
+		_PROC id 	{insertTable($2.name, currentScope, type::procedure);currentScope++;scopeLoader();}
+
+	code:
+		_BEGIN para _END {}
+		| _SEMI	{}
+		;
+
+	para:
+		para _SEMI stmt {}
+		| stmt	{}
+		;
+
+	stmt:
+		assign {}
+		| cond 	{}
+		| loop 	{}
+		| input 	{}
+		| output 	{}
+		| code	{}
+		;
+
+	assign:
+		ids _ASSIGN expr	{checkType($1.def, $3.def); assgn($3.def, $1.def); $$.def = $1.def;}
+		;
+
+	ids:
+		id {$$.def = isdeclared($1.name, currentScope); $$.name = $1.name;}
+		| id _LBRACK vallist _RBRACK	{$$.def = isdeclared($1.name, currentScope); $$.name = $1.name;}
+		;
+
+	expr:
+		expr _PLUS term {$$.def = sum($1.def, $3.def, checkType($1.def, $3.def));}
+		| expr _MINUS term {$$.def = sub($1.def, $3.def, checkType($1.def, $3.def));}
+		| term 	{$$ = $1;}
+		;
+
+	term:
+		term _MULT fac 	{$$.def = mult($1.def, $3.def, checkType($1.def, $3.def));}
+		| term _DIVIDE fac 	{$$.def = div($1.def, $3.def, checkType($1.def, $3.def));}
+		| fac 	{$$ = $1;}
+		;
+
+	fac:
+		val 	{$$ = $1;}
+		| _LPAREN expr _RPAREN 	{$$ = $2;}
+		;
+
+	val:
+		ids {$$ = $1;}
+		| id _LPAREN vallist _RPAREN {$$.def = isdeclared($1.name, currentScope); $$.name = $1.name;}
+		| _ICONST 	{lex.assign(yytext); $$.def = addconst(lex, type::integer); $$.name = lex;}
+		| _RCONST	{lex.assign(yytext); $$.def = addconst(lex, type::real); $$.name = lex;}
+		| _LITERAL	{lex.assign(yytext); $$.def = addconst(lex, type::stringType); $$.name = lex;}
+		| _ECONST	{lex.assign(yytext); $$.def = addconst(lex, type::real); $$.name = lex;}
+		;
+
+	vallist:
+		vallist _COMMA it 	{} 
+		| it 	{}
+		;
+
+	it:
+		id {$$.def = isdeclared($1.name, currentScope); $$.name = $1.name;}
+		| _ICONST	{lex.assign(yytext); $$.def = addconst(lex, type::integer);}
+		;
+
+	cond:
+		then _ELSE code	{completeJump($1.line);}
+		;
+
+	if:
+		_IF expr bop expr {$$.line = jumpSelector($3.op, $2.def, $4.def);}
+		;
+
+	then:
+		if _THEN code	{$$.line = bunc(); completeJump($1.line);}
+		;
+
+	bop:
+		_EQL {$$.op = boolean_op::neq;}
+		| _LESS {$$.op = boolean_op::geq;}
+		| _GTR 	{$$.op = boolean_op::leq;}
+		| _LEQ 	{$$.op = boolean_op::gtr;}
+		| _GEQ 	{$$.op = boolean_op::les;}
+		| _NEQ	{$$.op = boolean_op::eql;}
+		;
+
+	loop:
+		for _DO code 	{increment($1.def); completeCicle($1.line); completeJump($1.line);}
+		| while _DO code {completeCicle($1.line); completeJump($1.line);}
+		|do code _UNTIL expr bop expr {completeUntil($1.line, jumpSelector($5.op, $4.def, $6.def));}
+		;
+
+	do:
+		_DO {$$.line = instr.size();}
+
+	while:
+		_WHILE expr bop expr {$$.line = jumpSelector($3.op, $2.def, $4.def); $$.def = $2.def;}
+		;
+
+	for:
+		_FOR assign _TO expr {$$.line = bgt($2.def, $4.def); $$.def = $2.def;}
+		;
+
+	input:
+		_READ _LPAREN id _RPAREN	{ok = isdeclared($3.name, currentScope); read(ok);}
+		;
+
+	output:
+		_WRITE _LPAREN id _RPAREN 	{ok = isdeclared($3.name, currentScope); write(ok);}
+		| _WRITE _LPAREN literal _RPAREN	{ok = addconst($3.name, type::stringType); write(ok);}
+		;
+	literal:
+	_LITERAL {lex.assign(yytext); $$.name = lex;}
+
+%%
+int yyerror(char* errormsg)
+{
+	fprintf(stderr, "%s\n", errormsg);
+	return 1;
+}

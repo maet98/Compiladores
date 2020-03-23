@@ -1,0 +1,110 @@
+
+Definition Report
+Declaring... a type integer block 0
+Declaring... b type real block 0
+Declaring... c type string block 0
+Declaring... e type integer block 0
+Declaring... foo type procedure block 0
+Declaring... fooint type integer block 1
+Declaring... fooreal type real block 1
+Declaring... foostr type string block 1
+Declaring... localint type integer block 1
+Declaring... localreal type real block 1
+Declaring... localstring type string block 1
+Declaring... localarray type integer block 1
+Declaring... c type real block 1
+Declaring... b type string block 1
+Declaring... foofwd type procedure block 0
+
+Use Report
+fooint type integer block 1
+localint type integer block 1
+fooreal type real block 1
+localreal type real block 1
+localstring type string block 1
+a type integer block 0
+c type real block 1
+localreal type real block 1
+c type real block 1
+c type real block 1
+a type integer block 0
+b type real block 0
+c type string block 0
+e type integer block 0
+b type real block 0
+a type integer block 0
+a type integer block 0
+b type real block 0
+e type integer block 0
+c type string block 0
+c type string block 0
+
+Redefinition Report
+
+Undefined Report
+
+Type Mismatch Report
+id Report
+Entry#		scope		name		tipo
+0		0		a		integer
+1		0		b		real
+2		0		c		string
+3		0		e		integer
+4		0		foo		procedure
+5		1		fooint		integer
+6		1		fooreal		real
+7		1		foostr		string
+8		1		localint		integer
+9		1		localreal		real
+10		1		localstring		string
+11		1		localarray		integer
+12		1		c		real
+13		1		b		string
+14		0		foofwd		procedure
+integer Report
+Entry#		valor		tipo
+200		2		integer
+201		5		integer
+202		12		integer
+203		3		integer
+204		1		integer
+205		10		integer
+real Report
+Entry#		valor		tipo
+300		34.67809		real
+string Report
+Entry#		valor		tipo
+400		"Hello"		string
+401		"Hello Word"		string
+402		"It's Greater"		string
+403		"It's Less"		string
+404		"I'm inside the while loop"		string
+405		"ok"		string
+1 ASSGN 8 0 5
+2 ASSGN 9 0 6
+3 ASSGN 400 0 10
+4 PLUS 200 12 500
+5 ASSGN 500 0 0
+6 DIV 12 201 501
+7 ASSGN 501 0 9
+8 MULT 300 202 502
+9 ASSGN 502 0 12
+10 WRITE 401 0 0
+11 WRITE 0 0 0
+12 WRITE 1 0 0
+13 WRITE 2 0 0
+14 ASSGN 1 0 3
+15 BGT 3 0 24
+16 BLE 0 200 19
+17 WRITE 402 0 0
+18 BUNC 0 0 20
+19 WRITE 403 0 0
+20 PLUS 3 203 503
+21 ASSGN 503 0 1
+22 PLUS 204 3 3
+23 BUNC 0 0 15
+24 BGE 2 205 28
+25 WRITE 404 0 0
+26 ASSGN 405 0 2
+27 BUNC 0 0 24
+valido

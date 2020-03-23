@@ -1,0 +1,173 @@
+
+Definition Report
+Declaring... x type real block 0
+Declaring... y type integer block 0
+Declaring... d type integer block 0
+Declaring... b type procedure block 0
+Declaring... x type integer block 1
+Declaring... y type real block 1
+Declaring... c type procedure block 0
+Declaring... x type string block 1
+Declaring... b type string block 1
+Declaring... d type procedure block 1
+Declaring... c type integer block 2
+Declaring... a type integer block 2
+Declaring... b type string block 2
+Declaring... subd type procedure block 2
+Declaring... subdpar1 type integer block 3
+Declaring... subdpar2 type string block 3
+Declaring... dvar1 type integer block 3
+Declaring... dvar2 type string block 3
+Declaring... dvar3 type real block 3
+Declaring... subsubd type procedure block 3
+Declaring... subdpar3 type integer block 4
+Declaring... subdpar4 type string block 4
+Declaring... ddvar1 type integer block 4
+Declaring... ddvar2 type string block 4
+Declaring... ddvar3 type real block 4
+Declaring... eproc type procedure block 0
+Declaring... epar1 type integer block 1
+Declaring... epar2 type string block 1
+Declaring... epar3 type real block 1
+Declaring... elocalvar1 type integer block 1
+Declaring... elocalvar2 type string block 1
+Declaring... elocalvar3 type real block 1
+Declaring... esub1 type procedure block 1
+Declaring... esublocal1 type integer block 2
+Declaring... esublocal2 type string block 2
+
+Use Report
+x type integer block 1
+y type real block 1
+x type integer block 1
+y type real block 1
+d type integer block 0
+d type integer block 0
+y type real block 1
+ddvar1 type integer block 4
+ddvar3 type real block 4
+dvar3 type real block 3
+dvar1 type integer block 3
+dvar2 type string block 3
+dvar1 type integer block 3
+a type integer block 2
+dvar3 type real block 3
+dvar1 type integer block 3
+dvar2 type string block 3
+dvar3 type real block 3
+y type integer block 0
+x type string block 1
+a type integer block 2
+d type procedure block 1
+y type integer block 0
+x type string block 1
+b type string block 1
+elocalvar1 type integer block 1
+epar3 type real block 1
+esublocal1 type integer block 2
+elocalvar1 type integer block 1
+elocalvar3 type real block 1
+esublocal2 type string block 2
+elocalvar2 type string block 1
+elocalvar1 type integer block 1
+x type real block 0
+y type integer block 0
+elocalvar3 type real block 1
+x type real block 0
+y type integer block 0
+d type integer block 0
+x type real block 0
+y type integer block 0
+d type integer block 0
+y type integer block 0
+b type procedure block 0
+
+Redefinition Report
+
+Undefined Report
+
+Type Mismatch Report
+id Report
+Entry#		scope		name		tipo
+0		0		x		real
+1		0		y		integer
+2		0		d		integer
+3		0		b		procedure
+4		1		x		integer
+5		1		y		real
+6		0		c		procedure
+7		1		x		string
+8		1		b		string
+9		1		d		procedure
+10		2		c		integer
+11		2		a		integer
+12		2		b		string
+13		2		subd		procedure
+14		3		subdpar1		integer
+15		3		subdpar2		string
+16		3		dvar1		integer
+17		3		dvar2		string
+18		3		dvar3		real
+19		3		subsubd		procedure
+20		4		subdpar3		integer
+21		4		subdpar4		string
+22		4		ddvar1		integer
+23		4		ddvar2		string
+24		4		ddvar3		real
+25		0		eproc		procedure
+26		1		epar1		integer
+27		1		epar2		string
+28		1		epar3		real
+29		1		elocalvar1		integer
+30		1		elocalvar2		string
+31		1		elocalvar3		real
+32		1		esub1		procedure
+33		2		esublocal1		integer
+34		2		esublocal2		string
+integer Report
+Entry#		valor		tipo
+200		3		integer
+real Report
+Entry#		valor		tipo
+string Report
+Entry#		valor		tipo
+400		"This is the 5th nesting level.... wow!!!"		string
+401		"Done"		string
+1 WRITE 4 0 0
+2 WRITE 5 0 0
+3 MULT 5 2 500
+4 ASSGN 500 0 4
+5 ASSGN 5 0 2
+6 WRITE 400 0 0
+7 PLUS 24 18 501
+8 ASSGN 501 0 22
+9 READ 0 0 16
+10 READ 0 0 17
+11 MULT 11 200 502
+12 PLUS 502 18 503
+13 ASSGN 503 0 16
+14 WRITE 16 0 0
+15 WRITE 17 0 0
+16 WRITE 18 0 0
+17 WRITE 401 0 0
+18 WRITE 1 0 0
+19 WRITE 7 0 0
+20 WRITE 11 0 0
+21 WRITE 9 0 0
+22 WRITE 1 0 0
+23 WRITE 7 0 0
+24 WRITE 8 0 0
+25 ASSGN 28 0 29
+26 PLUS 29 31 504
+27 ASSGN 504 0 33
+28 ASSGN 30 0 34
+29 PLUS 0 1 505
+30 ASSGN 505 0 29
+31 MULT 0 1 506
+32 ASSGN 506 0 31
+33 MULT 0 1 507
+34 ASSGN 507 0 2
+35 WRITE 2 0 0
+36 WRITE 1 0 0
+37 WRITE 3 0 0
+valido
