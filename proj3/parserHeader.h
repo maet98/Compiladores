@@ -47,6 +47,9 @@ string getTypeString(type val)
         return varType;
 }
 
+//Revisa si una variable existe en un lexema especifico scope 
+// retorna true si existe
+// retorna false si en es posicion del stack (scope) el mapa de pair<string, tableVal> que existe no contiene un pair para esa varible (lexema)
 bool checkTable(string lexem, int scope)
 {
 	bool result = false;
@@ -56,12 +59,16 @@ bool checkTable(string lexem, int scope)
 	}
 	return result;
 }
+
+// REDAY: revisa si la variable fue declarada en el ambiente o en scopes anteriores
+// si fue declarada devuelve el tableVal, si no, registra un error y devuelve tableVAL con noType.
 tableVal isdeclared(string lexem, int scope)
 {
     transform(lexem.begin(), lexem.end(), lexem.begin(), ::tolower);
     tableVal found;
     found.tipo = type::noType;
     int block;
+    
     for(block = scope; block >= 0; block--)
     {
         if(checkTable(lexem, block))
@@ -84,10 +91,11 @@ tableVal isdeclared(string lexem, int scope)
     }
     return found;
 }
+// declara variables y reporta redeclaracion.
 void insertTable(string lexem, int scope, type enumVal)
 {
-    transform(lexem.begin(), lexem.end(), lexem.begin(), ::tolower);
-	if(!checkTable(lexem, scope))
+    transform(lexem.begin(), lexem.end(), lexem.begin(), ::tolower); // lo pone en minusculas
+	if(!checkTable(lexem, scope)) // la variable que se quiere declarar no existe en el scope.
 	{
 	    tableVal newEntry;
 	    newEntry.tipo = enumVal;
@@ -99,7 +107,7 @@ void insertTable(string lexem, int scope, type enumVal)
 		defReport += "Declaring... " + lexem + " type " + varType + " block " + to_string(scope) + "\n";
 		idReport += to_string(newEntry.temporal) + "\t\t" + to_string(scope) + "\t\t" + lexem + "\t\t" + getTypeString(enumVal) + "\n";
 	}
-	else
+	else // la variable que se quiere declarar existe en el scope.
 	{
 		//cout << lexem << " was already declared, line" << lineCounter << endl;
 		defErrorReport += lexem + " was already declared, line " + to_string(lineCounter) + "\n";
@@ -107,14 +115,17 @@ void insertTable(string lexem, int scope, type enumVal)
 	}
 }
 
+// READY
 void removeScope() {
 	table.pop_back();
 }
 
+// READY
 void scopeLoader() {
 	table.push_back(map<string, tableVal>());
 }
 
+// READY, CHECK IF THE TYPES ARE COMPATIBLE. EL CHECKEO LO HACE SEGUN LA TABLA EN EL PDF DEL PROYECTO.
 type checkType(tableVal a, tableVal b)
 {
     tableVal result;
