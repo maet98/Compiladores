@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1585329079 source:c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyectointegradoriii\proyectointegradoriii\lex.yy.cpp
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<io.h>
+	<stdlib.h>
+	"parser.tab.h"
+	<stdlib.h>
+
+1585329862 c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyectointegradoriii\proyectointegradoriii\parser.tab.h
+
+1585329471 source:c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyectointegradoriii\proyectointegradoriii\main.cpp
+	<bits/stdc++.h>
+
+1585329862 source:c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyectointegradoriii\proyectointegradoriii\parser.tab.cpp
+	"symbTable.h"
+	<stddef.h>
+	<libintl.h>
+	<alloca.h>
+	<malloc.h>
+	<stdlib.h>
+	<stdlib.h>
+	<stdio.h>
+
+1585330138 c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyectointegradoriii\proyectointegradoriii\symbtable.h
+	<bits/stdc++.h>
+
