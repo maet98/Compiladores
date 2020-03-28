@@ -8,12 +8,12 @@
 	"parser.tab.h"
 	<stdlib.h>
 
-1585329862 c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyectointegradoriii\proyectointegradoriii\parser.tab.h
+1585355607 c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyectointegradoriii\proyectointegradoriii\parser.tab.h
 
-1585329471 source:c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyectointegradoriii\proyectointegradoriii\main.cpp
+1585356502 source:c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyectointegradoriii\proyectointegradoriii\main.cpp
 	<bits/stdc++.h>
 
-1585329862 source:c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyectointegradoriii\proyectointegradoriii\parser.tab.cpp
+1585355607 source:c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyectointegradoriii\proyectointegradoriii\parser.tab.cpp
 	"symbTable.h"
 	<stddef.h>
 	<libintl.h>
@@ -23,6 +23,6 @@
 	<stdlib.h>
 	<stdio.h>
 
-1585330138 c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyectointegradoriii\proyectointegradoriii\symbtable.h
+1585358162 c:\users\marid\onedrive\escritorio\archivos\10mo trimestre\compiladores (programacion iii)\proyectointegradoriii\proyectointegradoriii\symbtable.h
 	<bits/stdc++.h>
 

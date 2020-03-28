@@ -34,20 +34,7 @@ extern int yylex (void);
 extern int lineCounter;
 int yyerror(char* errormsg);
 
-// reports
-// Todas las declaraciones de un identificador – indicando el nombre, tipo y nivel
-// Todos los usos de un identificador – indicando el nombre, tipo y nivel
-// Todos los errores semánticos de definición-uso (variables no declaradas) – indicando la línea del programa y el identificador en cuestión.
-// Todos los errores semánticos de verificación de tipos - indicando la línea del programa donde se econtró el error
-
-string declarationReport = "\nIdentifier Declaration Report\n";
-string identifierUseReport = "\nIdentifier Use Report\n";
-
-string redeclarationErrorReport = "\nIdentifier redeclaration Error Report\n"; // declared more than once in the same scope.
-string useDefinitionErrorReport = "\nUse-Definition Error Report\n";
-string typeErrorReport = "\nType Error Report\n";
-
-string constantsReport = "Constants Report\nEntry#\t\tscope\t\tname\t\ttype\t\tline\n";
+string REPORTS = "\n  REPORTS:  \n";
 
 
 // decrement scope level
@@ -81,9 +68,9 @@ void installOnTable(string varName, int scope, type varType) {
 	transform(varName.begin(), varName.end(), varName.begin(), ::tolower);
 	if(!checkTable(varName, scope)) {
 		symbTableStack[scope][varName] = varType;
-		declarationReport += "Declaring... " + varName + " type " + typeLexeme[varType] + " block " + to_string(scope) + "\n";
+		REPORTS += "\ndeclaration of ... " + varName + " type " + typeLexeme[varType] + " scope " + to_string(scope) + "\n";
 	} else {
-		redeclarationErrorReport += varName + " was already declared in line " + to_string(lineCounter) + "\n";
+	    REPORTS += "\nERROR Identifier redeclaration --> " + varName + " type " + typeLexeme[varType] + " scope " +  to_string(scope) + " in line " + to_string(lineCounter) + ", was already declared\n";
 		semanticError = true;
 	}
 }
@@ -97,17 +84,19 @@ identifier getDeclaration(string varName, int scope){
 	identifier var;
 	var.name = varName;
 	var.dataType = type::nonetype;
+	int foundScope = scope;
 	for(int i = scope; i >= 0; i--){
 		if(symbTableStack[i].count(varName)) {
 			var.dataType = symbTableStack[i][varName];
+			foundScope = i;
 			break;
 		}
 	}
 	if(var.dataType == type::nonetype) { // variable not declared
-		useDefinitionErrorReport += varName + " was not declared, line " + to_string(lineCounter) + "\n";
+        REPORTS += "\nERROR Use-definition --> variable " + varName + " used in line " + to_string(lineCounter) + ", was not declared.\n";
 		semanticError = true;
 	}else {
-		identifierUseReport += varName + " type " + typeLexeme[var.dataType] + " scope " + to_string(scope) + "\n";
+	    REPORTS += "\nuse of ... " + varName + " type " + typeLexeme[var.dataType] + " declared in scope " + to_string(foundScope) + " used in scope " + to_string(scope)  + "\n";
 	}
 	return var;
 }
@@ -118,7 +107,6 @@ identifier getDeclaration(string varName, int scope){
 
 type checkTypeCompatibility(type a, type b) {
     type result = type::nonetype;
-
     if(a != type::procedure && b != type::procedure) {
         if(a == type::stringType && b == type::stringType) {
             result = type::stringType;
@@ -131,7 +119,7 @@ type checkTypeCompatibility(type a, type b) {
         }
     }
     if(result == type::nonetype && a != type::nonetype && b != type::nonetype){
-        typeErrorReport += "type error, line " + to_string(lineCounter) + "\n";
+        REPORTS += "\nERROR Type Check --> line " + to_string(lineCounter) + "\n";
         semanticError = true;
     }
     return result;
@@ -141,7 +129,7 @@ type checkTypeCompatibility(type a, type b) {
 
 void addConstant(string lexeme, int scope, type dataType)
 {
-	constantsReport += to_string(scope) + "\t\t" + lexeme + "\t\t" + typeLexeme[dataType] + "\t\t" + to_string(lineCounter) + "\n";
+    REPORTS += "\nCONSTANT scope " + to_string(scope) + ", value: " + lexeme + ", type: " + typeLexeme[dataType] + ", line " + to_string(lineCounter) + "\n";
 }
 
 type checkArrayIndexesType(type a, type b) {
@@ -153,19 +141,22 @@ type checkArrayIndexesType(type a, type b) {
 
 void reportNonProcedureError(identifier id) {
 	if(id.dataType != type::procedure) {
-		printf("NON PROCEDURE ERROR");
+        REPORTS += "\nERROR --> An attempt is made to invoke variable " + id.name + " when it is not a procedure. line " + to_string(lineCounter) + "\n";
+		semanticError = true;
 	}
 }
 
 void reportIndexingInANonArrayVariableError(identifier id, int currentScope) {
 	if(id.dataType != type::integerArray) {
-		printf("INDEXING NON ARRAY VARIABLE ERROR");
+        REPORTS += "\nERROR --> An attempt is made to index variable " + id.name + " when it is not an array. line " + to_string(lineCounter) + "\n";
+		semanticError = true;
 	}
 }
 
 void reportIndexationError(type indexType) {
 	if(indexType != type::integer) {
-		printf("INDEXING ARRAY WITH NON INTEGER ERROR");
+        REPORTS += "\nERROR --> An attempt is made to index an array with an identifier that is not an integer. line " + to_string(lineCounter) + "\n";
+		semanticError = true;
 	}
 }
 

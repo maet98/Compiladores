@@ -325,7 +325,7 @@ output	: _WRITE _LPAREN id _RPAREN
 			// report use
 			getDeclaration($3.name, currentScope);
 		}
-		| _WRITE _LPAREN _LITERAL _RPAREN
+		| _WRITE _LPAREN literal _RPAREN
 		{
 			// report use of constant...
 			addConstant($3.name, currentScope, type::stringType);

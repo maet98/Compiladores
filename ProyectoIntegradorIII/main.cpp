@@ -5,28 +5,20 @@ int yylex (void);
 int yyparse(void);
 extern char* yytext;
 
-extern string declarationReport;
-extern string identifierUseReport;
-extern string redeclarationErrorReport;
-extern string useDefinitionErrorReport;
-extern string typeErrorReport;
-extern string constantsReport;
+extern string REPORTS;
 
 extern bool semanticError;
 
 int main()
 {
     int syntaxError = yyparse();
-    cout << declarationReport << endl;
-    cout << identifierUseReport << endl;
-    cout << redeclarationErrorReport << endl;
-    cout << useDefinitionErrorReport << endl;
-    cout << typeErrorReport << endl;
-    cout << constantsReport << endl;
+    cout << REPORTS << endl;
     if(syntaxError){
-        cout << "Syntax\n";
+        cout << "Ha ocurrido un error sintactico\n";
+    }else if(semanticError){
+        cout << "Ha ocurrido un error semantico\n";
     }else{
-        cout << "error semantico\n";
+        cout << "El programa se ha analizado con exito. No han ocurrido errores.\n";
     }
 
     return 0;

@@ -1,0 +1,65 @@
+Program Test;
+
+Variables 
+
+	a : integer;
+	b : real; 
+	c : string;
+	e : integer[3,4,5];
+EndVars
+
+Procedures
+
+	Procedure Foo (fooInt : Integer; fooReal : Real; fooStr : String); 
+	
+		Variables 
+			localInt  : integer;
+			localReal : real; 
+			localString  : string;
+			localArray  : Integer[4,6,7,8];
+			c	: real;
+			b : string;
+		EndVars
+		
+		NoProcedures
+		EndProcs
+		
+		Begin
+			fooInt2   := localInt;
+			fooReal  := localReal;
+			LOCALSTRING := "Hello";
+			a := 2 + b;
+			d := c/5;
+			b := 34.67809 * 12;
+			Write("Hello Word")
+			
+		End;
+		
+	Procedure FooFwd();
+		
+	Novariables
+	EndVars
+		
+	NoProcedures
+	EndProcs
+		
+	Begin
+		Write(a);
+		Write(fooInt);
+		Write(c);
+		
+		For c := b To a Do
+			If a > 2 Then 
+				Write("It's Greater")
+			Else
+				Write("It's Less");		
+			
+			c := d * FooFwd;
+			
+		While c < 10 Do Begin 			
+			Write("I'm inside the while loop");
+			c := c - 1
+		End			
+	End
+		
+EndProcs;
