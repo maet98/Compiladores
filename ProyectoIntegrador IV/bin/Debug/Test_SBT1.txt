@@ -1,0 +1,159 @@
+	{This YAL source  serves as a test for muti-level variable declaration }
+	
+	Program A;
+	
+		variables	
+				x: real;
+ 				y: integer;
+ 				D: integer;			
+		endvars
+		
+ 	procedures
+	
+ 		Procedure B();
+ 			variables	
+				x: integer;
+				y: real;
+			endvars
+			
+ 			noprocedures
+			endprocs
+			
+ 			begin
+ 				write (x);
+ 				write (C);
+				SubSubD := SubD * D;
+				D := SubD
+				
+ 			end;
+			
+ 		Procedure C();
+ 			variables
+				x: string;
+ 				B: string;
+			endvars
+			
+ 			Procedures
+			
+ 				Procedure D(C : integer);
+ 					Variables
+						A : integer;
+						B : string;						
+					endvars
+					
+ 					Procedures
+						
+						Procedure SubD(SubDPar1 : integer; SubDPar2 : string);
+						
+							variables								
+								DVar1 : integer; 
+								DVar2 : string;
+								DVar3 : real;							
+							endvars
+							
+							Procedures
+							
+								Procedure SubSubD(SubDPar3 : integer; SubDPar4 : string);
+								
+									Variables
+										DDVar1 : integer;
+										DDVar2 : string;
+										DDVar3 : real;									
+									Endvars				
+								
+									NoProcedures
+									EndProcs
+									
+									Begin
+										
+										Write("This is the 5th nesting level.... wow!!!");
+										DDVar1 := DVar2 + DVar3
+									
+									End
+								
+								
+							Endprocs
+					
+							Begin
+								
+								Read(DVar1);
+								Read(DVar2);
+								DVar1 := DVar2 * 3 + DVar3;
+								
+								Write(Dvar1);
+								Write(Dvar2);
+								Write(Dvar3);
+								
+								Write("Done")
+							
+							End		
+					
+					Endprocs
+					
+ 					Begin
+ 						write (y);
+ 						write (x);
+						write(Dvar1);
+ 						write (C)
+ 					End
+					
+ 			Endprocs
+			
+ 			begin
+ 				write (D);	
+ 				write (C);
+ 				write (x);
+ 				write (B)
+ 			end;
+			
+			
+			Procedure EProc(EPar1 : integer; EPar2 : string; EPar3 : real);
+			
+				Variables
+					ELocalVar1 : Integer;
+					ELocalVar2 : String;
+					ELocalVar3 : Real;
+				EndVars
+				
+				Procedures
+				
+					Procedure ESub1();
+					
+						Variables
+							ESubLocal1 : integer; 
+							ESubLocal2 : string;
+						EndVars
+						
+						NoProcedures
+						EndProcs
+						
+						Begin
+							
+							SubSubD := SubD;
+							EsubLocal1 := ElocalVar1 + ElocalVar3;
+							Esublocal2 := ElocalVar2
+						
+						End
+						
+					
+					
+				
+				EndProcs
+				
+				Begin
+					
+					ELocalVar1 := x + y;
+					ElocalVar2 := x * y			
+				
+				End
+			
+ 		Endprocs
+		
+ 		Begin
+		
+			SubD := A * B;
+ 			write (D);
+ 			write (y);
+ 			write (B);
+ 			write (C)
+ 		End

@@ -1,0 +1,177 @@
+  REPORTS:
+
+declaration of ... x type real scope 0
+
+declaration of ... y type integer scope 0
+
+declaration of ... d type integer scope 0
+
+declaration of ... b type procedure scope 0
+
+declaration of ... x type integer scope 1
+
+declaration of ... y type real scope 1
+
+use of ... x type integer declared in scope 1 used in scope 1
+
+ERROR Use-definition --> variable c used in line 22, was not declared.
+
+ERROR Use-definition --> variable subsubd used in line 23, was not declared.
+
+ERROR Use-definition --> variable subd used in line 23, was not declared.
+
+use of ... d type integer declared in scope 0 used in scope 1
+
+use of ... d type integer declared in scope 0 used in scope 1
+
+ERROR Use-definition --> variable subd used in line 26, was not declared.
+
+declaration of ... c type procedure scope 0
+
+declaration of ... x type string scope 1
+
+declaration of ... b type string scope 1
+
+declaration of ... d type procedure scope 1
+
+declaration of ... c type integer scope 2
+
+declaration of ... a type integer scope 2
+
+declaration of ... b type string scope 2
+
+declaration of ... subd type procedure scope 2
+
+declaration of ... subdpar1 type integer scope 3
+
+declaration of ... subdpar2 type string scope 3
+
+declaration of ... dvar1 type integer scope 3
+
+declaration of ... dvar2 type string scope 3
+
+declaration of ... dvar3 type real scope 3
+
+declaration of ... subsubd type procedure scope 3
+
+declaration of ... subdpar3 type integer scope 4
+
+declaration of ... subdpar4 type string scope 4
+
+declaration of ... ddvar1 type integer scope 4
+
+declaration of ... ddvar2 type string scope 4
+
+declaration of ... ddvar3 type real scope 4
+
+CONSTANT scope 4, value: "This is the 5th nesting level.... wow!!!", type: string, line 67
+
+use of ... ddvar1 type integer declared in scope 4 used in scope 4
+
+use of ... dvar2 type string declared in scope 3 used in scope 4
+
+use of ... dvar3 type real declared in scope 3 used in scope 4
+
+ERROR Type Check --> line 70
+
+use of ... dvar1 type integer declared in scope 3 used in scope 3
+
+use of ... dvar2 type string declared in scope 3 used in scope 3
+
+use of ... dvar1 type integer declared in scope 3 used in scope 3
+
+use of ... dvar2 type string declared in scope 3 used in scope 3
+
+CONSTANT scope 3, value: 3, type: integer, line 79
+
+ERROR Type Check --> line 79
+
+use of ... dvar3 type real declared in scope 3 used in scope 3
+
+use of ... dvar1 type integer declared in scope 3 used in scope 3
+
+use of ... dvar2 type string declared in scope 3 used in scope 3
+
+use of ... dvar3 type real declared in scope 3 used in scope 3
+
+CONSTANT scope 3, value: "Done", type: string, line 85
+
+use of ... y type integer declared in scope 0 used in scope 2
+
+use of ... x type string declared in scope 1 used in scope 2
+
+ERROR Use-definition --> variable dvar1 used in line 94, was not declared.
+
+use of ... c type integer declared in scope 2 used in scope 2
+
+use of ... d type procedure declared in scope 1 used in scope 1
+
+use of ... c type procedure declared in scope 0 used in scope 1
+
+use of ... x type string declared in scope 1 used in scope 1
+
+use of ... b type string declared in scope 1 used in scope 1
+
+declaration of ... eproc type procedure scope 0
+
+declaration of ... epar1 type integer scope 1
+
+declaration of ... epar2 type string scope 1
+
+declaration of ... epar3 type real scope 1
+
+declaration of ... elocalvar1 type integer scope 1
+
+declaration of ... elocalvar2 type string scope 1
+
+declaration of ... elocalvar3 type real scope 1
+
+declaration of ... esub1 type procedure scope 1
+
+declaration of ... esublocal1 type integer scope 2
+
+declaration of ... esublocal2 type string scope 2
+
+ERROR Use-definition --> variable subsubd used in line 130, was not declared.
+
+ERROR Use-definition --> variable subd used in line 130, was not declared.
+
+use of ... esublocal1 type integer declared in scope 2 used in scope 2
+
+use of ... elocalvar1 type integer declared in scope 1 used in scope 2
+
+use of ... elocalvar3 type real declared in scope 1 used in scope 2
+
+use of ... esublocal2 type string declared in scope 2 used in scope 2
+
+use of ... elocalvar2 type string declared in scope 1 used in scope 2
+
+use of ... elocalvar1 type integer declared in scope 1 used in scope 1
+
+use of ... x type real declared in scope 0 used in scope 1
+
+use of ... y type integer declared in scope 0 used in scope 1
+
+use of ... elocalvar2 type string declared in scope 1 used in scope 1
+
+use of ... x type real declared in scope 0 used in scope 1
+
+use of ... y type integer declared in scope 0 used in scope 1
+
+ERROR Type Check --> line 146
+
+ERROR Use-definition --> variable subd used in line 152, was not declared.
+
+ERROR Use-definition --> variable a used in line 152, was not declared.
+
+use of ... b type procedure declared in scope 0 used in scope 0
+
+use of ... d type integer declared in scope 0 used in scope 0
+
+use of ... y type integer declared in scope 0 used in scope 0
+
+use of ... b type procedure declared in scope 0 used in scope 0
+
+use of ... c type procedure declared in scope 0 used in scope 0
+
+Ha ocurrido un error semantico

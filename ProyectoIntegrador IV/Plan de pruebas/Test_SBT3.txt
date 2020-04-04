@@ -1,0 +1,23 @@
+Program Test3;
+
+Variables
+	num1:	Integer;
+	num2: Integer;
+	answer: Integer;
+EndVars
+Noprocedures
+EndProcs
+
+Begin
+	Read(num1);
+	Read(num2);
+	answer := num1 + num2 * num1 - num2;
+	If num1 < num2 Then
+		Write(num2)
+	Else
+ 		For  num2 := num1 To 10 Do
+		Begin
+			Write(answer);
+			answer := answer + 100.5678
+		End
+End

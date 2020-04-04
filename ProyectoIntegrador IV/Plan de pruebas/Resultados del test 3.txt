@@ -1,0 +1,43 @@
+REPORTS:
+
+declaration of ... num1 type integer scope 0
+
+declaration of ... num2 type integer scope 0
+
+declaration of ... answer type integer scope 0
+
+use of ... num1 type integer declared in scope 0 used in scope 0
+
+use of ... num2 type integer declared in scope 0 used in scope 0
+
+use of ... answer type integer declared in scope 0 used in scope 0
+
+use of ... num1 type integer declared in scope 0 used in scope 0
+
+use of ... num2 type integer declared in scope 0 used in scope 0
+
+use of ... num1 type integer declared in scope 0 used in scope 0
+
+use of ... num2 type integer declared in scope 0 used in scope 0
+
+use of ... num1 type integer declared in scope 0 used in scope 0
+
+use of ... num2 type integer declared in scope 0 used in scope 0
+
+use of ... num2 type integer declared in scope 0 used in scope 0
+
+use of ... num2 type integer declared in scope 0 used in scope 0
+
+use of ... num1 type integer declared in scope 0 used in scope 0
+
+CONSTANT scope 0, value: 10, type: integer, line 18
+
+use of ... answer type integer declared in scope 0 used in scope 0
+
+use of ... answer type integer declared in scope 0 used in scope 0
+
+use of ... answer type integer declared in scope 0 used in scope 0
+
+CONSTANT scope 0, value: 100.5678, type: real, line 21
+
+El programa se ha analizado con exito. No han ocurrido errores.
