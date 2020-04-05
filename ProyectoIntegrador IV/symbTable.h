@@ -14,16 +14,6 @@ enum type{
 
 vector<string> typeLexeme = {"nonetype", "integer", "real", "string", "procedure", "integer[]"};
 
-/*
-map<type, string> typeLexeme = {
-	{type::nonetype, "nonetype"},
-	{type::integer, "integer"},
-	{type::real, "real"},
-	{type::stringType, "string"},
-	{type::procedure, "procedure"},
-	{type::integerArray, "integer[]"}
-};*/
-
 struct identifier {
   string name;
   type dataType;
