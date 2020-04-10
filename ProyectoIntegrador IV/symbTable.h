@@ -17,6 +17,7 @@ vector<string> typeLexeme = {"nonetype", "integer", "real", "string", "procedure
 struct identifier {
   string name;
   type dataType;
+  int tempNumber;
 };
 
 int currentScope = 0;

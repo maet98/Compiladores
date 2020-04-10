@@ -1,5 +1,6 @@
 %{
 #include "symbTable.h"
+#include "codeGen.h"
 
 #define YYSTYPE identifier
 
@@ -95,18 +96,22 @@ varlist	: varlist _SEMI vardef
 vardef	: id _COLON _INTEGER
 		{
 			installOnTable($1.name, currentScope, type::integer);
+			addTemp($1.name,tempType::id);
 		}
 		| id _COLON _REAL
 		{
 			installOnTable($1.name, currentScope, type::real);
+			addTemp($1.name,tempType::id);
 		}
 		| id _COLON _INTEGER bn1
 		{
 			installOnTable($1.name, currentScope, type::integerArray);
+			addTemp($1.name,tempType::id);
 		}
 		| id _COLON _STRING
 		{
 			installOnTable($1.name, currentScope, type::stringType);
+			addTemp($1.name,tempType::id);
 		}
 		;
 
@@ -179,50 +184,65 @@ stmt	: assign
 assign	: ids _ASSIGN expr
 		{
 			checkTypeCompatibility($1.dataType, $3.dataType);
+			addStatement("ASSGN",$3.tempNumber,0,$1.tempNumber);
 		}
 		;
 
 expr	: expr _PLUS term
 		{
 			$$.dataType = checkTypeCompatibility($1.dataType, $3.dataType);
+			$$.tempNumber = createTemp();
+			addStatement("PLUS",$1.tempNumber,$3.tempNumber,$$.tempNumber);
 		}
 		| expr _MINUS term
 		{
 			$$.dataType = checkTypeCompatibility($1.dataType, $3.dataType);
+			$$.tempNumber = createTemp();
+			addStatement("SUB",$1.tempNumber,$3.tempNumber,$$.tempNumber);
+
 		}
 		| term
 		{
 			$$.dataType = $1.dataType;
+			$$.tempNumber = $1.tempNumber;
 		}
 		;
 
 term	: term _MULT fac
 		{
 			$$.dataType = checkTypeCompatibility($1.dataType, $3.dataType);
+			$$.tempNumber = createTemp();
+			addStatement("MULT",$1.tempNumber,$3.tempNumber,$$.tempNumber);
 		}
 		| term _DIVIDE fac
 		{
 			$$.dataType = checkTypeCompatibility($1.dataType, $3.dataType);
+			$$.tempNumber = createTemp();
+			addStatement("DIV",$1.tempNumber,$3.tempNumber,$$.tempNumber);
 		}
 		| fac
 		{
 			$$.dataType = $1.dataType;
+			$$.tempNumber = $1.tempNumber;
 		}
 		;
 
 fac		: val
 		{
 			$$.dataType = $1.dataType;
+			$$.tempNumber = $1.tempNumber;
 		}
 		| _LPAREN expr _RPAREN
 		{
 			$$.dataType = $2.dataType;
+			$$.tempNumber = $2.tempNumber;
 		}
 		;
 
 val		: ids
 		{
 			$$.dataType = $1.dataType;
+			$$.tempNumber = $1.tempNumber;
 		}
 		| id _LPAREN vallist _RPAREN
 		{
@@ -235,18 +255,19 @@ val		: ids
 		| _ICONST
 		{
 			$$.dataType = type::integer;
-			addConstant(yytext, currentScope, type::integer);
+			$$.tempNumber = addTemp(yytext, tempType::intConst);
 		}
 		| _RCONST
 		{
 			$$.dataType = type::real;
-			addConstant(yytext, currentScope, type::real);
+			$$.tempNumber = addTemp(yytext, tempType::realConst);
 		}
 		;
 
 ids		: id
 		{
-			$$ = getDeclaration($1.name, currentScope);;
+			$$ = getDeclaration($1.name, currentScope);
+			$$.tempNumber = (constTable[tempType::idConst][$1.name]);
 		}
 		| id _LBRACK vallist _RBRACK
 		{
@@ -287,25 +308,50 @@ it		: id
 		}
 		;
 
-cond	: _IF expr bop expr _THEN stmt _ELSE stmt
+cond	: ifPart elsePart
 		{
 			// check type between expr1 and expr2
 			checkTypeCompatibility($2.dataType, $4.dataType);
 		}
 		;
 
+ifPart 	: _IF expr bop expr _THEN stmt
+		{
+			Labels.push(addStatement(negateBooleanOperator($3.tempNumber),$2.tempNumber,$4.tempNumber,0));
+			addStatement("BUNC",0,0,0);
+		}
+		;
+
+elsePart : _ELSE stmt
+		{
+			addStatement("BUNC",0,0,0);
+		}
+		;
+
 bop		: _EQL
-		{}
+		{
+			$$.tempNumber = booleanOperation::EQL;
+		}
 		| _LESS
-		{}
+		{
+			$$.tempNumber = booleanOperation::LESS;
+		}
 		| _GTR
-		{}
+		{
+			$$.tempNumber = booleanOperation::GTR;
+		}
 		| _LEQ
-		{}
+		{
+			$$.tempNumber = booleanOperation::LEQ;
+		}
 		| _GEQ
-		{}
+		{
+			$$.tempNumber = booleanOperation::GEQ;
+		}
 		| _NEQ
-		{}
+		{
+			$$.tempNumber = booleanOperation::NEQ;
+		}
 		;
 
 loop	: _FOR assign _TO expr _DO stmt
@@ -323,6 +369,7 @@ input	: _READ _LPAREN id _RPAREN
 			// id must be declared
 			// report use
 			getDeclaration($3.name, currentScope);
+			addStatement("READ",0,0, constTable[tempType::idConst][$3.name]);
 		}
 		;
 
@@ -331,16 +378,17 @@ output	: _WRITE _LPAREN id _RPAREN
 			// id must be declared
 			// report use
 			getDeclaration($3.name, currentScope);
+			addStatement("WRITE", constTable[tempType::idConst][$3.name],0,0);
 		}
 		| _WRITE _LPAREN literal _RPAREN
 		{
-			// report use of constant...
-			addConstant($3.name, currentScope, type::stringType);
+			addStatement("WRITE", constTable[tempType::literalConst][$3.name],0,0);
 		}
 		;
 literal : _LITERAL
 		{
 			$$.name = yytext;
+			addTemp($$.name,tempType::literalConst);
 		}
 		;
 

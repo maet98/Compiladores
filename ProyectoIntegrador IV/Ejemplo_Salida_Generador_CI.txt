@@ -1,0 +1,94 @@
+
+variable declaration parsed. Level : 0 	Name : ListSum 	Type : PRG
+the current level has been increased to 1
+variable declaration parsed. 	Level : 1 	Name : loopIndex 	Type : I
+variable declaration parsed. 	Level : 1 	Name : positiveSum 	Type : I
+variable declaration parsed. 	Level : 1 	Name : negativeSum 	Type : I
+variable declaration parsed. 	Level : 1 	Name : currentInput 	Type : I
+literal constant usage parsed. Level : 1, 	Value : ""
+literal constant usage parsed. Level : 1, 	Value : "This program computes the positive and negative sums of a list of integers"
+literal constant usage parsed. Level : 1, 	Value : ""
+usage of declared identifier. Name : currentInput Level 1 	Type : I
+integer constant usage parsed. Level : 1, 	Value : 1
+usage of declared identifier. Name : negativeSum Level 1 	Type : I
+integer constant usage parsed. Level : 1, 	Value : 0
+usage of declared identifier. Name : positiveSum Level 1 	Type : I
+integer constant usage parsed. Level : 1, 	Value : 0
+usage of declared identifier. Name : currentInput Level 1 	Type : I
+integer constant usage parsed. Level : 1, 	Value : 0
+literal constant usage parsed. Level : 1, 	Value : "Type the next integer on the list (type a 0 to indicate the end of the list) : "
+usage of declared identifier. Name : currentInput Level 1 	Type : I
+usage of declared identifier. Name : currentInput Level 1 	Type : I
+integer constant usage parsed. Level : 1, 	Value : 0
+usage of declared identifier. Name : positiveSum Level 1 	Type : I
+usage of declared identifier. Name : positiveSum Level 1 	Type : I
+usage of declared identifier. Name : currentInput Level 1 	Type : I
+usage of declared identifier. Name : negativeSum Level 1 	Type : I
+usage of declared identifier. Name : negativeSum Level 1 	Type : I
+usage of declared identifier. Name : currentInput Level 1 	Type : I
+literal constant usage parsed. Level : 1, 	Value : ""
+literal constant usage parsed. Level : 1, 	Value : "The sum of positive integers is : "
+usage of declared identifier. Name : positiveSum Level 1 	Type : I
+literal constant usage parsed. Level : 1, 	Value : ""
+literal constant usage parsed. Level : 1, 	Value : "The sum of negavite integers is : "
+usage of declared identifier. Name : negativeSum Level 1 	Type : I
+literal constant usage parsed. Level : 1, 	Value : ""
+
+The parsed YAL source code has been accepted. 
+
+	Entry# 	 Level 	 Name 		 Type 	 Dimension 	 Offset
+
+ ** ID Segment **
+	0 	 0 	 ListSum 	 PRG 	  0 	 0 	 
+	1 	 1 	 loopIndex 	 I 	  0 	 4 	 
+	2 	 1 	 positiveSum 	 I 	  0 	 8 	 
+	3 	 1 	 negativeSum 	 I 	  0 	 12 	 
+	4 	 1 	 currentInput 	 I 	  0 	 16 	 
+
+ ** Integer Constant Segment **
+	200 	 1 	 1 		 I 	  0 	 0 	 
+	201 	 1 	 0 		 I 	  0 	 0 	 
+	202 	 1 	 0 		 I 	  0 	 0 	 
+	203 	 1 	 0 		 I 	  0 	 0 	 
+	204 	 1 	 0 		 I 	  0 	 0 	 
+
+ ** Real Constant Segment **
+
+ ** Literal Constant Segment **
+	400 	 1 	 "" 		 S 	  0 	 0 	 
+	401 	 1 	 "This program computes the positive and negative sums of a list of integers" 	 S 	  0 	 0 	 
+	402 	 1 	 "" 		 S 	  0 	 0 	 
+	403 	 1 	 "Type the next integer on the list (type a 0 to indicate the end of the list) : " 	 S 	  0 	 0 	 
+	404 	 1 	 "" 		 S 	  0 	 0 	 
+	405 	 1 	 "The sum of positive integers is : " 	 S 	  0 	 0 	 
+	406 	 1 	 "" 		 S 	  0 	 0 	 
+	407 	 1 	 "The sum of negavite integers is : " 	 S 	  0 	 0 	 
+	408 	 1 	 "" 		 S 	  0 	 0 	 
+
+
+
+-- *** Intermediate Code Generation Phase *** --
+
+1  WRITE 400 0 0
+2  WRITE 401 0 0
+3  WRITE 402 0 0
+4  ASSIGN 200 0 4
+5  ASSIGN 201 0 3
+6  ASSIGN 202 0 2
+7  EQL 4 203 17
+8  WRITE 403 0 0
+9  READ 0 0 4
+10  LEQ 4 204 14
+11  PLUS 2 4 -1
+12  ASSIGN -1 0 2
+13  BUNC 0 0 16
+14  PLUS 3 4 -2
+15  ASSIGN -2 0 3
+16  BUNC 0 0 7
+17  WRITE 404 0 0
+18  WRITE 405 0 0
+19  WRITE 2 0 0
+20  WRITE 406 0 0
+21  WRITE 407 0 0
+22  WRITE 3 0 0
+23  WRITE 408 0 0
