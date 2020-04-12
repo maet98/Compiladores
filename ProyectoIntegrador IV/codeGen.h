@@ -1,8 +1,9 @@
 #ifndef PARSERHEADER_H_INCLUDED
 #define PARSERHEADER_H_INCLUDED
-#include<bits/stdc++.h>
-#include"symbTable.h"
+#include <bits/stdc++.h>
+#include "symbTable.h"
 using namespace std;
+
 
 enum boolOperation{
 	EQL,
@@ -47,7 +48,7 @@ int offset[] = { 0, 200, 300,400};
 
 //enum for the types
 enum tempType{
-	idVar,
+	id,
 	intConst,
 	realConst,
 	literalConst
@@ -90,7 +91,7 @@ boolOperation negateBooleanOperator(boolOperation operation){
 
 		case boolOperation::GEQ:
 			return boolOperation::LESS;
-			
+
 		case boolOperation::LESS:
 			return boolOperation::GEQ;
 
@@ -99,6 +100,16 @@ boolOperation negateBooleanOperator(boolOperation operation){
 
 		case boolOperation::GTR:
 			return boolOperation::LEQ;
+	}
+}
+
+void updateInstructionJumpLine(int jumpLineNumber) {
+	int instructionPos = Labels.top();
+	Labels.pop();
+	if(instructionPos < statements.size()) {
+		// the instruction will have 0 in the place of the jumpLineNumber
+		statements[instructionPos].pop_back();
+		statements[instructionPos] += to_string(jumpLineNumber);
 	}
 }
 

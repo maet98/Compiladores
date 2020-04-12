@@ -1,5 +1,4 @@
 %{
-#include "symbTable.h"
 #include "codeGen.h"
 
 #define YYSTYPE identifier
@@ -25,7 +24,7 @@
 %token _IF 274
 %token _THEN 275
 %token _ELSE 276
-%token _READ 277 
+%token _READ 277
 %token _WRITE 278
 %token _LBRACK 279
 %token _RBRACK 280
@@ -308,25 +307,26 @@ it		: id
 		}
 		;
 
-cond	: ifPart elsePart
+cond	: ifHeader ifContent _ELSE stmt
+		{
+			updateInstructionJumpLine(statements.size() + 1);
+		}
+		;
+
+ifHeader : _IF expr bop expr
 		{
 			// check type between expr1 and expr2
 			checkTypeCompatibility($2.dataType, $4.dataType);
-		}
-		;
 
-ifPart 	: _IF expr bop expr _THEN stmt
-		{
-			Labels.push(addStatement(negateBooleanOperator($3.tempNumber),$2.tempNumber,$4.tempNumber,0));
-			addStatement("BUNC",0,0,0);
+			Labels.push(addStatement(negateBooleanOperator($3.tempNumber),$2.tempNumber,$4.tempNumber,0) - 1);
 		}
 		;
-
-elsePart : _ELSE stmt
-		{
-			addStatement("BUNC",0,0,0);
-		}
-		;
+ifContent : _THEN stmt
+				{
+					updateInstructionJumpLine(statements.size() + 1);
+					Labels.push(addStatement("BUNC",0,0,0) - 1);
+				}
+				;
 
 bop		: _EQL
 		{
@@ -361,8 +361,8 @@ loop	: _FOR assign _TO expr _DO stmt
 		| _DO code _UNTIL expr bop expr
 		{}
 		;
-		
-		
+
+
 // EXPR SOLO ACEPTA INT
 input	: _READ _LPAREN id _RPAREN
 		{

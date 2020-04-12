@@ -709,7 +709,7 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 66 "lexer.l"
-{tokenCount++; printf("PROGRAAAAAAAMAAMMAMAMAMAMAMAMAMMAMAMAMMAMAMAMAAMAA*******************\n"); return (_PROGRAM);}
+{tokenCount++; return (_PROGRAM);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
@@ -794,7 +794,7 @@ YY_RULE_SETUP
 case 18:
 YY_RULE_SETUP
 #line 83 "lexer.l"
-{tokenCount++; printf("whileeeeeeeeeeee\n"); return (_WHILE);}
+{tokenCount++; return (_WHILE);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
