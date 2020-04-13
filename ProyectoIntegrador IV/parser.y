@@ -361,7 +361,6 @@ bop		: _EQL
 
 loop	: forHeader _DO stmt
 		{
-			
             addICStatement("BUNC",0,0,Labels.top() + 1);
             updateInstructionJumpLine(ICStatements.size() + 1);
 		}
@@ -389,6 +388,7 @@ forHeader: _FOR forAssign _TO forExpr
 forAssign: id _ASSIGN expr
 		{
 			checkForAssign($3.dataType);
+			$1.tempNumber = constTable[tempType::id][$1.name];
 			addICStatement("ASSGN",$3.tempNumber,0,$1.tempNumber);
 			$$.tempNumber = $1.tempNumber;
 		}

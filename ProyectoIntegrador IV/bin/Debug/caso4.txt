@@ -1,0 +1,24 @@
+Program Test;
+
+Variables 
+
+	a : integer;
+	b : real; 
+EndVars
+
+Procedures
+
+	Procedure Foo (fooInt : Integer); 
+	
+		Variables 
+			a : integer;
+			b : integer;
+		EndVars
+		
+		NoProcedures
+		EndProcs
+		
+		Begin
+		write("mm"); write("mm")
+		End
+EndProcs;

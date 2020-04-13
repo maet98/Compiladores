@@ -13,6 +13,7 @@ Procedures
 	Procedure Foo (fooInt : Integer; fooReal : Real; fooStr : String); 
 	
 		Variables 
+			a : integer;
 			localInt  : integer;
 			localReal : real; 
 			localString  : string;

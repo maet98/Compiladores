@@ -1,0 +1,25 @@
+Program Test;
+
+Variables 
+
+	a : integer;
+	b : real; 
+EndVars
+
+Procedures
+
+	Procedure Foo (fooInt : Integer); 
+	
+		Variables 
+			c : integer;
+			d : integer;
+		EndVars
+		
+		NoProcedures
+		EndProcs
+		
+		Begin
+		For c := 3 To a Do
+			c := 4
+		End
+EndProcs;

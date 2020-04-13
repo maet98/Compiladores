@@ -14,6 +14,9 @@
  			variables	
 				x: integer;
 				y: real;
+				C: integer;
+				SubSubD: integer;
+				SubD: integer;
 			endvars
 			
  			noprocedures
@@ -47,7 +50,7 @@
 						
 							variables								
 								DVar1 : integer; 
-								DVar2 : string;
+								DVar2 : integer;
 								DVar3 : real;							
 							endvars
 							
