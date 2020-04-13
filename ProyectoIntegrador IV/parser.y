@@ -437,7 +437,7 @@ output	: _WRITE _LPAREN id _RPAREN
 literal : _LITERAL
 		{
 			$$.name = yytext;
-			$1.tempNumber = addTemporalToIdOrConst($$.name, currentScope, tempType::literalConst);
+			$$.tempNumber = addTemporalToIdOrConst($$.name, currentScope, tempType::literalConst);
 		}
 		;
 

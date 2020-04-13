@@ -2154,7 +2154,7 @@ yyreduce:
 #line 438 "parser.y"
     {
 			(yyval).name = yytext;
-			(yyvsp[(1) - (1)]).tempNumber = addTemporalToIdOrConst((yyval).name, currentScope, tempType::literalConst);
+			(yyval).tempNumber = addTemporalToIdOrConst((yyval).name, currentScope, tempType::literalConst);
 		;}
     break;
 
