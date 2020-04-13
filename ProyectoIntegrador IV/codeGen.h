@@ -1,11 +1,17 @@
-#ifndef PARSERHEADER_H_INCLUDED
-#define PARSERHEADER_H_INCLUDED
+#ifndef CODEGENHEADER_H_INCLUDED
+#define CODEGENHEADER_H_INCLUDED
 #include <bits/stdc++.h>
 #include "symbTable.h"
 using namespace std;
 
-
-enum boolOperation{
+// Define possible temporal variable types.
+enum tempType{
+	id,
+	intConst,
+	realConst,
+	literalConst
+};
+enum booleanOperator{
 	EQL,
 	NEQ,
 	LESS,
@@ -13,104 +19,82 @@ enum boolOperation{
 	GEQ,
 	LEQ
 };
+string booleanOperators[] = {"BEQ","BNE","BLT","BGT","BGE","BLE"};
 
+// Structure to keep track of constants (int, real, literal) and identifiers.
+// Every position in the array of map<string ,int> can be access according to a tempType.
+map<string ,int> constTable[4];
 
-/**
+// Constant temporal number counter by tempType.
+vector<int> countersForTempNumbers = {0, 200, 300, 400};
 
-TODO: funcion que genere un numero para constantes
-id 0 - 200
-int 200 - 300
-real 300 - 400
-literal 400 - 500
+// Intermediate Code Instructions.
+vector<string> ICStatements;
 
-TODO: funcion que genere numero de variables temporales.
-de -infinito a -1 inclusive
+// Contains the incomplete instructions line number.
+stack<int> Labels;
 
-TODO: asociar un ID/constante con su numero de temporal.
+// Generate numbers for temporal variables. From -INF to -1.
+int temporalCounter = 0;
+int createTemporal(){
+	return -- temporalCounter;
+}
 
-(op, p, s , r)
-
-**/
-
-//Estructura para guardar las constantes
-map<string,int>constTable[4];
-
-//Contador de las constantes divididas por tipos
-vector<int>contadores(4,0);
-
-//vector de statements
-vector<string>statements;
-
-//vector de operaciones
-string boolOperations[] = {"BEQ","BNE","BLT","BGT","BGE","BLE"};
-
-int offset[] = { 0, 200, 300,400};
-
-//enum for the types
-enum tempType{
-	id,
-	intConst,
-	realConst,
-	literalConst
-};
-
-stack<int>Labels;
-
-int addTemp(string lexem,tempType tipo)
+/// TODO: considerate the scope in case of a identifier.
+int addTemporalToIdOrConst(string lexeme, int scope, tempType constType)
 {
-    if(constTable[tipo].count(lexem))
+    if(constTable[constType].count(lexeme))
     {
-        return constTable[tipo][lexem];
+        return constTable[constType][lexeme];
     }
-    constTable[tipo][lexem] = ++contadores[tipo];
-    return contadores[tipo];
+    constTable[constType][lexeme] = ++countersForTempNumbers[constType];
+    return countersForTempNumbers[constType];
 }
 
-int temp = 0;
-int createTemp(){
-	return --temp;
+// Given the quadruple values, create the IC instruction and adds it to to list of intermediate code statements.
+// returns the 1-based line number of the added IC statement.
+int addICStatement(string op, int a, int b, int result){
+	string statement = op + " " + to_string(a) + " " + to_string(b) + " " + to_string(result);
+	ICStatements.push_back(statement);
+	return ICStatements.size();
 }
 
-int addStatement(string op, int a, int b, int res){
-	string resultado = op +" "+ to_string(a)+" "+ to_string(b)+" "+to_string(res);
-	statements.push_back(resultado);
-	return statements.size();
+// Given a boolean operator enum type, returns its string name.
+string getBooleanOperatorLexeme(booleanOperator operation){
+	return booleanOperators[operation];
 }
-
-string getBooleanOperator(boolOperation operation){
-	return boolOperations[operation];
-}
-
-boolOperation negateBooleanOperator(boolOperation operation){
+// Given a boolean operator, returns its opposite operator.
+// Example Case: given EQL returns NEQ.
+booleanOperator negateBooleanOperator(booleanOperator operation){
 	switch(operation){
-		case boolOperation::EQL:
-			return boolOperation::NEQ;
+		case booleanOperator::EQL:
+			return booleanOperator::NEQ;
 
-		case boolOperation::NEQ:
-			return boolOperation::EQL;
+		case booleanOperator::NEQ:
+			return booleanOperator::EQL;
 
-		case boolOperation::GEQ:
-			return boolOperation::LESS;
+		case booleanOperator::GEQ:
+			return booleanOperator::LESS;
 
-		case boolOperation::LESS:
-			return boolOperation::GEQ;
+		case booleanOperator::LESS:
+			return booleanOperator::GEQ;
 
-		case boolOperation::LEQ:
-			return boolOperation::GTR;
+		case booleanOperator::LEQ:
+			return booleanOperator::GTR;
 
-		case boolOperation::GTR:
-			return boolOperation::LEQ;
+		case booleanOperator::GTR:
+			return booleanOperator::LEQ;
 	}
 }
 
 void updateInstructionJumpLine(int jumpLineNumber) {
 	int instructionPos = Labels.top();
 	Labels.pop();
-	if(instructionPos < statements.size()) {
+	if(instructionPos < ICStatements.size()) {
 		// the instruction will have 0 in the place of the jumpLineNumber
-		statements[instructionPos].pop_back();
-		statements[instructionPos] += to_string(jumpLineNumber);
+		ICStatements[instructionPos].pop_back();
+		ICStatements[instructionPos] += to_string(jumpLineNumber);
 	}
 }
 
-#endif // PARSERHEADER_H_INCLUDED
+#endif // CODEGENHEADER_H_INCLUDED

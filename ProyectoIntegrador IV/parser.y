@@ -1,5 +1,7 @@
 %{
+#include <bits/stdc++.h>
 #include "codeGen.h"
+#include "symbTable.h"
 
 #define YYSTYPE identifier
 
@@ -58,7 +60,10 @@
 %%
 
 program	: title _SEMI block
-		{}
+		{
+			// Label the end of the intermediate code
+			addICStatement("HALT",0,0,0);
+		}
 		;
 
 id		: _ID
@@ -95,22 +100,22 @@ varlist	: varlist _SEMI vardef
 vardef	: id _COLON _INTEGER
 		{
 			installOnTable($1.name, currentScope, type::integer);
-			addTemp($1.name,tempType::id);
+			addTemporalToIdOrConst($1.name,currentScope, tempType::id);
 		}
 		| id _COLON _REAL
 		{
 			installOnTable($1.name, currentScope, type::real);
-			addTemp($1.name,tempType::id);
+			addTemporalToIdOrConst($1.name, currentScope,tempType::id);
 		}
 		| id _COLON _INTEGER bn1
 		{
 			installOnTable($1.name, currentScope, type::integerArray);
-			addTemp($1.name,tempType::id);
+			addTemporalToIdOrConst($1.name, currentScope,tempType::id);
 		}
 		| id _COLON _STRING
 		{
 			installOnTable($1.name, currentScope, type::stringType);
-			addTemp($1.name,tempType::id);
+			addTemporalToIdOrConst($1.name, currentScope,tempType::id);
 		}
 		;
 
@@ -183,21 +188,21 @@ stmt	: assign
 assign	: ids _ASSIGN expr
 		{
 			checkTypeCompatibility($1.dataType, $3.dataType);
-			addStatement("ASSGN",$3.tempNumber,0,$1.tempNumber);
+			addICStatement("ASSGN",$3.tempNumber,0,$1.tempNumber);
 		}
 		;
 
 expr	: expr _PLUS term
 		{
 			$$.dataType = checkTypeCompatibility($1.dataType, $3.dataType);
-			$$.tempNumber = createTemp();
-			addStatement("PLUS",$1.tempNumber,$3.tempNumber,$$.tempNumber);
+			$$.tempNumber = createTemporal();
+			addICStatement("PLUS",$1.tempNumber,$3.tempNumber,$$.tempNumber);
 		}
 		| expr _MINUS term
 		{
 			$$.dataType = checkTypeCompatibility($1.dataType, $3.dataType);
-			$$.tempNumber = createTemp();
-			addStatement("SUB",$1.tempNumber,$3.tempNumber,$$.tempNumber);
+			$$.tempNumber = createTemporal();
+			addICStatement("SUB",$1.tempNumber,$3.tempNumber,$$.tempNumber);
 
 		}
 		| term
@@ -210,14 +215,14 @@ expr	: expr _PLUS term
 term	: term _MULT fac
 		{
 			$$.dataType = checkTypeCompatibility($1.dataType, $3.dataType);
-			$$.tempNumber = createTemp();
-			addStatement("MULT",$1.tempNumber,$3.tempNumber,$$.tempNumber);
+			$$.tempNumber = createTemporal();
+			addICStatement("MULT",$1.tempNumber,$3.tempNumber,$$.tempNumber);
 		}
 		| term _DIVIDE fac
 		{
 			$$.dataType = checkTypeCompatibility($1.dataType, $3.dataType);
-			$$.tempNumber = createTemp();
-			addStatement("DIV",$1.tempNumber,$3.tempNumber,$$.tempNumber);
+			$$.tempNumber = createTemporal();
+			addICStatement("DIV",$1.tempNumber,$3.tempNumber,$$.tempNumber);
 		}
 		| fac
 		{
@@ -254,19 +259,19 @@ val		: ids
 		| _ICONST
 		{
 			$$.dataType = type::integer;
-			$$.tempNumber = addTemp(yytext, tempType::intConst);
+			$$.tempNumber = addTemporalToIdOrConst(yytext, currentScope, tempType::intConst);
 		}
 		| _RCONST
 		{
 			$$.dataType = type::real;
-			$$.tempNumber = addTemp(yytext, tempType::realConst);
+			$$.tempNumber = addTemporalToIdOrConst(yytext, currentScope, tempType::realConst);
 		}
 		;
 
 ids		: id
 		{
 			$$ = getDeclaration($1.name, currentScope);
-			$$.tempNumber = (constTable[tempType::idConst][$1.name]);
+			$$.tempNumber = (constTable[tempType::id][$1.name]);
 		}
 		| id _LBRACK vallist _RBRACK
 		{
@@ -309,7 +314,7 @@ it		: id
 
 cond	: ifHeader ifContent _ELSE stmt
 		{
-			updateInstructionJumpLine(statements.size() + 1);
+			updateInstructionJumpLine(ICStatements.size() + 1);
 		}
 		;
 
@@ -318,50 +323,71 @@ ifHeader : _IF expr bop expr
 			// check type between expr1 and expr2
 			checkTypeCompatibility($2.dataType, $4.dataType);
 
-			Labels.push(addStatement(negateBooleanOperator($3.tempNumber),$2.tempNumber,$4.tempNumber,0) - 1);
+			Labels.push((addICStatement(getBooleanOperatorLexeme(negateBooleanOperator(static_cast<booleanOperator>($3.tempNumber))),$2.tempNumber,$4.tempNumber,0) - 1));
 		}
 		;
 ifContent : _THEN stmt
 				{
-					updateInstructionJumpLine(statements.size() + 1);
-					Labels.push(addStatement("BUNC",0,0,0) - 1);
+					updateInstructionJumpLine(ICStatements.size() + 2);
+					Labels.push(addICStatement("BUNC",0,0,0) - 1);
 				}
 				;
 
 bop		: _EQL
 		{
-			$$.tempNumber = booleanOperation::EQL;
+			$$.tempNumber = booleanOperator::EQL;
 		}
 		| _LESS
 		{
-			$$.tempNumber = booleanOperation::LESS;
+			$$.tempNumber = booleanOperator::LESS;
 		}
 		| _GTR
 		{
-			$$.tempNumber = booleanOperation::GTR;
+			$$.tempNumber = booleanOperator::GTR;
 		}
 		| _LEQ
 		{
-			$$.tempNumber = booleanOperation::LEQ;
+			$$.tempNumber = booleanOperator::LEQ;
 		}
 		| _GEQ
 		{
-			$$.tempNumber = booleanOperation::GEQ;
+			$$.tempNumber = booleanOperator::GEQ;
 		}
 		| _NEQ
 		{
-			$$.tempNumber = booleanOperation::NEQ;
+			$$.tempNumber = booleanOperator::NEQ;
 		}
 		;
 
 loop	: _FOR assign _TO expr _DO stmt
-		{}
-		| _WHILE expr bop expr code
-		{}
-		| _DO code _UNTIL expr bop expr
-		{}
+		{
+		}
+		| whileHeader code
+		{
+            // The line numbers of the IC ICStatements are listed stating from 1.
+            addICStatement("BUNC",0,0,Labels.top() + 1);
+            updateInstructionJumpLine(ICStatements.size() + 1);
+		}
+		| do code _UNTIL expr bop expr
+		{
+            int jumpingLine = Labels.top();
+            Labels.pop();
+            addICStatement(getBooleanOperatorLexeme(negateBooleanOperator(static_cast<booleanOperator>($5.tempNumber))),$4.tempNumber,$6.tempNumber, jumpingLine);
+		}
 		;
 
+do : _DO
+    {
+        Labels.push( (ICStatements.size() + 1) );
+    }
+    ;
+
+whileHeader : _WHILE expr bop expr
+            {
+                // This IC statement will be complete in the future. -1 to push a 0-based position.
+                Labels.push((addICStatement(getBooleanOperatorLexeme(negateBooleanOperator(static_cast<booleanOperator>($3.tempNumber))),$2.tempNumber,$4.tempNumber,0) - 1));
+            }
+            ;
 
 // EXPR SOLO ACEPTA INT
 input	: _READ _LPAREN id _RPAREN
@@ -369,7 +395,7 @@ input	: _READ _LPAREN id _RPAREN
 			// id must be declared
 			// report use
 			getDeclaration($3.name, currentScope);
-			addStatement("READ",0,0, constTable[tempType::idConst][$3.name]);
+			addICStatement("READ",0,0, constTable[tempType::id][$3.name]);
 		}
 		;
 
@@ -378,17 +404,17 @@ output	: _WRITE _LPAREN id _RPAREN
 			// id must be declared
 			// report use
 			getDeclaration($3.name, currentScope);
-			addStatement("WRITE", constTable[tempType::idConst][$3.name],0,0);
+			addICStatement("WRITE", constTable[tempType::id][$3.name],0,0);
 		}
 		| _WRITE _LPAREN literal _RPAREN
 		{
-			addStatement("WRITE", constTable[tempType::literalConst][$3.name],0,0);
+			addICStatement("WRITE", constTable[tempType::literalConst][$3.name],0,0);
 		}
 		;
 literal : _LITERAL
 		{
 			$$.name = yytext;
-			addTemp($$.name,tempType::literalConst);
+			addTemporalToIdOrConst($$.name, currentScope, tempType::literalConst);
 		}
 		;
 

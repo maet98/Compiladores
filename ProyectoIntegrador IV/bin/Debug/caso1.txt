@@ -1,0 +1,42 @@
+Program Test;
+
+Variables 
+
+	a : integer;
+	b : real; 
+EndVars
+
+Procedures
+
+	Procedure Foo (fooInt : Integer); 
+	
+		Variables 
+			c : integer;
+			d : integer;
+		EndVars
+		
+		NoProcedures
+		EndProcs
+		
+		Begin
+			If a > 2 Then 
+				Write("It's Greater")
+			Else
+				Write("It's Less");		
+			
+			c := d * 4;
+		While c < 10 
+		Begin 			
+			Write("I'm inside the while loop");
+			c := c - 1
+		End;	
+		Do
+		Begin 			
+			Write("I'm inside the until loop");
+			c := c - 1
+		End
+		UntiL 4 < 5
+			
+		End
+		
+EndProcs;
