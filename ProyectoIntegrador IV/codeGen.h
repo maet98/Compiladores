@@ -41,7 +41,7 @@ int createTemporal(){
 }
 
 /// TODO: considerate the scope in case of a identifier.
-int addTemporalToIdOrConst(string lexeme, int scope, tempType constType)
+int addTemporalToIdOrConst(string lexeme, tempType constType)
 {
     if(constTable[constType].count(lexeme))
     {

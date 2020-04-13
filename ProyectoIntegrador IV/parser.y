@@ -361,6 +361,9 @@ bop		: _EQL
 
 loop	: forHeader _DO stmt
 		{
+			int temp = createTemporal();
+			addICStatement("PLUS",addTemporalToIdOrConst("1",currentScope,tempType::intConst),$1.tempNumber,temp);
+			addICStatement("ASSGN",temp, 0,0,$1.tempNumber);
             addICStatement("BUNC",0,0,Labels.top() + 1);
             updateInstructionJumpLine(ICStatements.size() + 1);
 		}

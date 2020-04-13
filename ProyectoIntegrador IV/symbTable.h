@@ -20,8 +20,13 @@ struct identifier {
   int tempNumber;
 };
 
+struct symbTableContent {
+  type dataType;
+  int tempNumber;
+};
+
 int currentScope = 0;
-vector<map<string, type>> symbTableStack;
+vector<map<string, symbTableContent>> symbTableStack;
 bool semanticError = 0;
 extern char* yytext;
 extern int yylex (void);
@@ -30,6 +35,7 @@ int yyerror(char* errormsg);
 
 string REPORTS = "\n  REPORTS:  \n";
 
+vector<string>declarationReport;
 
 // decrement scope level
 
@@ -39,7 +45,7 @@ void popScope() {
 // increment scope level
 
 void pushScope() {
-	symbTableStack.push_back(map<string, type>());
+	symbTableStack.push_back(map<string, symbTableContent>());
 }
 
 // check if variable exist in given scope
@@ -58,13 +64,13 @@ bool checkTable(string varName, int scope) {
 // declare variable.
 // report: redeclaration error or declaration report
 
-void installOnTable(string varName, int scope, type varType) {
+void installOnTable(string varName, int scope, symbTableContent varContent) {
 	transform(varName.begin(), varName.end(), varName.begin(), ::tolower);
 	if(!checkTable(varName, scope)) {
-		symbTableStack[scope][varName] = varType;
-		REPORTS += "\ndeclaration of ... " + varName + " type " + typeLexeme[varType] + " scope " + to_string(scope) + "\n";
+		symbTableStack[scope][varName] = varContent;
+		REPORTS += "\ndeclaration of ... " + varName + " type " + typeLexeme[varContent.dataType] + " scope " + to_string(scope) + "\n";
 	} else {
-	    REPORTS += "\nERROR Identifier redeclaration --> " + varName + " type " + typeLexeme[varType] + " scope " +  to_string(scope) + " in line " + to_string(lineCounter) + ", was already declared\n";
+	    REPORTS += "\nERROR Identifier redeclaration --> " + varName + " type " + typeLexeme[varContent.dataType] + " scope " +  to_string(scope) + " in line " + to_string(lineCounter) + ", was already declared\n";
 		semanticError = true;
 	}
 }
@@ -81,7 +87,8 @@ identifier getDeclaration(string varName, int scope){
 	int foundScope = scope;
 	for(int i = scope; i >= 0; i--){
 		if(symbTableStack[i].count(varName)) {
-			var.dataType = symbTableStack[i][varName];
+			var.dataType = symbTableStack[i][varName].dataType;
+			var.tempNumber = symbTableStack[i][varName].tempNumber;
 			foundScope = i;
 			break;
 		}
@@ -176,4 +183,3 @@ void reportIndexationError(type indexType) {
 
 
 #endif // PARSERHEADER_H_INCLUDED
-
