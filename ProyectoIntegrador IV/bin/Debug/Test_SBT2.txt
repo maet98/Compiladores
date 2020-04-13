@@ -17,8 +17,8 @@ Procedures
 			localReal : real; 
 			localString  : string;
 			localArray  : Integer[4,6,7,8];
-			c	: real;
-			b : string;
+			c	: integer;
+			b : integer;
 		EndVars
 		
 		NoProcedures
@@ -35,7 +35,7 @@ Procedures
 			Else
 				Write("It's Less");		
 			
-			c := d * 4;
+			c := b * 4;
 			
 		While c < 10 
 		Begin 			

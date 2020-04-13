@@ -34,8 +34,10 @@ vector<string> ICStatements;
 // Contains the incomplete instructions line number.
 stack<int> Labels;
 
-// 
+// Constants definition report.
 vector<string> constantReport[4];
+
+extern vector<map<string, symbTableContent>> symbTableStack;
 
 
 // Generate numbers for temporal variables. From -INF to -1.
@@ -44,15 +46,14 @@ int createTemporal(){
 	return -- temporalCounter;
 }
 
-/// TODO: considerate the scope in case of a identifier.
-int addTemporalToIdOrConst(string lexeme,int scope, tempType constType)
+int addTemporalToIdOrConst(string lexeme, int scope, tempType constType)
 {
-    if(constTable[constType].count(lexeme))
-    {
-        return constTable[constType][lexeme];
+    transform(lexeme.begin(), lexeme.end(), lexeme.begin(), ::tolower);
+    countersForTempNumbers[constType] ++ ;
+    if(constType == tempType::id) {
+        symbTableStack[scope][lexeme].tempNumber = countersForTempNumbers[constType];
     }
-    constTable[constType][lexeme] = ++countersForTempNumbers[constType];
-	constantReport[constType].push_back(lexeme+"\t\t\t"+to_string(scope)+"\t\t\t"+to_string(countersForTempNumbers[constType]));
+	constantReport[constType].push_back(lexeme + "\t\t\t" + to_string(scope) + "\t\t\t" + to_string(countersForTempNumbers[constType]));
 	return countersForTempNumbers[constType];
 }
 
@@ -92,14 +93,19 @@ booleanOperator negateBooleanOperator(booleanOperator operation){
 	}
 }
 
+// Given the jump line for an incomplete statement, this function
+// updates the ICStatements's statement in the position indicated by the
+// top number in the Labels stack.
 void updateInstructionJumpLine(int jumpLineNumber) {
-	int instructionPos = Labels.top();
-	Labels.pop();
-	if(instructionPos < ICStatements.size()) {
-		// the instruction will have 0 in the place of the jumpLineNumber
-		ICStatements[instructionPos].pop_back();
-		ICStatements[instructionPos] += to_string(jumpLineNumber);
-	}
+    if(!Labels.empty()) {
+        int instructionPos = Labels.top();
+        Labels.pop();
+        if(instructionPos < ICStatements.size()) {
+            // the instruction will have 0 in the place of the jumpLineNumber
+            ICStatements[instructionPos].pop_back();
+            ICStatements[instructionPos] += to_string(jumpLineNumber);
+        }
+    }
 }
 
 #endif // CODEGENHEADER_H_INCLUDED

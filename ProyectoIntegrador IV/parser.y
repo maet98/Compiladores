@@ -5,6 +5,8 @@
 
 #define YYSTYPE identifier
 
+extern int lineCounter;
+
 %}
 
 %token _PROGRAM 258
@@ -188,7 +190,7 @@ stmt	: assign
 assign	: ids _ASSIGN expr
 		{
 			checkTypeCompatibility($1.dataType, $3.dataType);
-			addICStatement("ASSGN",$3.tempNumber,0,$1.tempNumber);
+			addICStatement("ASSGN", $3.tempNumber, 0, $1.tempNumber);
 		}
 		;
 
@@ -271,7 +273,6 @@ val		: ids
 ids		: id
 		{
 			$$ = getDeclaration($1.name, currentScope);
-			$$.tempNumber = (constTable[tempType::id][$1.name]);
 		}
 		| id _LBRACK vallist _RBRACK
 		{
@@ -307,7 +308,6 @@ it		: id
 		{
 			// get type
 			// report use of constant...
-			addConstant(yytext, currentScope, type::integer);
 			$$.dataType = type::integer;
 		}
 		;
@@ -327,11 +327,11 @@ ifHeader : _IF expr bop expr
 		}
 		;
 ifContent : _THEN stmt
-				{
-					updateInstructionJumpLine(ICStatements.size() + 2);
-					Labels.push(addICStatement("BUNC",0,0,0) - 1);
-				}
-				;
+        {
+            updateInstructionJumpLine(ICStatements.size() + 2);
+            Labels.push(addICStatement("BUNC",0,0,0) - 1);
+        }
+        ;
 
 bop		: _EQL
 		{
@@ -362,8 +362,8 @@ bop		: _EQL
 loop	: forHeader _DO stmt
 		{
 			int temp = createTemporal();
-			addICStatement("PLUS",addTemporalToIdOrConst("1",currentScope,tempType::intConst),$1.tempNumber,temp);
-			addICStatement("ASSGN",temp, 0,0,$1.tempNumber);
+			addICStatement("PLUS",addTemporalToIdOrConst("1",currentScope,tempType::intConst), $1.tempNumber,temp);
+			addICStatement("ASSGN",temp, 0, $1.tempNumber);
             addICStatement("BUNC",0,0,Labels.top() + 1);
             updateInstructionJumpLine(ICStatements.size() + 1);
 		}
@@ -381,8 +381,9 @@ loop	: forHeader _DO stmt
 		}
 		;
 
-forHeader: _FOR forAssign _TO forExpr
+forHeader: _FOR forAssign _TO expr
 		 {
+            checkForExprRule($4.dataType);
 		 	$$.tempNumber = $2.tempNumber;
 			Labels.push((addICStatement(getBooleanOperatorLexeme(booleanOperator::GTR),$2.tempNumber,$4.tempNumber,0) - 1));
 		 }
@@ -390,19 +391,13 @@ forHeader: _FOR forAssign _TO forExpr
 
 forAssign: id _ASSIGN expr
 		{
-			checkForAssign($3.dataType);
-			$1.tempNumber = constTable[tempType::id][$1.name];
+            $1 = getDeclaration($1.name, currentScope);
+            checkTypeCompatibility($1.dataType, $3.dataType);
+			checkForAssignRule($3.dataType);
 			addICStatement("ASSGN",$3.tempNumber,0,$1.tempNumber);
 			$$.tempNumber = $1.tempNumber;
 		}
 		;
-
-forExpr: expr
-	   {
-	   		checkForExpr($1.dataType);
-			$$.tempNumber = $1.tempNumber;
-	   }
-	   ;
 
 do : _DO
     {
@@ -422,8 +417,8 @@ input	: _READ _LPAREN id _RPAREN
 		{
 			// id must be declared
 			// report use
-			getDeclaration($3.name, currentScope);
-			addICStatement("READ",0,0, constTable[tempType::id][$3.name]);
+			$3 = getDeclaration($3.name, currentScope);
+			addICStatement("READ",0,0, $3.tempNumber);
 		}
 		;
 
@@ -431,24 +426,24 @@ output	: _WRITE _LPAREN id _RPAREN
 		{
 			// id must be declared
 			// report use
-			getDeclaration($3.name, currentScope);
-			addICStatement("WRITE", constTable[tempType::id][$3.name],0,0);
+			$3 = getDeclaration($3.name, currentScope);
+			addICStatement("WRITE", $3.tempNumber,0,0);
 		}
 		| _WRITE _LPAREN literal _RPAREN
 		{
-			addICStatement("WRITE", constTable[tempType::literalConst][$3.name],0,0);
+			addICStatement("WRITE", $3.tempNumber,0,0);
 		}
 		;
 literal : _LITERAL
 		{
 			$$.name = yytext;
-			addTemporalToIdOrConst($$.name, currentScope, tempType::literalConst);
+			$1.tempNumber = addTemporalToIdOrConst($$.name, currentScope, tempType::literalConst);
 		}
 		;
 
 %%
 int yyerror(char* errorMessage)
 {
-	fprintf(stderr, "%s\n", errorMessage);
+	fprintf(stderr, "%s in line number %d \n", errorMessage, lineCounter);
 	return 1;
 }

@@ -35,16 +35,12 @@ int yyerror(char* errormsg);
 
 string REPORTS = "\n  REPORTS:  \n";
 
-vector<string>declarationReport;
-
-
 // decrement scope level
-
 void popScope() {
 	symbTableStack.pop_back();
 }
-// increment scope level
 
+// increment scope level
 void pushScope() {
 	symbTableStack.push_back(map<string, symbTableContent>());
 }
@@ -65,13 +61,15 @@ bool checkTable(string varName, int scope) {
 // declare variable.
 // report: redeclaration error or declaration report
 
-void installOnTable(string varName, int scope, symbTableContent varContent) {
+void installOnTable(string varName, int scope, type varType) {
 	transform(varName.begin(), varName.end(), varName.begin(), ::tolower);
 	if(!checkTable(varName, scope)) {
+        symbTableContent varContent;
+        varContent.dataType = varType;
 		symbTableStack[scope][varName] = varContent;
-		REPORTS += "\ndeclaration of ... " + varName + " type " + typeLexeme[varContent.dataType] + " scope " + to_string(scope) + "\n";
+		REPORTS += "\ndeclaration of ... " + varName + " type " + typeLexeme[varType] + " scope " + to_string(scope) + "\n";
 	} else {
-	    REPORTS += "\nERROR Identifier redeclaration --> " + varName + " type " + typeLexeme[varContent.dataType] + " scope " +  to_string(scope) + " in line " + to_string(lineCounter) + ", was already declared\n";
+	    REPORTS += "\nERROR Identifier redeclaration --> " + varName + " type " + typeLexeme[varType] + " scope " +  to_string(scope) + " in line " + to_string(lineCounter) + ", was already declared\n";
 		semanticError = true;
 	}
 }
@@ -81,6 +79,7 @@ void installOnTable(string varName, int scope, symbTableContent varContent) {
 // if variable does not exists, return {varName, nonetype}
 // report identifierUseReport or useDefinitionErrorReport
 identifier getDeclaration(string varName, int scope){
+    transform(varName.begin(), varName.end(), varName.begin(), ::tolower);
 	identifier var;
 	var.name = varName;
 	var.dataType = type::nonetype;
@@ -126,31 +125,22 @@ type checkTypeCompatibility(type a, type b) {
     return result;
 }
 
-void checkForExpr(type dataType)
+void checkForExprRule(type dataType)
 {
 	if(dataType != type::integer)
 	{
-		REPORTS += "\n ERROR TYPE NUMBER IN FOR LOOP MUST BE INTERGER. \n";
+		REPORTS += "\nERROR Type --> expression in for loop must be integer. \n";
 		semanticError = true;
 	}
 }
 
-bool checkForAssign(type dataType)
+void checkForAssignRule(type dataType)
 {
 	if(dataType != type::integer)
 	{
-		REPORTS += "\n ERROR TYPE NUMBER IN FOR LOOP MUST BE INTERGER. \n";
+		REPORTS += "\nERROR Type --> identifier type in for loop must be integer. \n";
 		semanticError = true;
-		return false;
 	}
-	return true;
-}
-
-// register constant
-
-void addConstant(string lexeme, int scope, type dataType)
-{
-    REPORTS += "\nCONSTANT scope " + to_string(scope) + ", value: " + lexeme + ", type: " + typeLexeme[dataType] + ", line " + to_string(lineCounter) + "\n";
 }
 
 type checkArrayIndexesType(type a, type b) {

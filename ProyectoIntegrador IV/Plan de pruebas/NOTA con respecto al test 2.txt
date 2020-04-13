@@ -1,8 +1,0 @@
-Debido a que la gramática asignada para el módulo sintáctico no contiene
-ninguna regla que acepte:
-
-LOCALSTRING := "Hello";
-
-Una asignación de una variable a una literal.
-En esta línea, ocurre un error sintáctico como se especifica, por lo
-tanto el programa no continua.
