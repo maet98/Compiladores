@@ -13,11 +13,39 @@ extern vector<string> constantReport[4];
 
 
 void printConstTable(int constType) {
-    cout << "Lexeme \t\t\t scope \t\t\t tempNumber\n";
-	for(string x : constantReport[constType]){
-		cout << x << endl;
+	if(constantReport[constType].size() > 0){
+		vector<string>arr[3];
+		vector<int>maxLength(3,0);
+		for(string x: constantReport[constType]){
+			char* temp[3];
+			sscanf(x.c_str(),"%s %s %s",temp[0],temp[1],temp[2]);
+			for(int i = 0;i < 3;i++){
+				arr[i].push_back(temp[i]);
+			}
+			for(int i = 0;i < 3;i++){
+				maxLength[i] = max(maxLength[i],(int)arr[i].size());
+			}
+		}
+		string headers[] = {"Lexeme","scope","tempNumber"};
+		for(int i = 0;i < 3;i++){
+			maxLength[i] = max(maxLength[i],(int)headers[i].size());
+		}
+		for(int i= 0;i < 2;i++){
+			printf("%.*s\t\t\t",maxLength[i],headers[i].c_str());
+		}
+		printf("%.*s\n",maxLength[2],headers[2].c_str());
+
+		cout << "Lexeme\t\t\ttempNumber\n";
+		int n = constantReport[constType].size();
+		for(int i = 0;i < n;i++){
+			for(int j = 0;j < 2;j++) {
+				printf("%.*s\t\t\t",maxLength[j],arr[j][i].c_str());
+			}
+			printf("%.*s\n",maxLength[2],arr[2][i].c_str());
+		}
 	}
 }
+
 
 int main()
 {
