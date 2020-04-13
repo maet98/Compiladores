@@ -119,6 +119,26 @@ type checkTypeCompatibility(type a, type b) {
     return result;
 }
 
+void checkForExpr(type dataType)
+{
+	if(dataType != type::integer)
+	{
+		REPORTS += "\n ERROR TYPE NUMBER IN FOR LOOP MUST BE INTERGER. \n";
+		semanticError = true;
+	}
+}
+
+bool checkForAssign(type dataType)
+{
+	if(dataType != type::integer)
+	{
+		REPORTS += "\n ERROR TYPE NUMBER IN FOR LOOP MUST BE INTERGER. \n";
+		semanticError = true;
+		return false;
+	}
+	return true;
+}
+
 // register constant
 
 void addConstant(string lexeme, int scope, type dataType)
@@ -153,6 +173,7 @@ void reportIndexationError(type indexType) {
 		semanticError = true;
 	}
 }
+
 
 #endif // PARSERHEADER_H_INCLUDED
 

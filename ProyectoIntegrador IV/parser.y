@@ -359,8 +359,11 @@ bop		: _EQL
 		}
 		;
 
-loop	: _FOR assign _TO expr _DO stmt
+loop	: forHeader _DO stmt
 		{
+			
+            addICStatement("BUNC",0,0,Labels.top() + 1);
+            updateInstructionJumpLine(ICStatements.size() + 1);
 		}
 		| whileHeader code
 		{
@@ -375,6 +378,28 @@ loop	: _FOR assign _TO expr _DO stmt
             addICStatement(getBooleanOperatorLexeme(negateBooleanOperator(static_cast<booleanOperator>($5.tempNumber))),$4.tempNumber,$6.tempNumber, jumpingLine);
 		}
 		;
+
+forHeader: _FOR forAssign _TO forExpr
+		 {
+		 	$$.tempNumber = $2.tempNumber;
+			Labels.push((addICStatement(getBooleanOperatorLexeme(booleanOperator::GTR),$2.tempNumber,$4.tempNumber,0) - 1));
+		 }
+		 ;
+
+forAssign: id _ASSIGN expr
+		{
+			checkForAssign($3.dataType);
+			addICStatement("ASSGN",$3.tempNumber,0,$1.tempNumber);
+			$$.tempNumber = $1.tempNumber;
+		}
+		;
+
+forExpr: expr
+	   {
+	   		checkForExpr($1.dataType);
+			$$.tempNumber = $1.tempNumber;
+	   }
+	   ;
 
 do : _DO
     {
