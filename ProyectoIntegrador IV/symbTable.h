@@ -37,6 +37,7 @@ string REPORTS = "\n  REPORTS:  \n";
 
 vector<string>declarationReport;
 
+
 // decrement scope level
 
 void popScope() {
@@ -80,7 +81,6 @@ void installOnTable(string varName, int scope, symbTableContent varContent) {
 // if variable does not exists, return {varName, nonetype}
 // report identifierUseReport or useDefinitionErrorReport
 identifier getDeclaration(string varName, int scope){
-    transform(varName.begin(), varName.end(), varName.begin(), ::tolower);
 	identifier var;
 	var.name = varName;
 	var.dataType = type::nonetype;

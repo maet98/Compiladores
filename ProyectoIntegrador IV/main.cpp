@@ -14,14 +14,14 @@ extern bool semanticError;
 
 extern vector<string>ICStatements;
 
-extern map<string,int>constTable[4];
+extern vector<string>constantReport[4];
 
 // map<string,int>constTable[4];
 void printConstTable(int constType) {
     cout << "Lexeme\t\t\ttempNumber\n";
-    for(auto x : constTable[constType]) {
-        cout << x.first << "\t\t\t" << x.second << endl;
-    }
+	for(string x : constantReport[constType]){
+		cout << x << endl;
+	}
 }
 
 int main()

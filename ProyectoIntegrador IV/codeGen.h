@@ -34,6 +34,10 @@ vector<string> ICStatements;
 // Contains the incomplete instructions line number.
 stack<int> Labels;
 
+// 
+vector<string> constantReport[4];
+
+
 // Generate numbers for temporal variables. From -INF to -1.
 int temporalCounter = 0;
 int createTemporal(){
@@ -41,14 +45,15 @@ int createTemporal(){
 }
 
 /// TODO: considerate the scope in case of a identifier.
-int addTemporalToIdOrConst(string lexeme, tempType constType)
+int addTemporalToIdOrConst(string lexeme,int scope, tempType constType)
 {
     if(constTable[constType].count(lexeme))
     {
         return constTable[constType][lexeme];
     }
     constTable[constType][lexeme] = ++countersForTempNumbers[constType];
-    return countersForTempNumbers[constType];
+	constantReport[constType].push_back(lexeme+"\t\t\t"+to_string(scope)+"\t\t\t"+to_string(countersForTempNumbers[constType]));
+	return countersForTempNumbers[constType];
 }
 
 // Given the quadruple values, create the IC instruction and adds it to to list of intermediate code statements.
