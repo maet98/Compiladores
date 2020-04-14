@@ -86,3 +86,36 @@
 	<stdlib.h>
 	<stdio.h>
 
+1586778017 source:/home/miguel/Repository/Compiladores/ProyectoIntegrador IV/lex.yy.cpp
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<io.h>
+	<stdlib.h>
+	"parser.tab.h"
+	<stdlib.h>
+
+1585968391 /home/miguel/Repository/Compiladores/ProyectoIntegrador IV/parser.tab.h
+
+1586825180 source:/home/miguel/Repository/Compiladores/ProyectoIntegrador IV/main.cpp
+	<bits/stdc++.h>
+
+1586815771 source:/home/miguel/Repository/Compiladores/ProyectoIntegrador IV/parser.tab.cpp
+	<bits/stdc++.h>
+	"codeGen.h"
+	"symbTable.h"
+	<stddef.h>
+	<libintl.h>
+	<alloca.h>
+	<malloc.h>
+	<stdlib.h>
+	<stdlib.h>
+	<stdio.h>
+
+1586824349 /home/miguel/Repository/Compiladores/ProyectoIntegrador IV/codeGen.h
+	<bits/stdc++.h>
+	"symbTable.h"
+
+1586815771 /home/miguel/Repository/Compiladores/ProyectoIntegrador IV/symbTable.h
+	<bits/stdc++.h>
+

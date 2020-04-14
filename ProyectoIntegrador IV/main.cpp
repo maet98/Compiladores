@@ -17,13 +17,13 @@ void printConstTable(int constType) {
 		vector<string>arr[3];
 		vector<int>maxLength(3,0);
 		for(string x: constantReport[constType]){
-			char* temp[3];
+			char temp[3][100];
 			sscanf(x.c_str(),"%s %s %s",temp[0],temp[1],temp[2]);
 			for(int i = 0;i < 3;i++){
 				arr[i].push_back(temp[i]);
 			}
 			for(int i = 0;i < 3;i++){
-				maxLength[i] = max(maxLength[i],(int)arr[i].size());
+				maxLength[i] = max(maxLength[i],(int)arr[i].back().size());
 			}
 		}
 		string headers[] = {"Lexeme","scope","tempNumber"};
@@ -31,17 +31,28 @@ void printConstTable(int constType) {
 			maxLength[i] = max(maxLength[i],(int)headers[i].size());
 		}
 		for(int i= 0;i < 2;i++){
-			printf("%.*s\t\t\t",maxLength[i],headers[i].c_str());
+			printf("%s",headers[i].c_str());
+            int j = maxLength[i]-headers[i].size();
+            while(j > 0){
+                printf(" ");
+                j--;
+            }
+            printf("\t\t\t");
 		}
-		printf("%.*s\n",maxLength[2],headers[2].c_str());
+		printf("%s\n",headers[2].c_str());
 
-		cout << "Lexeme\t\t\ttempNumber\n";
 		int n = constantReport[constType].size();
 		for(int i = 0;i < n;i++){
 			for(int j = 0;j < 2;j++) {
-				printf("%.*s\t\t\t",maxLength[j],arr[j][i].c_str());
+				printf("%s",arr[j][i].c_str());
+				int k = maxLength[j] - arr[j][i].size();
+                while(k > 0){
+                    printf(" ");
+                    k--;
+                }
+                printf("\t\t\t");
 			}
-			printf("%.*s\n",maxLength[2],arr[2][i].c_str());
+			printf("%s\n",arr[2][i].c_str());
 		}
 	}
 }
