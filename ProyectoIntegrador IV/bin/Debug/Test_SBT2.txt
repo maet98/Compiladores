@@ -35,7 +35,7 @@ Procedures
 			Else
 				Write("It's Less");		
 			
-			c := b * 4;
+		c := b * 4;
 			
 		While c < 10 
 		Begin 			

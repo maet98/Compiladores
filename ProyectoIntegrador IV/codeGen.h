@@ -21,10 +21,6 @@ enum booleanOperator{
 };
 string booleanOperators[] = {"BEQ","BNE","BLT","BGT","BGE","BLE"};
 
-// Structure to keep track of constants (int, real, literal) and identifiers.
-// Every position in the array of map<string ,int> can be access according to a tempType.
-map<string ,int> constTable[4];
-
 // Constant temporal number counter by tempType.
 vector<int> countersForTempNumbers = {0, 200, 300, 400};
 
