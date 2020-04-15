@@ -25,8 +25,16 @@ struct symbTableContent {
   int tempNumber;
 };
 
+struct constant {
+    string lexeme;
+    int scope;
+    type constantType;
+    constant(string _lexeme, int _scope, type _constantType) : lexeme(_lexeme), scope(_scope), constantType(_constantType) {}
+};
+
 int currentScope = 0;
 vector<map<string, symbTableContent>> symbTableStack;
+map<int, constant> constantsSymbTable;
 bool semanticError = 0;
 extern char* yytext;
 extern int yylex (void);
@@ -72,6 +80,11 @@ void installOnTable(string varName, int scope, type varType) {
 	    REPORTS += "\nERROR Identifier redeclaration --> " + varName + " type " + typeLexeme[varType] + " scope " +  to_string(scope) + " in line " + to_string(lineCounter) + ", was already declared\n";
 		semanticError = true;
 	}
+}
+
+void installConstantOnTable(int tempNumber, string lexeme, int scope, type constType) {
+    constant newConstant(lexeme, scope, constType);
+    constantsSymbTable.insert({tempNumber, newConstant});
 }
 
 // return closest declaration of variable with lexeme varName
@@ -136,7 +149,7 @@ void checkForExprRule(type dataType)
 
 void checkForAssignRule(type dataType)
 {
-	if(dataType != type::integer)
+	if(dataType != type::integer && dataType != type::integerArray)
 	{
 		REPORTS += "\nERROR Type --> identifier type in for loop must be integer. \n";
 		semanticError = true;

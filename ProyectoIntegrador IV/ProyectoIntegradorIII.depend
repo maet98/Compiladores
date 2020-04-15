@@ -62,19 +62,19 @@
 	"parser.tab.h"
 	<stdlib.h>
 
-1586832336 c:\users\marid\onedrive\escritorio\githubrepos\compiladores\proyectointegrador iv\parser.tab.h
+1586981667 c:\users\marid\onedrive\escritorio\githubrepos\compiladores\proyectointegrador iv\parser.tab.h
 
-1586832008 source:c:\users\marid\onedrive\escritorio\githubrepos\compiladores\proyectointegrador iv\main.cpp
+1586982090 source:c:\users\marid\onedrive\escritorio\githubrepos\compiladores\proyectointegrador iv\main.cpp
 	<bits/stdc++.h>
 
-1586813370 c:\users\marid\onedrive\escritorio\githubrepos\compiladores\proyectointegrador iv\symbtable.h
+1586982337 c:\users\marid\onedrive\escritorio\githubrepos\compiladores\proyectointegrador iv\symbtable.h
 	<bits/stdc++.h>
 
-1586823856 c:\users\marid\onedrive\escritorio\githubrepos\compiladores\proyectointegrador iv\codegen.h
+1586982065 c:\users\marid\onedrive\escritorio\githubrepos\compiladores\proyectointegrador iv\codegen.h
 	<bits/stdc++.h>
 	"symbTable.h"
 
-1586815484 source:c:\users\marid\onedrive\escritorio\githubrepos\compiladores\proyectointegrador iv\parser.tab.cpp
+1586981667 source:c:\users\marid\onedrive\escritorio\githubrepos\compiladores\proyectointegrador iv\parser.tab.cpp
 	<bits/stdc++.h>
 	"codeGen.h"
 	"symbTable.h"

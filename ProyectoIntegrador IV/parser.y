@@ -63,8 +63,8 @@ extern int lineCounter;
 
 program	: title _SEMI block
 		{
-			// Label the end of the intermediate code
-			addICStatement("HALT",0,0,0);
+			// Labels the end of the intermediate code.
+			addICStatement(quadrupleOperator::HALT,0,0,0);
 		}
 		;
 
@@ -102,21 +102,25 @@ varlist	: varlist _SEMI vardef
 vardef	: id _COLON _INTEGER
 		{
 			installOnTable($1.name, currentScope, type::integer);
+			// IC module.
 			addTemporalToIdOrConst($1.name,currentScope, tempType::id);
 		}
 		| id _COLON _REAL
 		{
 			installOnTable($1.name, currentScope, type::real);
+			// IC module.
 			addTemporalToIdOrConst($1.name, currentScope,tempType::id);
 		}
 		| id _COLON _INTEGER bn1
 		{
 			installOnTable($1.name, currentScope, type::integerArray);
+			// IC module.
 			addTemporalToIdOrConst($1.name, currentScope,tempType::id);
 		}
 		| id _COLON _STRING
 		{
 			installOnTable($1.name, currentScope, type::stringType);
+			// IC module.
 			addTemporalToIdOrConst($1.name, currentScope,tempType::id);
 		}
 		;
@@ -150,6 +154,10 @@ procdef	: ptitle _SEMI block
 procedureDeclaration	: _PROC id
 		{
 			installOnTable($2.name, currentScope, type::procedure);
+
+			// IC module.
+			addTemporalToIdOrConst($2.name, currentScope,tempType::id);
+
 			currentScope++;
 			pushScope();
 		}
@@ -190,26 +198,33 @@ stmt	: assign
 assign	: ids _ASSIGN expr
 		{
 			checkTypeCompatibility($1.dataType, $3.dataType);
-			addICStatement("ASSGN", $3.tempNumber, 0, $1.tempNumber);
+
+			// IC module.
+			addICStatement(quadrupleOperator::ASSGN, $3.tempNumber, 0, $1.tempNumber);
+			$$.tempNumber = $1.tempNumber;
+			$$.dataType = $3.dataType;
 		}
 		;
 
 expr	: expr _PLUS term
 		{
 			$$.dataType = checkTypeCompatibility($1.dataType, $3.dataType);
+			// IC module.
 			$$.tempNumber = createTemporal();
-			addICStatement("PLUS",$1.tempNumber,$3.tempNumber,$$.tempNumber);
+			addICStatement(quadrupleOperator::PLUS,$1.tempNumber,$3.tempNumber,$$.tempNumber);
 		}
 		| expr _MINUS term
 		{
 			$$.dataType = checkTypeCompatibility($1.dataType, $3.dataType);
+			// IC module.
 			$$.tempNumber = createTemporal();
-			addICStatement("SUB",$1.tempNumber,$3.tempNumber,$$.tempNumber);
+			addICStatement(quadrupleOperator::SUB,$1.tempNumber,$3.tempNumber,$$.tempNumber);
 
 		}
 		| term
 		{
 			$$.dataType = $1.dataType;
+			// IC module.
 			$$.tempNumber = $1.tempNumber;
 		}
 		;
@@ -217,18 +232,21 @@ expr	: expr _PLUS term
 term	: term _MULT fac
 		{
 			$$.dataType = checkTypeCompatibility($1.dataType, $3.dataType);
+			// IC module.
 			$$.tempNumber = createTemporal();
-			addICStatement("MULT",$1.tempNumber,$3.tempNumber,$$.tempNumber);
+			addICStatement(quadrupleOperator::MULT,$1.tempNumber,$3.tempNumber,$$.tempNumber);
 		}
 		| term _DIVIDE fac
 		{
 			$$.dataType = checkTypeCompatibility($1.dataType, $3.dataType);
+			// IC module.
 			$$.tempNumber = createTemporal();
-			addICStatement("DIV",$1.tempNumber,$3.tempNumber,$$.tempNumber);
+			addICStatement(quadrupleOperator::DIV,$1.tempNumber,$3.tempNumber,$$.tempNumber);
 		}
 		| fac
 		{
 			$$.dataType = $1.dataType;
+			// IC module.
 			$$.tempNumber = $1.tempNumber;
 		}
 		;
@@ -236,11 +254,13 @@ term	: term _MULT fac
 fac		: val
 		{
 			$$.dataType = $1.dataType;
+			// IC module.
 			$$.tempNumber = $1.tempNumber;
 		}
 		| _LPAREN expr _RPAREN
 		{
 			$$.dataType = $2.dataType;
+			// IC module.
 			$$.tempNumber = $2.tempNumber;
 		}
 		;
@@ -248,6 +268,7 @@ fac		: val
 val		: ids
 		{
 			$$.dataType = $1.dataType;
+			// IC module.
 			$$.tempNumber = $1.tempNumber;
 		}
 		| id _LPAREN vallist _RPAREN
@@ -261,12 +282,16 @@ val		: ids
 		| _ICONST
 		{
 			$$.dataType = type::integer;
+			// IC module.
 			$$.tempNumber = addTemporalToIdOrConst(yytext, currentScope, tempType::intConst);
+			installConstantOnTable($$.tempNumber, yytext, currentScope, type::integer);
 		}
 		| _RCONST
 		{
 			$$.dataType = type::real;
+			// IC module.
 			$$.tempNumber = addTemporalToIdOrConst(yytext, currentScope, tempType::realConst);
+			installConstantOnTable($$.tempNumber, yytext, currentScope, type::real);
 		}
 		;
 
@@ -282,7 +307,7 @@ ids		: id
 			// vallist data type must be integer
 			reportIndexationError($3.dataType);
 
-			$$.dataType = $1.dataType;
+			$$ = $1;
 		}
 		;
 
@@ -307,13 +332,17 @@ it		: id
 		| _ICONST
 		{
 			// get type
-			// report use of constant...
 			$$.dataType = type::integer;
+
+			// IC module.
+			$$.tempNumber = addTemporalToIdOrConst(yytext, currentScope, tempType::intConst);
+			installConstantOnTable($$.tempNumber, yytext, currentScope, type::integer);
 		}
 		;
 
 cond	: ifHeader ifContent _ELSE stmt
 		{
+			// IC module.
 			updateInstructionJumpLine(ICStatements.size() + 1);
 		}
 		;
@@ -323,81 +352,88 @@ ifHeader : _IF expr bop expr
 			// check type between expr1 and expr2
 			checkTypeCompatibility($2.dataType, $4.dataType);
 
-			Labels.push((addICStatement(getBooleanOperatorLexeme(negateBooleanOperator(static_cast<booleanOperator>($3.tempNumber))),$2.tempNumber,$4.tempNumber,0) - 1));
+			// IC module.
+			Labels.push((addICStatement(negateBooleanOperator(static_cast<quadrupleOperator>($3.tempNumber)),$2.tempNumber,$4.tempNumber,0) - 1));
 		}
 		;
 ifContent : _THEN stmt
         {
+			// IC module.
             updateInstructionJumpLine(ICStatements.size() + 2);
-            Labels.push(addICStatement("BUNC",0,0,0) - 1);
+            Labels.push(addICStatement(quadrupleOperator::BUNC,0,0,0) - 1);
         }
         ;
 
 bop		: _EQL
 		{
-			$$.tempNumber = booleanOperator::EQL;
+			// IC module.
+			$$.tempNumber = quadrupleOperator::BEQ;
 		}
 		| _LESS
 		{
-			$$.tempNumber = booleanOperator::LESS;
+			// IC module.
+			$$.tempNumber = quadrupleOperator::BLT;
 		}
 		| _GTR
 		{
-			$$.tempNumber = booleanOperator::GTR;
+			// IC module.
+			$$.tempNumber = quadrupleOperator::BGT;
 		}
 		| _LEQ
 		{
-			$$.tempNumber = booleanOperator::LEQ;
+			// IC module.
+			$$.tempNumber = quadrupleOperator::BLE;
 		}
 		| _GEQ
 		{
-			$$.tempNumber = booleanOperator::GEQ;
+			// IC module.
+			$$.tempNumber = quadrupleOperator::BGE;
 		}
 		| _NEQ
 		{
-			$$.tempNumber = booleanOperator::NEQ;
+			// IC module.
+			$$.tempNumber = quadrupleOperator::BNE;
 		}
 		;
 
 loop	: forHeader _DO stmt
 		{
+			// IC module.
 			int temp = createTemporal();
-			addICStatement("PLUS",addTemporalToIdOrConst("1",currentScope,tempType::intConst), $1.tempNumber,temp);
-			addICStatement("ASSGN",temp, 0, $1.tempNumber);
-            addICStatement("BUNC",0,0,Labels.top() + 1);
+
+			int increasingConstantTemp = addTemporalToIdOrConst("1", currentScope, tempType::intConst);
+			installConstantOnTable(increasingConstantTemp, "1", currentScope, type::integer);
+
+			addICStatement(quadrupleOperator::PLUS, increasingConstantTemp, $1.tempNumber,temp);
+			addICStatement(quadrupleOperator::ASSGN,temp, 0, $1.tempNumber);
+            addICStatement(quadrupleOperator::BUNC, 0, 0,Labels.top() + 1);
             updateInstructionJumpLine(ICStatements.size() + 1);
 		}
 		| whileHeader code
 		{
+			// IC module.
             // The line numbers of the IC ICStatements are listed stating from 1.
-            addICStatement("BUNC",0,0,Labels.top() + 1);
+            addICStatement(quadrupleOperator::BUNC,0,0,Labels.top() + 1);
             updateInstructionJumpLine(ICStatements.size() + 1);
 		}
 		| do para _UNTIL expr bop expr
 		{
+			// IC module.
             int jumpingLine = Labels.top();
             Labels.pop();
-            addICStatement(getBooleanOperatorLexeme(negateBooleanOperator(static_cast<booleanOperator>($5.tempNumber))),$4.tempNumber,$6.tempNumber, jumpingLine);
+            addICStatement(negateBooleanOperator(static_cast<quadrupleOperator>($5.tempNumber)),$4.tempNumber,$6.tempNumber, jumpingLine);
 		}
 		;
 
-forHeader: _FOR forAssign _TO expr
+forHeader: _FOR assign _TO expr
 		 {
+			// IC module.
+			checkForAssignRule($2.dataType);
             checkForExprRule($4.dataType);
 		 	$$.tempNumber = $2.tempNumber;
-			Labels.push((addICStatement(getBooleanOperatorLexeme(booleanOperator::GTR),$2.tempNumber,$4.tempNumber,0) - 1));
+			Labels.push((addICStatement(quadrupleOperator::BGT,$2.tempNumber,$4.tempNumber,0) - 1));
 		 }
 		 ;
-
-forAssign: id _ASSIGN expr
-		{
-            $1 = getDeclaration($1.name, currentScope);
-            checkTypeCompatibility($1.dataType, $3.dataType);
-			checkForAssignRule($3.dataType);
-			addICStatement("ASSGN",$3.tempNumber,0,$1.tempNumber);
-			$$.tempNumber = $1.tempNumber;
-		}
-		;
 
 do : _DO
     {
@@ -407,18 +443,19 @@ do : _DO
 
 whileHeader : _WHILE expr bop expr
             {
+				// IC module.
                 // This IC statement will be complete in the future. -1 to push a 0-based position.
-                Labels.push((addICStatement(getBooleanOperatorLexeme(negateBooleanOperator(static_cast<booleanOperator>($3.tempNumber))),$2.tempNumber,$4.tempNumber,0) - 1));
+                Labels.push((addICStatement(negateBooleanOperator(static_cast<quadrupleOperator>($3.tempNumber)),$2.tempNumber,$4.tempNumber,0) - 1));
             }
             ;
 
-// EXPR SOLO ACEPTA INT
 input	: _READ _LPAREN id _RPAREN
 		{
 			// id must be declared
 			// report use
 			$3 = getDeclaration($3.name, currentScope);
-			addICStatement("READ",0,0, $3.tempNumber);
+			// IC module.
+			addICStatement(quadrupleOperator::READ, 0, 0, $3.tempNumber);
 		}
 		;
 
@@ -427,17 +464,22 @@ output	: _WRITE _LPAREN id _RPAREN
 			// id must be declared
 			// report use
 			$3 = getDeclaration($3.name, currentScope);
-			addICStatement("WRITE", $3.tempNumber,0,0);
+			// IC module.
+			addICStatement(quadrupleOperator::WRITE, $3.tempNumber,0,0);
 		}
 		| _WRITE _LPAREN literal _RPAREN
 		{
-			addICStatement("WRITE", $3.tempNumber,0,0);
+			// IC module.
+			addICStatement(quadrupleOperator::WRITE, $3.tempNumber,0,0);
 		}
 		;
 literal : _LITERAL
 		{
 			$$.name = yytext;
+
+			// IC module.
 			$$.tempNumber = addTemporalToIdOrConst($$.name, currentScope, tempType::literalConst);
+			installConstantOnTable($$.tempNumber, $$.name, currentScope, type::stringType);
 		}
 		;
 

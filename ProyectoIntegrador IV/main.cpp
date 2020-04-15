@@ -5,9 +5,9 @@ int yyparse(void);
 
 extern string REPORTS;
 
-extern bool semanticError;
+extern printICStatements(void);
 
-extern vector<string> ICStatements;
+extern bool semanticError;
 
 extern vector<string> constantReport[4];
 
@@ -92,9 +92,7 @@ int main()
             printLiteralConstants();
         }
         cout << endl << endl << "INSTRUCTIONS" << endl;
-        for(int i = 0; i < ICStatements.size(); i++) {
-            cout << i + 1 << " " << ICStatements[i] << endl;
-        }
+        printICStatements();
     }
     return 0;
 }

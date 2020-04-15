@@ -1,4 +1,3 @@
-
   REPORTS:
 
 declaration of ... num1 type integer scope 0
@@ -27,9 +26,9 @@ use of ... num2 type integer declared in scope 0 used in scope 0
 
 use of ... num2 type integer declared in scope 0 used in scope 0
 
-use of ... num1 type integer declared in scope 0 used in scope 0
-
 use of ... num2 type integer declared in scope 0 used in scope 0
+
+use of ... num1 type integer declared in scope 0 used in scope 0
 
 use of ... answer type integer declared in scope 0 used in scope 0
 

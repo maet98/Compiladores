@@ -391,11 +391,11 @@ union yyalloc
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  49
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  38
+#define YYNNTS  37
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  73
+#define YYNRULES  72
 /* YYNRULES -- Number of states.  */
-#define YYNSTATES  145
+#define YYNSTATES  142
 
 /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
 #define YYUNDEFTOK  2
@@ -451,8 +451,8 @@ static const yytype_uint8 yyprhs[] =
       98,   100,   102,   104,   106,   108,   112,   116,   120,   122,
      126,   130,   132,   134,   138,   140,   145,   147,   149,   151,
      156,   160,   162,   164,   166,   171,   176,   179,   181,   183,
-     185,   187,   189,   191,   195,   198,   205,   210,   214,   216,
-     221,   226,   231,   236
+     185,   187,   189,   191,   195,   198,   205,   210,   212,   217,
+     222,   227,   232
 };
 
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
@@ -468,7 +468,7 @@ static const yytype_int8 yyrhs[] =
       53,    -1,    13,    51,    -1,    62,    26,    55,    27,    -1,
       62,    26,    27,    -1,    14,    65,    15,    -1,    28,    -1,
       65,    28,    66,    -1,    66,    -1,    67,    -1,    75,    -1,
-      79,    -1,    84,    -1,    85,    -1,    64,    -1,    72,    31,
+      79,    -1,    83,    -1,    84,    -1,    64,    -1,    72,    31,
       68,    -1,    68,    32,    69,    -1,    68,    33,    69,    -1,
       69,    -1,    69,    34,    70,    -1,    69,    35,    70,    -1,
       70,    -1,    71,    -1,    26,    68,    27,    -1,    72,    -1,
@@ -477,24 +477,24 @@ static const yytype_int8 yyrhs[] =
       74,    -1,    51,    -1,    43,    -1,    76,    77,    21,    66,
       -1,    19,    68,    78,    68,    -1,    20,    66,    -1,    36,
       -1,    37,    -1,    38,    -1,    39,    -1,    40,    -1,    41,
-      -1,    80,    18,    66,    -1,    83,    64,    -1,    82,    65,
-      48,    68,    78,    68,    -1,    16,    81,    17,    68,    -1,
-      51,    31,    68,    -1,    18,    -1,    47,    68,    78,    68,
-      -1,    22,    26,    51,    27,    -1,    23,    26,    51,    27,
-      -1,    23,    26,    86,    27,    -1,    46,    -1
+      -1,    80,    18,    66,    -1,    82,    64,    -1,    81,    65,
+      48,    68,    78,    68,    -1,    16,    67,    17,    68,    -1,
+      18,    -1,    47,    68,    78,    68,    -1,    22,    26,    51,
+      27,    -1,    23,    26,    51,    27,    -1,    23,    26,    85,
+      27,    -1,    46,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
        0,    64,    64,    71,    77,    83,    90,    92,    96,    98,
-     102,   107,   112,   117,   124,   128,   130,   134,   136,   140,
-     142,   146,   150,   158,   160,   164,   166,   170,   172,   176,
-     178,   180,   182,   184,   186,   190,   197,   203,   210,   217,
-     223,   229,   236,   241,   248,   253,   261,   266,   273,   277,
-     289,   294,   299,   307,   315,   321,   329,   336,   340,   344,
-     348,   352,   356,   362,   370,   376,   384,   392,   402,   408,
-     416,   425,   432,   437
+     102,   108,   114,   120,   128,   132,   134,   138,   140,   144,
+     146,   150,   154,   166,   168,   172,   174,   178,   180,   184,
+     186,   188,   190,   192,   194,   198,   209,   216,   224,   232,
+     239,   246,   254,   260,   268,   274,   282,   289,   298,   302,
+     314,   319,   324,   332,   343,   350,   359,   367,   372,   377,
+     382,   387,   392,   399,   412,   419,   428,   438,   444,   452,
+     462,   470,   476
 };
 #endif
 
@@ -514,8 +514,7 @@ static const char *const yytname[] =
   "nlist", "procs", "proclist", "procdef", "procedureDeclaration",
   "ptitle", "code", "para", "stmt", "assign", "expr", "term", "fac", "val",
   "ids", "vallist", "it", "cond", "ifHeader", "ifContent", "bop", "loop",
-  "forHeader", "forAssign", "do", "whileHeader", "input", "output",
-  "literal", 0
+  "forHeader", "do", "whileHeader", "input", "output", "literal", 0
 };
 #endif
 
@@ -542,7 +541,7 @@ static const yytype_uint8 yyr1[] =
       69,    69,    70,    70,    71,    71,    71,    71,    72,    72,
       73,    73,    74,    74,    75,    76,    77,    78,    78,    78,
       78,    78,    78,    79,    79,    79,    80,    81,    82,    83,
-      84,    85,    85,    86
+      84,    84,    85
 };
 
 /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
@@ -554,8 +553,8 @@ static const yytype_uint8 yyr2[] =
        1,     1,     1,     1,     1,     3,     3,     3,     1,     3,
        3,     1,     1,     3,     1,     4,     1,     1,     1,     4,
        3,     1,     1,     1,     4,     4,     2,     1,     1,     1,
-       1,     1,     1,     3,     2,     6,     4,     3,     1,     4,
-       4,     4,     4,     1
+       1,     1,     1,     3,     2,     6,     4,     1,     4,     4,
+       4,     4,     1
 };
 
 /* YYDEFACT[STATE-NAME] -- Default rule to reduce with in state
@@ -567,57 +566,57 @@ static const yytype_uint8 yydefact[] =
        2,     0,     0,     0,     9,     0,     0,     6,     0,    18,
        0,    10,    11,    13,     8,     0,    17,    20,     0,     0,
        0,     0,    12,    22,     0,     0,     0,     0,    26,     5,
-      16,     0,    19,    24,     0,    21,     0,    68,     0,     0,
+      16,     0,    19,    24,     0,    21,     0,    67,     0,     0,
        0,     0,    48,    34,     0,    28,    29,     0,    30,     0,
       31,     0,     0,     0,    32,    33,    14,     0,    23,     0,
-       0,     0,     0,    46,    47,    48,     0,    38,    41,    42,
-      44,     0,     0,     0,     0,    25,     0,     0,     0,     0,
-       0,     0,    64,    15,     0,     0,     0,     0,     0,     0,
-      57,    58,    59,    60,    61,    62,     0,     0,     0,     0,
-      73,     0,     0,     0,    53,    52,     0,    51,    27,    35,
-      56,     0,    63,     0,    67,    66,    43,     0,    36,    37,
-      55,    39,    40,    70,    71,    72,    69,    49,     0,    54,
-       0,    45,    50,     0,    65
+       0,     0,    46,    47,    48,     0,    38,    41,    42,    44,
+       0,     0,     0,     0,    25,     0,     0,     0,     0,     0,
+       0,    64,    15,     0,     0,     0,     0,     0,    57,    58,
+      59,    60,    61,    62,     0,     0,     0,     0,    72,     0,
+       0,     0,    53,    52,     0,    51,    27,    35,    56,     0,
+      63,     0,    66,    43,     0,    36,    37,    55,    39,    40,
+      69,    70,    71,    68,    49,     0,    54,     0,    45,    50,
+       0,    65
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     2,    75,     3,    10,    11,    13,    14,    32,    41,
-      20,    26,    27,    28,    29,    53,    54,    55,    56,    76,
-      77,    78,    79,    80,   116,   117,    58,    59,    89,   106,
-      60,    61,    71,    62,    63,    64,    65,   112
+      -1,     2,    74,     3,    10,    11,    13,    14,    32,    41,
+      20,    26,    27,    28,    29,    53,    54,    55,    56,    75,
+      76,    77,    78,    79,   114,   115,    58,    59,    88,   104,
+      60,    61,    62,    63,    64,    65,   110
 };
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
-#define YYPACT_NINF -83
+#define YYPACT_NINF -80
 static const yytype_int8 yypact[] =
 {
-       0,   -23,    28,    -6,   -83,   -83,   -83,    87,   -23,   -83,
-     -83,    26,    35,    51,   -83,    88,    82,   -23,    85,   -83,
-      71,    64,   -83,   -83,   -83,   -23,    67,   -83,    89,    83,
-       7,    73,   -83,   -83,    85,     2,    87,    -5,   -83,   -83,
-     -83,    22,   -83,   -83,    74,   -83,   -23,   -83,   -11,    91,
-      92,   -11,    90,   -83,    10,   -83,   -83,    93,   -83,    99,
-     -83,   103,    -5,     7,   -83,   -83,   -83,    79,   -83,   -23,
-      94,   106,   -11,   -83,   -83,    58,    33,    69,   -83,   -83,
-     -83,   -23,     4,    33,    63,   -83,    -5,   -11,    -5,   105,
-      -5,    -8,   -83,   -83,   -11,   -11,    30,    63,   -11,   -11,
-     -83,   -83,   -83,   -83,   -83,   -83,   -11,   -11,   -11,   100,
-     -83,   101,   102,   -11,   -83,   -83,    29,   -83,   -83,    75,
-     -83,    -5,   -83,   -11,    75,    75,   -83,    48,    69,    69,
-      75,   -83,   -83,   -83,   -83,   -83,    75,   -83,    63,   -83,
-      33,   -83,   -83,   -11,    75
+      16,   -15,    33,    11,   -80,   -80,   -80,    53,   -15,   -80,
+     -80,    44,    42,    29,   -80,    78,    55,   -15,    68,   -80,
+      80,    63,   -80,   -80,   -80,   -15,    64,   -80,    70,    84,
+       1,    71,   -80,   -80,    68,   -21,    53,    79,   -80,   -80,
+     -80,    -7,   -80,   -80,    39,   -80,   -15,   -80,   -12,    87,
+      89,   -12,    92,   -80,    -3,   -80,   -80,    86,   -80,    99,
+     -80,   102,    79,     1,   -80,   -80,   -80,    81,   -80,   -15,
+     105,   -12,   -80,   -80,    28,    37,    65,   -80,   -80,   -80,
+     -15,     4,    37,    61,   -80,    79,   -12,    79,   104,    79,
+     -20,   -80,   -80,   -12,     8,    61,   -12,   -12,   -80,   -80,
+     -80,   -80,   -80,   -80,   -12,   -12,   -12,    96,   -80,   100,
+     101,   -12,   -80,   -80,    17,   -80,   -80,    73,   -80,    79,
+     -80,   -12,    73,   -80,   -10,    65,    65,    73,   -80,   -80,
+     -80,   -80,   -80,    73,   -80,    61,   -80,    37,   -80,   -80,
+     -12,    73
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -83,   -83,    -1,   -83,    95,   -83,    97,   -13,   -83,   -83,
-     -83,   -83,    96,   -83,   -83,   -24,    72,   -78,   -83,   -46,
-      11,     5,   -83,   -35,    36,    -3,   -83,   -83,   -83,   -82,
-     -83,   -83,   -83,   -83,   -83,   -83,   -83,   -83
+     -80,   -80,    -1,   -80,    93,   -80,    95,   -13,   -80,   -80,
+     -80,   -80,    97,   -80,   -80,   -25,    74,   -76,    91,   -49,
+      12,     5,   -80,   -36,    38,     0,   -80,   -80,   -80,   -79,
+     -80,   -80,   -80,   -80,   -80,   -80,   -80
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -627,38 +626,38 @@ static const yytype_int8 yypgoto[] =
 #define YYTABLE_NINF -1
 static const yytype_uint8 yytable[] =
 {
-       5,   113,    57,     1,    24,    83,    39,    12,   118,    37,
-     120,    46,   122,    47,    48,    72,    12,    49,    50,     4,
-      86,    37,     7,    38,    33,    85,    96,    57,     6,    43,
-      15,     4,    73,    74,    12,    38,    52,     4,    86,    92,
-     123,   119,    51,   139,     4,    70,     4,    66,   124,   125,
-     110,    57,    67,    57,   137,    57,    24,   126,   143,   138,
-     130,    52,    98,    99,    16,    98,    99,   136,    12,   100,
-     101,   102,   103,   104,   105,   141,    30,   140,   138,    17,
-     109,   111,    84,   115,    97,    52,    57,    52,    31,    52,
-      21,    22,    23,     8,     9,    34,   115,   144,    25,    18,
-      19,    68,    69,   107,   108,     4,   114,    98,    99,   128,
-     129,    36,   131,   132,    84,    35,    40,    81,    82,    88,
-      52,    90,    93,    95,    87,    94,   121,   133,   134,   135,
-      42,    45,    44,   127,    91,   142,     0,   115
+       5,    57,    82,   111,    24,    39,    43,    12,    85,   116,
+      57,   118,    84,   120,    71,    37,    12,   138,    66,     1,
+     135,     4,    94,    67,    33,    85,    57,     4,   121,    38,
+       4,    72,    73,     6,    12,   123,    52,   117,    91,     7,
+      96,    97,   134,   136,   122,    52,     4,   135,    15,    57,
+     108,    57,    83,    57,    95,   127,    24,    17,   140,     8,
+       9,    52,   133,    21,    22,    23,    68,    69,    12,    96,
+      97,    16,   137,    98,    99,   100,   101,   102,   103,   107,
+     109,    25,   113,    57,    52,    30,    52,    31,    52,    18,
+      19,   141,    34,    37,   113,    46,    35,    47,    48,   105,
+     106,    49,    50,     4,   112,    96,    97,    38,   125,   126,
+     128,   129,    36,    80,    40,    81,    83,    86,    52,    87,
+      89,     4,    93,   130,    92,   119,    51,   131,   132,    45,
+      44,    42,     0,   124,   113,   139,    90,    70
 };
 
 static const yytype_int16 yycheck[] =
 {
-       1,    83,    37,     3,    17,    51,    30,     8,    86,    14,
-      88,    16,    90,    18,    19,    26,    17,    22,    23,    42,
-      28,    14,    28,    28,    25,    15,    72,    62,     0,    27,
-       4,    42,    43,    44,    35,    28,    37,    42,    28,    63,
-      48,    87,    47,   121,    42,    46,    42,    25,    94,    95,
-      46,    86,    30,    88,    25,    90,    69,    27,   140,    30,
-     106,    62,    32,    33,    29,    32,    33,   113,    69,    36,
-      37,    38,    39,    40,    41,    27,     5,   123,    30,    28,
-      81,    82,    24,    84,    26,    86,   121,    88,    24,    90,
-       8,     9,    10,     6,     7,    28,    97,   143,    13,    11,
-      12,    27,    28,    34,    35,    42,    43,    32,    33,    98,
-      99,    28,   107,   108,    24,    26,    43,    26,    26,    20,
-     121,    18,    43,    17,    31,    31,    21,    27,    27,    27,
-      34,    36,    35,    97,    62,   138,    -1,   138
+       1,    37,    51,    82,    17,    30,    27,     8,    28,    85,
+      46,    87,    15,    89,    26,    14,    17,    27,    25,     3,
+      30,    42,    71,    30,    25,    28,    62,    42,    48,    28,
+      42,    43,    44,     0,    35,    27,    37,    86,    63,    28,
+      32,    33,    25,   119,    93,    46,    42,    30,     4,    85,
+      46,    87,    24,    89,    26,   104,    69,    28,   137,     6,
+       7,    62,   111,     8,     9,    10,    27,    28,    69,    32,
+      33,    29,   121,    36,    37,    38,    39,    40,    41,    80,
+      81,    13,    83,   119,    85,     5,    87,    24,    89,    11,
+      12,   140,    28,    14,    95,    16,    26,    18,    19,    34,
+      35,    22,    23,    42,    43,    32,    33,    28,    96,    97,
+     105,   106,    28,    26,    43,    26,    24,    31,   119,    20,
+      18,    42,    17,    27,    43,    21,    47,    27,    27,    36,
+      35,    34,    -1,    95,   135,   135,    62,    46
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -671,15 +670,15 @@ static const yytype_uint8 yystos[] =
        5,    24,    57,    51,    28,    26,    28,    14,    28,    64,
       43,    58,    61,    27,    55,    53,    16,    18,    19,    22,
       23,    47,    51,    64,    65,    66,    67,    72,    75,    76,
-      79,    80,    82,    83,    84,    85,    25,    30,    27,    28,
-      51,    81,    26,    43,    44,    51,    68,    69,    70,    71,
-      72,    26,    26,    68,    24,    15,    28,    31,    20,    77,
-      18,    65,    64,    43,    31,    17,    68,    26,    32,    33,
-      36,    37,    38,    39,    40,    41,    78,    34,    35,    51,
-      46,    51,    86,    78,    43,    51,    73,    74,    66,    68,
-      66,    21,    66,    48,    68,    68,    27,    73,    69,    69,
-      68,    70,    70,    27,    27,    27,    68,    25,    30,    66,
-      68,    27,    74,    78,    68
+      79,    80,    81,    82,    83,    84,    25,    30,    27,    28,
+      67,    26,    43,    44,    51,    68,    69,    70,    71,    72,
+      26,    26,    68,    24,    15,    28,    31,    20,    77,    18,
+      65,    64,    43,    17,    68,    26,    32,    33,    36,    37,
+      38,    39,    40,    41,    78,    34,    35,    51,    46,    51,
+      85,    78,    43,    51,    73,    74,    66,    68,    66,    21,
+      66,    48,    68,    27,    73,    69,    69,    68,    70,    70,
+      27,    27,    27,    68,    25,    30,    66,    68,    27,    74,
+      78,    68
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -1495,8 +1494,8 @@ yyreduce:
 /* Line 1455 of yacc.c  */
 #line 65 "parser.y"
     {
-			// Label the end of the intermediate code
-			addICStatement("HALT",0,0,0);
+			// Labels the end of the intermediate code.
+			addICStatement(quadrupleOperator::HALT,0,0,0);
 		;}
     break;
 
@@ -1562,6 +1561,7 @@ yyreduce:
 #line 103 "parser.y"
     {
 			installOnTable((yyvsp[(1) - (3)]).name, currentScope, type::integer);
+			// IC module.
 			addTemporalToIdOrConst((yyvsp[(1) - (3)]).name,currentScope, tempType::id);
 		;}
     break;
@@ -1569,9 +1569,10 @@ yyreduce:
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 108 "parser.y"
+#line 109 "parser.y"
     {
 			installOnTable((yyvsp[(1) - (3)]).name, currentScope, type::real);
+			// IC module.
 			addTemporalToIdOrConst((yyvsp[(1) - (3)]).name, currentScope,tempType::id);
 		;}
     break;
@@ -1579,9 +1580,10 @@ yyreduce:
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 113 "parser.y"
+#line 115 "parser.y"
     {
 			installOnTable((yyvsp[(1) - (4)]).name, currentScope, type::integerArray);
+			// IC module.
 			addTemporalToIdOrConst((yyvsp[(1) - (4)]).name, currentScope,tempType::id);
 		;}
     break;
@@ -1589,9 +1591,10 @@ yyreduce:
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 118 "parser.y"
+#line 121 "parser.y"
     {
 			installOnTable((yyvsp[(1) - (3)]).name, currentScope, type::stringType);
+			// IC module.
 			addTemporalToIdOrConst((yyvsp[(1) - (3)]).name, currentScope,tempType::id);
 		;}
     break;
@@ -1599,65 +1602,69 @@ yyreduce:
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 125 "parser.y"
+#line 129 "parser.y"
     {;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 129 "parser.y"
+#line 133 "parser.y"
     {;}
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 131 "parser.y"
+#line 135 "parser.y"
     {;}
     break;
 
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 135 "parser.y"
+#line 139 "parser.y"
     {;}
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 137 "parser.y"
+#line 141 "parser.y"
     {;}
     break;
 
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 141 "parser.y"
+#line 145 "parser.y"
     {;}
     break;
 
   case 20:
 
 /* Line 1455 of yacc.c  */
-#line 143 "parser.y"
+#line 147 "parser.y"
     {;}
     break;
 
   case 21:
 
 /* Line 1455 of yacc.c  */
-#line 147 "parser.y"
+#line 151 "parser.y"
     {;}
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 151 "parser.y"
+#line 155 "parser.y"
     {
 			installOnTable((yyvsp[(2) - (2)]).name, currentScope, type::procedure);
+
+			// IC module.
+			addTemporalToIdOrConst((yyvsp[(2) - (2)]).name, currentScope,tempType::id);
+
 			currentScope++;
 			pushScope();
 		;}
@@ -1666,116 +1673,122 @@ yyreduce:
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 159 "parser.y"
+#line 167 "parser.y"
     {;}
     break;
 
   case 24:
 
 /* Line 1455 of yacc.c  */
-#line 161 "parser.y"
+#line 169 "parser.y"
     {;}
     break;
 
   case 25:
 
 /* Line 1455 of yacc.c  */
-#line 165 "parser.y"
+#line 173 "parser.y"
     {;}
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 167 "parser.y"
+#line 175 "parser.y"
     {;}
     break;
 
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 171 "parser.y"
+#line 179 "parser.y"
     {;}
     break;
 
   case 28:
 
 /* Line 1455 of yacc.c  */
-#line 173 "parser.y"
+#line 181 "parser.y"
     {;}
     break;
 
   case 29:
 
 /* Line 1455 of yacc.c  */
-#line 177 "parser.y"
+#line 185 "parser.y"
     {;}
     break;
 
   case 30:
 
 /* Line 1455 of yacc.c  */
-#line 179 "parser.y"
+#line 187 "parser.y"
     {;}
     break;
 
   case 31:
 
 /* Line 1455 of yacc.c  */
-#line 181 "parser.y"
+#line 189 "parser.y"
     {;}
     break;
 
   case 32:
 
 /* Line 1455 of yacc.c  */
-#line 183 "parser.y"
+#line 191 "parser.y"
     {;}
     break;
 
   case 33:
 
 /* Line 1455 of yacc.c  */
-#line 185 "parser.y"
+#line 193 "parser.y"
     {;}
     break;
 
   case 34:
 
 /* Line 1455 of yacc.c  */
-#line 187 "parser.y"
+#line 195 "parser.y"
     {;}
     break;
 
   case 35:
 
 /* Line 1455 of yacc.c  */
-#line 191 "parser.y"
+#line 199 "parser.y"
     {
 			checkTypeCompatibility((yyvsp[(1) - (3)]).dataType, (yyvsp[(3) - (3)]).dataType);
-			addICStatement("ASSGN", (yyvsp[(3) - (3)]).tempNumber, 0, (yyvsp[(1) - (3)]).tempNumber);
+
+			// IC module.
+			addICStatement(quadrupleOperator::ASSGN, (yyvsp[(3) - (3)]).tempNumber, 0, (yyvsp[(1) - (3)]).tempNumber);
+			(yyval).tempNumber = (yyvsp[(1) - (3)]).tempNumber;
+			(yyval).dataType = (yyvsp[(3) - (3)]).dataType;
 		;}
     break;
 
   case 36:
 
 /* Line 1455 of yacc.c  */
-#line 198 "parser.y"
+#line 210 "parser.y"
     {
 			(yyval).dataType = checkTypeCompatibility((yyvsp[(1) - (3)]).dataType, (yyvsp[(3) - (3)]).dataType);
+			// IC module.
 			(yyval).tempNumber = createTemporal();
-			addICStatement("PLUS",(yyvsp[(1) - (3)]).tempNumber,(yyvsp[(3) - (3)]).tempNumber,(yyval).tempNumber);
+			addICStatement(quadrupleOperator::PLUS,(yyvsp[(1) - (3)]).tempNumber,(yyvsp[(3) - (3)]).tempNumber,(yyval).tempNumber);
 		;}
     break;
 
   case 37:
 
 /* Line 1455 of yacc.c  */
-#line 204 "parser.y"
+#line 217 "parser.y"
     {
 			(yyval).dataType = checkTypeCompatibility((yyvsp[(1) - (3)]).dataType, (yyvsp[(3) - (3)]).dataType);
+			// IC module.
 			(yyval).tempNumber = createTemporal();
-			addICStatement("SUB",(yyvsp[(1) - (3)]).tempNumber,(yyvsp[(3) - (3)]).tempNumber,(yyval).tempNumber);
+			addICStatement(quadrupleOperator::SUB,(yyvsp[(1) - (3)]).tempNumber,(yyvsp[(3) - (3)]).tempNumber,(yyval).tempNumber);
 
 		;}
     break;
@@ -1783,9 +1796,10 @@ yyreduce:
   case 38:
 
 /* Line 1455 of yacc.c  */
-#line 211 "parser.y"
+#line 225 "parser.y"
     {
 			(yyval).dataType = (yyvsp[(1) - (1)]).dataType;
+			// IC module.
 			(yyval).tempNumber = (yyvsp[(1) - (1)]).tempNumber;
 		;}
     break;
@@ -1793,31 +1807,34 @@ yyreduce:
   case 39:
 
 /* Line 1455 of yacc.c  */
-#line 218 "parser.y"
+#line 233 "parser.y"
     {
 			(yyval).dataType = checkTypeCompatibility((yyvsp[(1) - (3)]).dataType, (yyvsp[(3) - (3)]).dataType);
+			// IC module.
 			(yyval).tempNumber = createTemporal();
-			addICStatement("MULT",(yyvsp[(1) - (3)]).tempNumber,(yyvsp[(3) - (3)]).tempNumber,(yyval).tempNumber);
+			addICStatement(quadrupleOperator::MULT,(yyvsp[(1) - (3)]).tempNumber,(yyvsp[(3) - (3)]).tempNumber,(yyval).tempNumber);
 		;}
     break;
 
   case 40:
 
 /* Line 1455 of yacc.c  */
-#line 224 "parser.y"
+#line 240 "parser.y"
     {
 			(yyval).dataType = checkTypeCompatibility((yyvsp[(1) - (3)]).dataType, (yyvsp[(3) - (3)]).dataType);
+			// IC module.
 			(yyval).tempNumber = createTemporal();
-			addICStatement("DIV",(yyvsp[(1) - (3)]).tempNumber,(yyvsp[(3) - (3)]).tempNumber,(yyval).tempNumber);
+			addICStatement(quadrupleOperator::DIV,(yyvsp[(1) - (3)]).tempNumber,(yyvsp[(3) - (3)]).tempNumber,(yyval).tempNumber);
 		;}
     break;
 
   case 41:
 
 /* Line 1455 of yacc.c  */
-#line 230 "parser.y"
+#line 247 "parser.y"
     {
 			(yyval).dataType = (yyvsp[(1) - (1)]).dataType;
+			// IC module.
 			(yyval).tempNumber = (yyvsp[(1) - (1)]).tempNumber;
 		;}
     break;
@@ -1825,9 +1842,10 @@ yyreduce:
   case 42:
 
 /* Line 1455 of yacc.c  */
-#line 237 "parser.y"
+#line 255 "parser.y"
     {
 			(yyval).dataType = (yyvsp[(1) - (1)]).dataType;
+			// IC module.
 			(yyval).tempNumber = (yyvsp[(1) - (1)]).tempNumber;
 		;}
     break;
@@ -1835,9 +1853,10 @@ yyreduce:
   case 43:
 
 /* Line 1455 of yacc.c  */
-#line 242 "parser.y"
+#line 261 "parser.y"
     {
 			(yyval).dataType = (yyvsp[(2) - (3)]).dataType;
+			// IC module.
 			(yyval).tempNumber = (yyvsp[(2) - (3)]).tempNumber;
 		;}
     break;
@@ -1845,9 +1864,10 @@ yyreduce:
   case 44:
 
 /* Line 1455 of yacc.c  */
-#line 249 "parser.y"
+#line 269 "parser.y"
     {
 			(yyval).dataType = (yyvsp[(1) - (1)]).dataType;
+			// IC module.
 			(yyval).tempNumber = (yyvsp[(1) - (1)]).tempNumber;
 		;}
     break;
@@ -1855,7 +1875,7 @@ yyreduce:
   case 45:
 
 /* Line 1455 of yacc.c  */
-#line 254 "parser.y"
+#line 275 "parser.y"
     {
 			// check if is a procedure
 			// check if is declared
@@ -1868,27 +1888,31 @@ yyreduce:
   case 46:
 
 /* Line 1455 of yacc.c  */
-#line 262 "parser.y"
+#line 283 "parser.y"
     {
 			(yyval).dataType = type::integer;
+			// IC module.
 			(yyval).tempNumber = addTemporalToIdOrConst(yytext, currentScope, tempType::intConst);
+			installConstantOnTable((yyval).tempNumber, yytext, currentScope, type::integer);
 		;}
     break;
 
   case 47:
 
 /* Line 1455 of yacc.c  */
-#line 267 "parser.y"
+#line 290 "parser.y"
     {
 			(yyval).dataType = type::real;
+			// IC module.
 			(yyval).tempNumber = addTemporalToIdOrConst(yytext, currentScope, tempType::realConst);
+			installConstantOnTable((yyval).tempNumber, yytext, currentScope, type::real);
 		;}
     break;
 
   case 48:
 
 /* Line 1455 of yacc.c  */
-#line 274 "parser.y"
+#line 299 "parser.y"
     {
 			(yyval) = getDeclaration((yyvsp[(1) - (1)]).name, currentScope);
 		;}
@@ -1897,7 +1921,7 @@ yyreduce:
   case 49:
 
 /* Line 1455 of yacc.c  */
-#line 278 "parser.y"
+#line 303 "parser.y"
     {
 			// type must be array integer
 			(yyvsp[(1) - (4)]) = getDeclaration((yyvsp[(1) - (4)]).name, currentScope);
@@ -1905,14 +1929,14 @@ yyreduce:
 			// vallist data type must be integer
 			reportIndexationError((yyvsp[(3) - (4)]).dataType);
 
-			(yyval).dataType = (yyvsp[(1) - (4)]).dataType;
+			(yyval) = (yyvsp[(1) - (4)]);
 		;}
     break;
 
   case 50:
 
 /* Line 1455 of yacc.c  */
-#line 290 "parser.y"
+#line 315 "parser.y"
     {
 			// for integer[] array case: indexes must be integers
 			(yyval).dataType = checkArrayIndexesType((yyvsp[(1) - (3)]).dataType, (yyvsp[(3) - (3)]).dataType);
@@ -1922,7 +1946,7 @@ yyreduce:
   case 51:
 
 /* Line 1455 of yacc.c  */
-#line 295 "parser.y"
+#line 320 "parser.y"
     {
 			(yyval).dataType = (yyvsp[(1) - (1)]).dataType;
 		;}
@@ -1931,7 +1955,7 @@ yyreduce:
   case 52:
 
 /* Line 1455 of yacc.c  */
-#line 300 "parser.y"
+#line 325 "parser.y"
     {
 			// avalaible: name
 			// must be declared
@@ -1944,19 +1968,23 @@ yyreduce:
   case 53:
 
 /* Line 1455 of yacc.c  */
-#line 308 "parser.y"
+#line 333 "parser.y"
     {
 			// get type
-			// report use of constant...
 			(yyval).dataType = type::integer;
+
+			// IC module.
+			(yyval).tempNumber = addTemporalToIdOrConst(yytext, currentScope, tempType::intConst);
+			installConstantOnTable((yyval).tempNumber, yytext, currentScope, type::integer);
 		;}
     break;
 
   case 54:
 
 /* Line 1455 of yacc.c  */
-#line 316 "parser.y"
+#line 344 "parser.y"
     {
+			// IC module.
 			updateInstructionJumpLine(ICStatements.size() + 1);
 		;}
     break;
@@ -1964,88 +1992,101 @@ yyreduce:
   case 55:
 
 /* Line 1455 of yacc.c  */
-#line 322 "parser.y"
+#line 351 "parser.y"
     {
 			// check type between expr1 and expr2
 			checkTypeCompatibility((yyvsp[(2) - (4)]).dataType, (yyvsp[(4) - (4)]).dataType);
 
-			Labels.push((addICStatement(getBooleanOperatorLexeme(negateBooleanOperator(static_cast<booleanOperator>((yyvsp[(3) - (4)]).tempNumber))),(yyvsp[(2) - (4)]).tempNumber,(yyvsp[(4) - (4)]).tempNumber,0) - 1));
+			// IC module.
+			Labels.push((addICStatement(negateBooleanOperator(static_cast<quadrupleOperator>((yyvsp[(3) - (4)]).tempNumber)),(yyvsp[(2) - (4)]).tempNumber,(yyvsp[(4) - (4)]).tempNumber,0) - 1));
 		;}
     break;
 
   case 56:
 
 /* Line 1455 of yacc.c  */
-#line 330 "parser.y"
+#line 360 "parser.y"
     {
+			// IC module.
             updateInstructionJumpLine(ICStatements.size() + 2);
-            Labels.push(addICStatement("BUNC",0,0,0) - 1);
+            Labels.push(addICStatement(quadrupleOperator::BUNC,0,0,0) - 1);
         ;}
     break;
 
   case 57:
 
 /* Line 1455 of yacc.c  */
-#line 337 "parser.y"
+#line 368 "parser.y"
     {
-			(yyval).tempNumber = booleanOperator::EQL;
+			// IC module.
+			(yyval).tempNumber = quadrupleOperator::BEQ;
 		;}
     break;
 
   case 58:
 
 /* Line 1455 of yacc.c  */
-#line 341 "parser.y"
+#line 373 "parser.y"
     {
-			(yyval).tempNumber = booleanOperator::LESS;
+			// IC module.
+			(yyval).tempNumber = quadrupleOperator::BLT;
 		;}
     break;
 
   case 59:
 
 /* Line 1455 of yacc.c  */
-#line 345 "parser.y"
+#line 378 "parser.y"
     {
-			(yyval).tempNumber = booleanOperator::GTR;
+			// IC module.
+			(yyval).tempNumber = quadrupleOperator::BGT;
 		;}
     break;
 
   case 60:
 
 /* Line 1455 of yacc.c  */
-#line 349 "parser.y"
+#line 383 "parser.y"
     {
-			(yyval).tempNumber = booleanOperator::LEQ;
+			// IC module.
+			(yyval).tempNumber = quadrupleOperator::BLE;
 		;}
     break;
 
   case 61:
 
 /* Line 1455 of yacc.c  */
-#line 353 "parser.y"
+#line 388 "parser.y"
     {
-			(yyval).tempNumber = booleanOperator::GEQ;
+			// IC module.
+			(yyval).tempNumber = quadrupleOperator::BGE;
 		;}
     break;
 
   case 62:
 
 /* Line 1455 of yacc.c  */
-#line 357 "parser.y"
+#line 393 "parser.y"
     {
-			(yyval).tempNumber = booleanOperator::NEQ;
+			// IC module.
+			(yyval).tempNumber = quadrupleOperator::BNE;
 		;}
     break;
 
   case 63:
 
 /* Line 1455 of yacc.c  */
-#line 363 "parser.y"
+#line 400 "parser.y"
     {
+			// IC module.
 			int temp = createTemporal();
-			addICStatement("PLUS",addTemporalToIdOrConst("1",currentScope,tempType::intConst), (yyvsp[(1) - (3)]).tempNumber,temp);
-			addICStatement("ASSGN",temp, 0, (yyvsp[(1) - (3)]).tempNumber);
-            addICStatement("BUNC",0,0,Labels.top() + 1);
+
+			int increasingConstantTemp = addTemporalToIdOrConst("1", currentScope, tempType::intConst);
+			installConstantOnTable(increasingConstantTemp, "1", currentScope, type::integer);
+
+			addICStatement(quadrupleOperator::PLUS, increasingConstantTemp, (yyvsp[(1) - (3)]).tempNumber,temp);
+			addICStatement(quadrupleOperator::ASSGN,temp, 0, (yyvsp[(1) - (3)]).tempNumber);
+            addICStatement(quadrupleOperator::BUNC, 0, 0,Labels.top() + 1);
             updateInstructionJumpLine(ICStatements.size() + 1);
 		;}
     break;
@@ -2053,10 +2094,11 @@ yyreduce:
   case 64:
 
 /* Line 1455 of yacc.c  */
-#line 371 "parser.y"
+#line 413 "parser.y"
     {
+			// IC module.
             // The line numbers of the IC ICStatements are listed stating from 1.
-            addICStatement("BUNC",0,0,Labels.top() + 1);
+            addICStatement(quadrupleOperator::BUNC,0,0,Labels.top() + 1);
             updateInstructionJumpLine(ICStatements.size() + 1);
 		;}
     break;
@@ -2064,104 +2106,101 @@ yyreduce:
   case 65:
 
 /* Line 1455 of yacc.c  */
-#line 377 "parser.y"
+#line 420 "parser.y"
     {
+			// IC module.
             int jumpingLine = Labels.top();
             Labels.pop();
-            addICStatement(getBooleanOperatorLexeme(negateBooleanOperator(static_cast<booleanOperator>((yyvsp[(5) - (6)]).tempNumber))),(yyvsp[(4) - (6)]).tempNumber,(yyvsp[(6) - (6)]).tempNumber, jumpingLine);
+            addICStatement(negateBooleanOperator(static_cast<quadrupleOperator>((yyvsp[(5) - (6)]).tempNumber)),(yyvsp[(4) - (6)]).tempNumber,(yyvsp[(6) - (6)]).tempNumber, jumpingLine);
 		;}
     break;
 
   case 66:
 
 /* Line 1455 of yacc.c  */
-#line 385 "parser.y"
+#line 429 "parser.y"
     {
+			// IC module.
+			checkForAssignRule((yyvsp[(2) - (4)]).dataType);
             checkForExprRule((yyvsp[(4) - (4)]).dataType);
 		 	(yyval).tempNumber = (yyvsp[(2) - (4)]).tempNumber;
-			Labels.push((addICStatement(getBooleanOperatorLexeme(booleanOperator::GTR),(yyvsp[(2) - (4)]).tempNumber,(yyvsp[(4) - (4)]).tempNumber,0) - 1));
+			Labels.push((addICStatement(quadrupleOperator::BGT,(yyvsp[(2) - (4)]).tempNumber,(yyvsp[(4) - (4)]).tempNumber,0) - 1));
 		 ;}
     break;
 
   case 67:
 
 /* Line 1455 of yacc.c  */
-#line 393 "parser.y"
-    {
-            (yyvsp[(1) - (3)]) = getDeclaration((yyvsp[(1) - (3)]).name, currentScope);
-            checkTypeCompatibility((yyvsp[(1) - (3)]).dataType, (yyvsp[(3) - (3)]).dataType);
-			checkForAssignRule((yyvsp[(3) - (3)]).dataType);
-			addICStatement("ASSGN",(yyvsp[(3) - (3)]).tempNumber,0,(yyvsp[(1) - (3)]).tempNumber);
-			(yyval).tempNumber = (yyvsp[(1) - (3)]).tempNumber;
-		;}
-    break;
-
-  case 68:
-
-/* Line 1455 of yacc.c  */
-#line 403 "parser.y"
+#line 439 "parser.y"
     {
         Labels.push( (ICStatements.size() + 1) );
     ;}
     break;
 
+  case 68:
+
+/* Line 1455 of yacc.c  */
+#line 445 "parser.y"
+    {
+				// IC module.
+                // This IC statement will be complete in the future. -1 to push a 0-based position.
+                Labels.push((addICStatement(negateBooleanOperator(static_cast<quadrupleOperator>((yyvsp[(3) - (4)]).tempNumber)),(yyvsp[(2) - (4)]).tempNumber,(yyvsp[(4) - (4)]).tempNumber,0) - 1));
+            ;}
+    break;
+
   case 69:
 
 /* Line 1455 of yacc.c  */
-#line 409 "parser.y"
+#line 453 "parser.y"
     {
-                // This IC statement will be complete in the future. -1 to push a 0-based position.
-                Labels.push((addICStatement(getBooleanOperatorLexeme(negateBooleanOperator(static_cast<booleanOperator>((yyvsp[(3) - (4)]).tempNumber))),(yyvsp[(2) - (4)]).tempNumber,(yyvsp[(4) - (4)]).tempNumber,0) - 1));
-            ;}
+			// id must be declared
+			// report use
+			(yyvsp[(3) - (4)]) = getDeclaration((yyvsp[(3) - (4)]).name, currentScope);
+			// IC module.
+			addICStatement(quadrupleOperator::READ, 0, 0, (yyvsp[(3) - (4)]).tempNumber);
+		;}
     break;
 
   case 70:
 
 /* Line 1455 of yacc.c  */
-#line 417 "parser.y"
+#line 463 "parser.y"
     {
 			// id must be declared
 			// report use
 			(yyvsp[(3) - (4)]) = getDeclaration((yyvsp[(3) - (4)]).name, currentScope);
-			addICStatement("READ",0,0, (yyvsp[(3) - (4)]).tempNumber);
+			// IC module.
+			addICStatement(quadrupleOperator::WRITE, (yyvsp[(3) - (4)]).tempNumber,0,0);
 		;}
     break;
 
   case 71:
 
 /* Line 1455 of yacc.c  */
-#line 426 "parser.y"
+#line 471 "parser.y"
     {
-			// id must be declared
-			// report use
-			(yyvsp[(3) - (4)]) = getDeclaration((yyvsp[(3) - (4)]).name, currentScope);
-			addICStatement("WRITE", (yyvsp[(3) - (4)]).tempNumber,0,0);
+			// IC module.
+			addICStatement(quadrupleOperator::WRITE, (yyvsp[(3) - (4)]).tempNumber,0,0);
 		;}
     break;
 
   case 72:
 
 /* Line 1455 of yacc.c  */
-#line 433 "parser.y"
-    {
-			addICStatement("WRITE", (yyvsp[(3) - (4)]).tempNumber,0,0);
-		;}
-    break;
-
-  case 73:
-
-/* Line 1455 of yacc.c  */
-#line 438 "parser.y"
+#line 477 "parser.y"
     {
 			(yyval).name = yytext;
+
+			// IC module.
 			(yyval).tempNumber = addTemporalToIdOrConst((yyval).name, currentScope, tempType::literalConst);
+			installConstantOnTable((yyval).tempNumber, (yyval).name, currentScope, type::stringType);
 		;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 2165 "parser.tab.c"
+#line 2204 "parser.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2373,7 +2412,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 444 "parser.y"
+#line 486 "parser.y"
 
 int yyerror(char* errorMessage)
 {

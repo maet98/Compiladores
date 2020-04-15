@@ -1,4 +1,3 @@
-
   REPORTS:
 
 declaration of ... a type integer scope 0
@@ -35,9 +34,9 @@ use of ... fooint type integer declared in scope 1 used in scope 1
 
 use of ... c type integer declared in scope 1 used in scope 1
 
-use of ... b type integer declared in scope 1 used in scope 1
-
 use of ... c type integer declared in scope 1 used in scope 1
+
+use of ... b type integer declared in scope 1 used in scope 1
 
 use of ... a type integer declared in scope 0 used in scope 1
 
@@ -66,15 +65,16 @@ a                               0                       1
 b                               0                       2
 c                               0                       3
 e                               0                       4
-fooint                          1                       5
-fooreal                         1                       6
-foostr                          1                       7
-localint                        1                       8
-localreal                       1                       9
-localstring                     1                       10
-localarray                      1                       11
-c                               1                       12
-b                               1                       13
+foo                             0                       5
+fooint                          1                       6
+fooreal                         1                       7
+foostr                          1                       8
+localint                        1                       9
+localreal                       1                       10
+localstring                     1                       11
+localarray                      1                       12
+c                               1                       13
+b                               1                       14
 
 Table INTEGER constants temporal numbers
 Lexeme                  scope                   tempNumber
@@ -89,34 +89,34 @@ Lexeme                  scope                   tempNumber
 
 Table LITERAL constants temporal numbers
 Lexeme                   scope                   Temporal Number
-"it's greater"                  1                       401
-"it's less"                     1                       402
-"i'm inside the while loop"                     1                       403
-"i'm inside the until loop"                     1                       404
+"It's Greater"                  1                       401
+"It's Less"                     1                       402
+"I'm inside the while loop"                     1                       403
+"I'm inside the until loop"                     1                       404
 
 
 INSTRUCTIONS
 1 WRITE 1 0 0
-2 WRITE 5 0 0
-3 WRITE 12 0 0
-4 ASSGN 13 0 12
-5 BGT 12 1 13
+2 WRITE 6 0 0
+3 WRITE 13 0 0
+4 ASSGN 14 0 13
+5 BGT 13 1 13
 6 BLE 1 201 9
 7 WRITE 401 0 0
 8 BUNC 0 0 10
 9 WRITE 402 0 0
-10 PLUS 202 12 -1
-11 ASSGN -1 0 12
+10 PLUS 202 13 -1
+11 ASSGN -1 0 13
 12 BUNC 0 0 5
-13 MULT 13 203 -2
-14 ASSGN -2 0 12
-15 BGE 12 204 20
+13 MULT 14 203 -2
+14 ASSGN -2 0 13
+15 BGE 13 204 20
 16 WRITE 403 0 0
-17 SUB 12 205 -3
-18 ASSGN -3 0 12
+17 SUB 13 205 -3
+18 ASSGN -3 0 13
 19 BUNC 0 0 15
 20 WRITE 404 0 0
-21 SUB 12 206 -4
-22 ASSGN -4 0 12
+21 SUB 13 206 -4
+22 ASSGN -4 0 13
 23 BGE 207 208 20
 24 HALT 0 0 0
