@@ -373,7 +373,7 @@ loop	: forHeader _DO stmt
             addICStatement("BUNC",0,0,Labels.top() + 1);
             updateInstructionJumpLine(ICStatements.size() + 1);
 		}
-		| do code _UNTIL expr bop expr
+		| do para _UNTIL expr bop expr
 		{
             int jumpingLine = Labels.top();
             Labels.pop();

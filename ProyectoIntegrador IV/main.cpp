@@ -57,6 +57,13 @@ void printConstTable(int constType) {
 	}
 }
 
+void printLiteralConstants() {
+    cout << "Lexeme \t\t\t scope \t\t\t Temporal Number \n";
+    for(auto x : constantReport[3]) {
+        cout << x << endl;
+    }
+}
+
 
 int main()
 {
@@ -68,16 +75,22 @@ int main()
         cout << "Ha ocurrido un error semantico\n";
     }else{
         cout << "El programa se ha analizado con exito. No han ocurrido errores.\n";
-
-        cout << endl << endl << "Table ID temporal numbers" << endl;
-        printConstTable(0);
-        cout << endl << "Table INTEGER constants temporal numbers" << endl;
-        printConstTable(1);
-        cout << endl << "Table REAL constants temporal numbers" << endl;
-        printConstTable(2);
-        cout << endl << "Table LITERAL constants temporal numbers" << endl;
-        printConstTable(3);
-
+        if(constantReport[0].size() > 0) {
+            cout << endl << endl << "Table ID temporal numbers" << endl;
+            printConstTable(0);
+        }
+        if(constantReport[1].size() > 0) {
+            cout << endl << "Table INTEGER constants temporal numbers" << endl;
+            printConstTable(1);
+        }
+        if(constantReport[2].size() > 0) {
+            cout << endl << "Table REAL constants temporal numbers" << endl;
+            printConstTable(2);
+        }
+        if(constantReport[3].size() > 0) {
+            cout << endl << "Table LITERAL constants temporal numbers" << endl;
+            printLiteralConstants();
+        }
         cout << endl << endl << "INSTRUCTIONS" << endl;
         for(int i = 0; i < ICStatements.size(); i++) {
             cout << i + 1 << " " << ICStatements[i] << endl;

@@ -1,0 +1,77 @@
+
+  REPORTS:
+
+declaration of ... num1 type integer scope 0
+
+declaration of ... num2 type integer scope 0
+
+declaration of ... answer type integer scope 0
+
+use of ... num1 type integer declared in scope 0 used in scope 0
+
+use of ... num2 type integer declared in scope 0 used in scope 0
+
+use of ... answer type integer declared in scope 0 used in scope 0
+
+use of ... num1 type integer declared in scope 0 used in scope 0
+
+use of ... num2 type integer declared in scope 0 used in scope 0
+
+use of ... num1 type integer declared in scope 0 used in scope 0
+
+use of ... num2 type integer declared in scope 0 used in scope 0
+
+use of ... num1 type integer declared in scope 0 used in scope 0
+
+use of ... num2 type integer declared in scope 0 used in scope 0
+
+use of ... num2 type integer declared in scope 0 used in scope 0
+
+use of ... num1 type integer declared in scope 0 used in scope 0
+
+use of ... num2 type integer declared in scope 0 used in scope 0
+
+use of ... answer type integer declared in scope 0 used in scope 0
+
+use of ... answer type integer declared in scope 0 used in scope 0
+
+use of ... answer type integer declared in scope 0 used in scope 0
+
+El programa se ha analizado con exito. No han ocurrido errores.
+
+
+Table ID temporal numbers
+Lexeme                  scope                   tempNumber
+num1                    0                       1
+num2                    0                       2
+answer                  0                       3
+
+Table INTEGER constants temporal numbers
+Lexeme                  scope                   tempNumber
+10                      0                       201
+1                       0                       202
+
+Table REAL constants temporal numbers
+Lexeme                          scope                   tempNumber
+100.5678                        0                       301
+
+
+INSTRUCTIONS
+1 READ 0 0 1
+2 READ 0 0 2
+3 MULT 2 1 -1
+4 PLUS 1 -1 -2
+5 SUB -2 2 -3
+6 ASSGN -3 0 3
+7 BGE 1 2 10
+8 WRITE 2 0 0
+9 BUNC 0 0 18
+10 ASSGN 1 0 2
+11 BGT 2 201 18
+12 WRITE 3 0 0
+13 PLUS 3 301 -4
+14 ASSGN -4 0 3
+15 PLUS 202 2 -5
+16 ASSGN -5 0 2
+17 BUNC 0 0 11
+18 HALT 0 0 0

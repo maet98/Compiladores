@@ -1,0 +1,228 @@
+
+  REPORTS:
+
+declaration of ... x type real scope 0
+
+declaration of ... y type integer scope 0
+
+declaration of ... d type integer scope 0
+
+declaration of ... subsubd type integer scope 0
+
+declaration of ... subd type integer scope 0
+
+declaration of ... b type procedure scope 0
+
+declaration of ... x type integer scope 1
+
+declaration of ... y type real scope 1
+
+declaration of ... c type integer scope 1
+
+use of ... x type integer declared in scope 1 used in scope 1
+
+use of ... c type integer declared in scope 1 used in scope 1
+
+use of ... subsubd type integer declared in scope 0 used in scope 1
+
+use of ... subd type integer declared in scope 0 used in scope 1
+
+use of ... d type integer declared in scope 0 used in scope 1
+
+use of ... d type integer declared in scope 0 used in scope 1
+
+use of ... subd type integer declared in scope 0 used in scope 1
+
+declaration of ... c type procedure scope 0
+
+declaration of ... x type string scope 1
+
+declaration of ... b type string scope 1
+
+declaration of ... d type procedure scope 1
+
+declaration of ... c type integer scope 2
+
+declaration of ... a type integer scope 2
+
+declaration of ... b type string scope 2
+
+declaration of ... subd type procedure scope 2
+
+declaration of ... subdpar1 type integer scope 3
+
+declaration of ... subdpar2 type string scope 3
+
+declaration of ... dvar1 type integer scope 3
+
+declaration of ... dvar2 type integer scope 3
+
+declaration of ... dvar3 type real scope 3
+
+declaration of ... subsubd type procedure scope 3
+
+declaration of ... subdpar3 type integer scope 4
+
+declaration of ... subdpar4 type string scope 4
+
+declaration of ... ddvar1 type integer scope 4
+
+declaration of ... ddvar2 type string scope 4
+
+declaration of ... ddvar3 type real scope 4
+
+use of ... ddvar1 type integer declared in scope 4 used in scope 4
+
+use of ... dvar2 type integer declared in scope 3 used in scope 4
+
+use of ... dvar3 type real declared in scope 3 used in scope 4
+
+use of ... dvar1 type integer declared in scope 3 used in scope 3
+
+use of ... dvar2 type integer declared in scope 3 used in scope 3
+
+use of ... dvar1 type integer declared in scope 3 used in scope 3
+
+use of ... dvar2 type integer declared in scope 3 used in scope 3
+
+use of ... dvar3 type real declared in scope 3 used in scope 3
+
+use of ... dvar1 type integer declared in scope 3 used in scope 3
+
+use of ... dvar2 type integer declared in scope 3 used in scope 3
+
+use of ... dvar3 type real declared in scope 3 used in scope 3
+
+use of ... y type integer declared in scope 0 used in scope 2
+
+use of ... x type string declared in scope 1 used in scope 2
+
+use of ... c type integer declared in scope 2 used in scope 2
+
+use of ... x type string declared in scope 1 used in scope 1
+
+use of ... b type string declared in scope 1 used in scope 1
+
+declaration of ... eproc type procedure scope 0
+
+declaration of ... epar1 type integer scope 1
+
+declaration of ... epar2 type string scope 1
+
+declaration of ... epar3 type real scope 1
+
+declaration of ... elocalvar1 type integer scope 1
+
+declaration of ... elocalvar2 type string scope 1
+
+declaration of ... elocalvar3 type real scope 1
+
+declaration of ... esub1 type procedure scope 1
+
+declaration of ... esublocal1 type integer scope 2
+
+declaration of ... esublocal2 type string scope 2
+
+use of ... subsubd type integer declared in scope 0 used in scope 2
+
+use of ... subd type integer declared in scope 0 used in scope 2
+
+use of ... esublocal1 type integer declared in scope 2 used in scope 2
+
+use of ... elocalvar1 type integer declared in scope 1 used in scope 2
+
+use of ... elocalvar3 type real declared in scope 1 used in scope 2
+
+use of ... esublocal2 type string declared in scope 2 used in scope 2
+
+use of ... elocalvar2 type string declared in scope 1 used in scope 2
+
+use of ... elocalvar1 type integer declared in scope 1 used in scope 1
+
+use of ... x type real declared in scope 0 used in scope 1
+
+use of ... y type integer declared in scope 0 used in scope 1
+
+use of ... d type integer declared in scope 0 used in scope 0
+
+use of ... y type integer declared in scope 0 used in scope 0
+
+El programa se ha analizado con exito. No han ocurrido errores.
+
+
+Table ID temporal numbers
+Lexeme                          scope                   tempNumber
+x                               0                       1
+y                               0                       2
+d                               0                       3
+subsubd                         0                       4
+subd                            0                       5
+x                               1                       6
+y                               1                       7
+c                               1                       8
+x                               1                       9
+b                               1                       10
+c                               2                       11
+a                               2                       12
+b                               2                       13
+subdpar1                        3                       14
+subdpar2                        3                       15
+dvar1                           3                       16
+dvar2                           3                       17
+dvar3                           3                       18
+subdpar3                        4                       19
+subdpar4                        4                       20
+ddvar1                          4                       21
+ddvar2                          4                       22
+ddvar3                          4                       23
+epar1                           1                       24
+epar2                           1                       25
+epar3                           1                       26
+elocalvar1                      1                       27
+elocalvar2                      1                       28
+elocalvar3                      1                       29
+esublocal1                      2                       30
+esublocal2                      2                       31
+
+Table INTEGER constants temporal numbers
+Lexeme                  scope                   tempNumber
+3                       3                       201
+
+Table LITERAL constants temporal numbers
+Lexeme                   scope                   Temporal Number
+"this is the 5th nesting level.... wow!!!"                      4                       401
+"done"                  3                       402
+
+
+INSTRUCTIONS
+1 WRITE 6 0 0
+2 WRITE 8 0 0
+3 MULT 5 3 -1
+4 ASSGN -1 0 4
+5 ASSGN 5 0 3
+6 WRITE 401 0 0
+7 PLUS 17 18 -2
+8 ASSGN -2 0 21
+9 READ 0 0 16
+10 READ 0 0 17
+11 MULT 17 201 -3
+12 PLUS -3 18 -4
+13 ASSGN -4 0 16
+14 WRITE 16 0 0
+15 WRITE 17 0 0
+16 WRITE 18 0 0
+17 WRITE 402 0 0
+18 WRITE 2 0 0
+19 WRITE 9 0 0
+20 WRITE 11 0 0
+21 WRITE 9 0 0
+22 WRITE 10 0 0
+23 ASSGN 5 0 4
+24 PLUS 27 29 -5
+25 ASSGN -5 0 30
+26 ASSGN 28 0 31
+27 PLUS 1 2 -6
+28 ASSGN -6 0 27
+29 WRITE 3 0 0
+30 WRITE 2 0 0
+31 HALT 0 0 0
